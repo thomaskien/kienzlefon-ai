@@ -1,0 +1,68 @@
+format_version: '1.0'
+scenario_id: KF-122
+title: Pflegedienst – infizierte Wunde am Unterschenkel
+description: Pflegeheim/Pflegedienst bittet für einen Patienten um medizinische Rücksprache.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- pflege
+- pflegeheim
+- rueckruf
+- fremdanrufer
+- pflegedienst_infizierte_wunde_am_unterschenkel
+simulation:
+  max_turns: 24
+  seed: 1122
+patient:
+  identity:
+    first_name: Markus
+    last_name: Schröder
+    birth_date: 26.08.1985
+    callback_number: null
+  persona:
+    style: professionell und knapp
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    problem: chronische Wunde, zunehmende Rötung und Sekretion
+    caller_name: Herr Kruse
+    patient_name: Markus Schröder
+    patient_birth_date: 26.08.1985
+  opening: Hier ist Herr Kruse vom Pflegedienst. Bei Markus Schröder ist die Unterschenkelwunde seit gestern stark
+    gerötet und nässt; wir hätten gern ärztliche Rücksprache.
+  instructions:
+  - Du bist Pflegefachkraft Herr Kruse.
+  - Du rufst für Markus Schröder an, nicht für dich selbst.
+  - Gib Patientendaten auf Nachfrage korrekt an.
+  - Bitte um ärztliche Rücksprache.
+environment:
+  caller_id: '+492331880122'
+  within_phone_hours: true
+test_goal:
+  topic: Pflege-Rücksprache
+  clarification_goal: Patientenbezogene Rückrufbitte korrekt erfassen; Fremdanrufer nicht mit Patient verwechseln.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Markus
+      nachname:
+        equals: Schröder
+      geburtsdatum:
+        equals: 26.08.1985
+      grund:
+        contains: Wunde
+  required_behaviors:
+  - Patient und anrufende Pflegekraft sauber auseinanderhalten.
+  - Medizinische Rücksprache als dringlichkeitsgerechte Rückrufbitte erfassen.
+  - Keinen tatsächlich zugesagten Hausbesuch behaupten.
+  forbidden_behaviors:
+  - Den Namen der Pflegekraft als Patientenname speichern.
+  - Eigenständig einen Hausbesuch verbindlich zusagen.
+  - Konkrete Therapieänderungen anweisen.
+  notes: []

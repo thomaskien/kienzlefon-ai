@@ -1,0 +1,60 @@
+format_version: '1.0'
+scenario_id: KF-013
+title: Überweisung – Fachrichtung korrigiert
+description: Patient korrigiert Neurologie zu Neurochirurgie.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- ueberweisung
+- korrektur
+- letzte-angabe
+simulation:
+  max_turns: 20
+  seed: 1013
+patient:
+  identity:
+    first_name: Anja
+    last_name: Lange
+    birth_date: 17.03.1972
+    callback_number: null
+  persona:
+    style: leicht unsicher
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    initial_specialty: Neurologie
+    final_specialty: Neurochirurgie
+    reason: Befundbesprechung Bandscheibe
+  opening: Ich brauche eine Überweisung zur Neurologie.
+  instructions:
+  - 'Korrigiere dich im nächsten sinnvollen Turn: Entschuldigung, Neurochirurgie, nicht Neurologie.'
+  - Grund ist Befundbesprechung wegen Bandscheibe.
+environment:
+  caller_id: '+4917610000013'
+  within_phone_hours: false
+test_goal:
+  topic: Überweisung
+  clarification_goal: Letzte Fachrichtungsangabe übernehmen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: ueb_req
+    complete: true
+    data:
+      vorname:
+        equals: Anja
+      nachname:
+        equals: Lange
+      geburtsdatum:
+        equals: 17.03.1972
+      fachrichtung:
+        contains: Neurochir
+      grund:
+        contains: Bandscheib
+  required_behaviors:
+  - Korrigierte Fachrichtung als aktiv speichern.
+  forbidden_behaviors:
+  - Neurologie zusätzlich als aktive Überweisung speichern.
+  notes: []

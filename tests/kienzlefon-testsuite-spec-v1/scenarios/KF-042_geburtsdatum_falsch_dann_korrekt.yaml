@@ -1,0 +1,60 @@
+format_version: '1.0'
+scenario_id: KF-042
+title: Geburtsdatum – ungültig, dann korrigiert
+description: Ungültiges Datum muss nachgefragt und durch letzte gültige Angabe ersetzt werden.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- stammdaten
+- geburtsdatum
+- korrektur
+simulation:
+  max_turns: 20
+  seed: 1042
+patient:
+  identity:
+    first_name: Erika
+    last_name: Sommer
+    birth_date: 28.02.1965
+    callback_number: null
+  persona:
+    style: leicht zerstreut
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    wrong_birth_date: 31.02.1965
+    correct_birth_date: 28.02.1965
+    reason: Termin zur Blutdruckkontrolle
+    availability: Mittwochvormittag
+  opening: Ich brauche einen Termin zur Blutdruckkontrolle.
+  instructions:
+  - Wenn nach Geburtsdatum gefragt wird, sage zuerst 31. Februar 1965.
+  - Wenn der Assistent die Unmöglichkeit/Unklarheit erkennt und nachfragt, korrigiere auf 28. Februar 1965.
+  - 'Verfügbarkeit: Mittwochvormittag.'
+environment:
+  caller_id: '+4917610000042'
+  within_phone_hours: false
+test_goal:
+  topic: Geburtsdatum-Korrektur
+  clarification_goal: Ungültiges Datum erkennen, einmal nachfragen und letzte gültige Angabe als 28.02.1965 verwenden.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Erika
+      nachname:
+        equals: Sommer
+      geburtsdatum:
+        equals: 28.02.1965
+      grund:
+        contains: Blutdruck
+  required_behaviors:
+  - Ungültiges Datum gezielt klären.
+  forbidden_behaviors:
+  - 31.02.1965 als gültig speichern.
+  notes: []

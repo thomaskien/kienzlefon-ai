@@ -1,0 +1,56 @@
+format_version: '1.0'
+scenario_id: KF-023
+title: Rückruf – keine CLIP, Nummer wird angesagt
+description: Ohne Rufnummernübermittlung muss eine Rückrufnummer erfragt werden.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rueckruf
+- telefonnummer
+- keine-clip
+simulation:
+  max_turns: 20
+  seed: 1023
+patient:
+  identity:
+    first_name: Lena
+    last_name: Frank
+    birth_date: 29.01.1978
+    callback_number: 0176 43000905
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Frage zu Befunden
+    spoken_number: null eins sieben sechs vier drei null null null neun null fünf
+  opening: Ich hätte gerne einen Rückruf zu meinen Befunden.
+  instructions:
+  - 'Wenn nach einer Rückrufnummer gefragt wird, sage sie ziffernweise: null eins sieben sechs vier drei null null null neun
+    null fünf.'
+environment:
+  caller_id: null
+  within_phone_hours: false
+test_goal:
+  topic: Rückruf
+  clarification_goal: Bei fehlender CLIP Rückrufnummer erfragen und erfassen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Lena
+      nachname:
+        equals: Frank
+      geburtsdatum:
+        equals: 29.01.1978
+      grund:
+        contains: Befund
+  required_behaviors:
+  - Bei fehlender Rufnummernübermittlung eine Rückrufnummer erfragen.
+  forbidden_behaviors: []
+  notes: []

@@ -1,0 +1,66 @@
+format_version: '1.0'
+scenario_id: KF-082
+title: Ehemann möchte Termin für Ehefrau
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- ehemann_moechte_termin_fuer_ehefrau
+simulation:
+  max_turns: 24
+  seed: 1082
+patient:
+  identity:
+    first_name: Hans
+    last_name: Reuter
+    birth_date: 18.12.1961
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    availability: Dienstag oder Donnerstag vormittags
+    reason: Knieschmerzen
+    caller_name: Rolf Seidel
+    patient_name: Hans Reuter
+    patient_birth_date: 18.12.1961
+  opening: Ich möchte für meine Frau einen Termin machen, sie hat seit Wochen Knieschmerzen.
+  instructions:
+  - Du bist der/die Angehörige Rolf Seidel.
+  - Du rufst ausdrücklich für Hans Reuter an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Rolf Seidel.
+environment:
+  caller_id: '+491760050082'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Hans
+      nachname:
+        equals: Reuter
+      geburtsdatum:
+        equals: 18.12.1961
+      grund:
+        contains: Knieschmerzen
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

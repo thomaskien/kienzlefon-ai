@@ -1,0 +1,69 @@
+format_version: '1.0'
+scenario_id: KF-140
+title: Pflegeheim – routinemäßige Medikationsbesprechung
+description: Pflegeheim/Pflegedienst bittet für einen Patienten um medizinische Rücksprache.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- pflege
+- pflegeheim
+- rueckruf
+- fremdanrufer
+- pflegeheim_routinemaessige_medikationsbesprechung
+simulation:
+  max_turns: 24
+  seed: 1140
+patient:
+  identity:
+    first_name: Armin
+    last_name: Stein
+    birth_date: 08.02.1983
+    callback_number: null
+  persona:
+    style: professionell und knapp
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    problem: routinemäßige Medikationsbesprechung
+    urgency: nicht akut
+    caller_name: Frau Lenz
+    patient_name: Armin Stein
+    patient_birth_date: 08.02.1983
+  opening: Guten Tag, Haus Lebensabend. Wir möchten für Armin Stein die Dauermedikation mit dem Arzt durchgehen,
+    es gibt aktuell keinen Notfall.
+  instructions:
+  - Du bist Pflegefachkraft Frau Lenz.
+  - Du rufst für Armin Stein an, nicht für dich selbst.
+  - Gib Patientendaten auf Nachfrage korrekt an.
+  - Bitte um ärztliche Rücksprache.
+environment:
+  caller_id: '+492331880140'
+  within_phone_hours: true
+test_goal:
+  topic: Pflege-Rücksprache
+  clarification_goal: Patientenbezogene Rückrufbitte korrekt erfassen; Fremdanrufer nicht mit Patient verwechseln.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Armin
+      nachname:
+        equals: Stein
+      geburtsdatum:
+        equals: 08.02.1983
+      grund:
+        contains: Dauermedikation
+  required_behaviors:
+  - Patient und anrufende Pflegekraft sauber auseinanderhalten.
+  - Medizinische Rücksprache als dringlichkeitsgerechte Rückrufbitte erfassen.
+  - Keinen tatsächlich zugesagten Hausbesuch behaupten.
+  forbidden_behaviors:
+  - Den Namen der Pflegekraft als Patientenname speichern.
+  - Eigenständig einen Hausbesuch verbindlich zusagen.
+  - Konkrete Therapieänderungen anweisen.
+  notes: []

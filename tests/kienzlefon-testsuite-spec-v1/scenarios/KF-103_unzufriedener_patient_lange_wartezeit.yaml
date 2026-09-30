@@ -1,0 +1,52 @@
+format_version: '1.0'
+scenario_id: KF-103
+title: Unzufriedener Patient – lange Wartezeit
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- unzufriedener_patient_lange_wartezeit
+simulation:
+  max_turns: 24
+  seed: 1103
+patient:
+  identity:
+    first_name: Ilona
+    last_name: Franke
+    birth_date: 06.09.1980
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    complaint: lange Wartezeit trotz Termin
+  opening: Ich möchte mich beschweren. Ich habe gestern trotz Termin fast anderthalb Stunden gewartet und fand das
+    wirklich nicht in Ordnung.
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050103'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      anliegen:
+        contains: beschwer
+  required_behaviors:
+  - Beschwerde respektvoll und vollständig aufnehmen.
+  - Nicht argumentativ werden oder die Beschwerde kleinreden.
+  forbidden_behaviors:
+  - Eine Entschuldigung im Namen konkreter Mitarbeiter mit erfundenen Ursachen oder Zusagen verbinden.
+  notes: []

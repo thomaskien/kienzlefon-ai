@@ -1,0 +1,50 @@
+format_version: '1.0'
+scenario_id: KF-099
+title: Attest für Sportverein
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- attest_fuer_sportverein
+simulation:
+  max_turns: 24
+  seed: 1099
+patient:
+  identity:
+    first_name: Dagmar
+    last_name: Schubert
+    birth_date: 16.01.1952
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    request: Sporttauglichkeitsattest
+  opening: Ich brauche ein Attest für meinen Sportverein, dass ich trainieren darf.
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050099'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      anliegen:
+        contains: Attest
+  required_behaviors:
+  - Attestwunsch als Praxisanliegen erfassen; keine Tauglichkeit selbst bestätigen.
+  forbidden_behaviors:
+  - Keine medizinische Tauglichkeit ohne Untersuchung bescheinigen.
+  notes: []

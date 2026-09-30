@@ -1,0 +1,57 @@
+format_version: '1.0'
+scenario_id: KF-035
+title: Krankheit erwähnt – kein AU-Wunsch
+description: Krankheitserwähnung allein darf nicht automatisch AU-Regeln oder Aufträge auslösen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- au
+- kein-au-wunsch
+- intent
+simulation:
+  max_turns: 20
+  seed: 1035
+patient:
+  identity:
+    first_name: Birgit
+    last_name: Albrecht
+    birth_date: 07.07.1969
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Termin wegen Husten
+    availability: morgen Nachmittag
+  opening: Ich bin seit ein paar Tagen erkältet und hätte gerne einen Termin wegen Husten.
+  instructions:
+  - Du möchtest ausdrücklich nur einen Termin, keine Krankschreibung.
+  - 'Verfügbarkeit: morgen Nachmittag.'
+environment:
+  caller_id: '+4917610000035'
+  within_phone_hours: false
+test_goal:
+  topic: Termin trotz Krankheitserwähnung
+  clarification_goal: Nicht aus dem Wort krank/erkältet automatisch einen AU-Fall machen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Birgit
+      nachname:
+        equals: Albrecht
+      geburtsdatum:
+        equals: 07.07.1969
+      grund:
+        contains: Husten
+  required_behaviors:
+  - Intent Termin beibehalten.
+  forbidden_behaviors:
+  - Ungefragt eine AU-Abwicklung beginnen.
+  notes: []

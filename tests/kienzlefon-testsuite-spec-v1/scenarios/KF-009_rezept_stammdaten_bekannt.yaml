@@ -1,0 +1,58 @@
+format_version: '1.0'
+scenario_id: KF-009
+title: Rezept – bekannte Stammdaten nicht erneut erfragen
+description: Stammdaten werden zu Gesprächsbeginn vollständig genannt.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rezept
+- stammdaten
+- keine-wiederholung
+simulation:
+  max_turns: 20
+  seed: 1009
+patient:
+  identity:
+    first_name: Elke
+    last_name: Jansen
+    birth_date: 27.05.1959
+    callback_number: null
+  persona:
+    style: präzise
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    medications:
+    - Simvastatin 20 mg
+  opening: Guten Tag, Elke Jansen, geboren am 27. Mai 1959. Ich brauche Simvastatin 20 mg.
+  instructions:
+  - Wiederhole Stammdaten nur, wenn der Assistent wirklich eine unklare Angabe gezielt klären muss.
+  - Weitere Medikamente verneinen.
+environment:
+  caller_id: '+4917610000009'
+  within_phone_hours: false
+test_goal:
+  topic: Rezeptbestellung
+  clarification_goal: Bereits genannte Stammdaten übernehmen statt erneut zu erfragen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Elke
+      nachname:
+        equals: Jansen
+      geburtsdatum:
+        equals: 27.05.1959
+      medikamente:
+        contains_lines:
+        - Simvastatin 20 mg
+  required_behaviors:
+  - Bereits eindeutig genannte Identitätsdaten verwenden.
+  forbidden_behaviors:
+  - Vorname, Nachname oder Geburtsdatum ohne Anlass erneut abfragen.
+  notes: []

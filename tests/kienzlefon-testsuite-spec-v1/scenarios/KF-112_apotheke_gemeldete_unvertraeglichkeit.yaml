@@ -1,0 +1,60 @@
+format_version: '1.0'
+scenario_id: KF-112
+title: Apotheke – gemeldete Unverträglichkeit
+description: Apothekenanruf mit fachlicher Rückfrage zu einem konkreten Patienten.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- apotheke
+- weiterleitung
+- fremdanrufer
+- apotheke_gemeldete_unvertraeglichkeit
+simulation:
+  max_turns: 24
+  seed: 1112
+patient:
+  identity:
+    first_name: Lothar
+    last_name: Horn
+    birth_date: 24.06.1979
+    callback_number: null
+  persona:
+    style: professionell und präzise
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    issue: mögliche Unverträglichkeit gegen Amoxicillin
+    patient_name: Lothar Horn
+    patient_birth_date: 24.06.1979
+  opening: Guten Tag, Apotheke am Ring. Herr Lothar Horn steht vor uns; auf dem Rezept ist Amoxicillin, er sagt
+    aber, er habe darauf schon einmal einen starken Ausschlag bekommen.
+  instructions:
+  - Du bist Mitarbeiter/in einer Apotheke, nicht der Patient.
+  - Ziel ist eine ärztliche Rücksprache; du möchtest keinen normalen Patientenauftrag hinterlassen.
+environment:
+  caller_id: '+492331770112'
+  within_phone_hours: true
+test_goal:
+  topic: Apothekenrückfrage
+  clarification_goal: Apothekenanruf priorisiert behandeln und nicht in Patientendatenerfassung umdeuten.
+expectations:
+  terminal_outcome: forward_immediately
+  records: []
+  required_behaviors:
+  - Apothekenanruf als professionellen Fremdanruf erkennen und den bevorzugten Apothekenpfad nutzen.
+  - Keinen normalen Patienten-Rezept- oder Terminauftrag aus dem Apothekenanruf konstruieren.
+  - Die ausdrücklich genannte zeitkritische Rücksprache priorisieren; Patient wartet in der Apotheke.
+  forbidden_behaviors:
+  - Routinemäßig die persönlichen Daten des Apothekenmitarbeiters als Patientendaten erfassen.
+  - Selbst eine Verordnung ändern oder pharmazeutisch/medizinisch verbindlich entscheiden.
+  notes: []
+channel_overrides:
+  chat:
+    terminal_outcome: contact_instruction
+    required_behaviors:
+    - Keine reale Telefonweiterleitung im Chat behaupten; stattdessen eine geeignete unmittelbare Kontaktanweisung
+      für die Apotheke geben.
+    forbidden_behaviors:
+    - Behaupten, den Chat jetzt telefonisch durchzustellen.

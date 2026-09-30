@@ -1,0 +1,70 @@
+format_version: '1.0'
+scenario_id: KF-121
+title: Pflegeheim – Dekubitus verschlechtert, Hausbesuch
+description: Pflegeheim/Pflegedienst bittet für einen Patienten um medizinische Rücksprache und Hausbesuch.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- pflege
+- pflegeheim
+- rueckruf
+- fremdanrufer
+- hausbesuch
+- pflegeheim_dekubitus_verschlechtert_hausbesuch
+simulation:
+  max_turns: 24
+  seed: 1121
+patient:
+  identity:
+    first_name: Irmgard
+    last_name: Richter
+    birth_date: 15.03.1978
+    callback_number: null
+  persona:
+    style: professionell und knapp
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    problem: Dekubitus Kreuzbein, größer und nässend
+    caller_name: Frau Becker
+    patient_name: Irmgard Richter
+    patient_birth_date: 15.03.1978
+  opening: Frau Becker vom Haus Sonnengarten hier. Bei Irmgard Richter hat sich ein Dekubitus am Kreuzbein deutlich
+    verschlechtert, wir wünschen einen Hausbesuch.
+  instructions:
+  - Du bist Pflegefachkraft Frau Becker.
+  - Du rufst für Irmgard Richter an, nicht für dich selbst.
+  - Gib Patientendaten auf Nachfrage korrekt an.
+  - Bitte um ärztliche Rücksprache und einen Hausbesuch.
+environment:
+  caller_id: '+492331880121'
+  within_phone_hours: true
+test_goal:
+  topic: Pflege-Rücksprache
+  clarification_goal: Patientenbezogene Rückrufbitte korrekt erfassen; Fremdanrufer nicht mit Patient verwechseln.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Irmgard
+      nachname:
+        equals: Richter
+      geburtsdatum:
+        equals: 15.03.1978
+      grund:
+        contains: Hausbesuch
+  required_behaviors:
+  - Patient und anrufende Pflegekraft sauber auseinanderhalten.
+  - Medizinische Rücksprache als dringlichkeitsgerechte Rückrufbitte erfassen.
+  - Keinen tatsächlich zugesagten Hausbesuch behaupten.
+  - Den Hausbesuchswunsch samt medizinischem Grund vollständig im Rückrufgrund festhalten.
+  forbidden_behaviors:
+  - Den Namen der Pflegekraft als Patientenname speichern.
+  - Eigenständig einen Hausbesuch verbindlich zusagen.
+  - Konkrete Therapieänderungen anweisen.
+  notes: []

@@ -1,0 +1,93 @@
+format_version: '1.0'
+scenario_id: KF-045
+title: Drei Aufträge in einem Gespräch
+description: Rezept, Überweisung und Termin nacheinander.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- mehrfachauftrag
+- rezept
+- ueberweisung
+- termin
+- stress-test
+simulation:
+  max_turns: 20
+  seed: 1045
+patient:
+  identity:
+    first_name: Andrea
+    last_name: Zimmer
+    birth_date: 20.05.1974
+    callback_number: null
+  persona:
+    style: organisiert
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    medications:
+    - Ramipril 5 mg
+    referral:
+      specialty: Kardiologie
+      reason: Kontrolle
+    appointment:
+      reason: Blutdruckkontrolle
+      availability: Dienstagvormittag
+  opening: Ich habe heute mehrere Sachen. Zuerst brauche ich Ramipril 5 mg auf Rezept.
+  instructions:
+  - Rezept zuerst; weitere Medikamente verneinen.
+  - Danach Überweisung Kardiologie zur Kontrolle beginnen.
+  - Nach deren Abschluss zusätzlich Termin zur Blutdruckkontrolle, Verfügbarkeit Dienstagvormittag.
+  - Stammdaten nur einmal nennen, sofern nicht wegen echter Unklarheit nachgefragt wird.
+environment:
+  caller_id: '+4917610000045'
+  within_phone_hours: false
+test_goal:
+  topic: Mehrere Aufträge
+  clarification_goal: Drei getrennte vollständige Aufträge und wiederverwendete Stammdaten.
+expectations:
+  terminal_outcome: multiple_orders_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Andrea
+      nachname:
+        equals: Zimmer
+      geburtsdatum:
+        equals: 20.05.1974
+      medikamente:
+        contains_lines:
+        - Ramipril 5 mg
+  - type: ueb_req
+    complete: true
+    data:
+      vorname:
+        equals: Andrea
+      nachname:
+        equals: Zimmer
+      geburtsdatum:
+        equals: 20.05.1974
+      fachrichtung:
+        contains: Kardi
+      grund:
+        contains: Kontrolle
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Andrea
+      nachname:
+        equals: Zimmer
+      geburtsdatum:
+        equals: 20.05.1974
+      grund:
+        contains: Blutdruck
+  required_behaviors:
+  - Nach jedem complete=true für weitere Anliegen offen bleiben.
+  - Stammdaten wiederverwenden.
+  forbidden_behaviors:
+  - Nach dem ersten Auftrag das Gespräch beenden.
+  notes: []

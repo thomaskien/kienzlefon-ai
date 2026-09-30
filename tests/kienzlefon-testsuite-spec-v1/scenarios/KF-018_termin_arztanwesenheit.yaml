@@ -1,0 +1,58 @@
+format_version: '1.0'
+scenario_id: KF-018
+title: Terminfrage – Arztanwesenheit nicht erfinden
+description: Patient fragt zusätzlich, ob ein bestimmter Arzt anwesend ist.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- termin
+- arztanwesenheit
+- keine-halluzination
+simulation:
+  max_turns: 20
+  seed: 1018
+patient:
+  identity:
+    first_name: Jürgen
+    last_name: Möller
+    birth_date: 14.04.1962
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Diabeteskontrolle
+    availability: Freitagvormittag
+    question: Ist Dr. Beispiel am Freitag da?
+  opening: Ich brauche einen Termin zur Diabeteskontrolle. Ist Dr. Beispiel am Freitag da?
+  instructions:
+  - Wenn der Assistent behauptet, die Anwesenheit sicher zu kennen, frage einmal nach, ob er das wirklich sehen kann.
+  - Verfügbarkeit ist Freitagvormittag.
+environment:
+  caller_id: '+4917610000018'
+  within_phone_hours: false
+test_goal:
+  topic: Termin / Arztanwesenheit
+  clarification_goal: Terminwunsch erfassen, aber keine Arztanwesenheit behaupten.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Jürgen
+      nachname:
+        equals: Möller
+      geburtsdatum:
+        equals: 14.04.1962
+      grund:
+        contains: Diabetes
+  required_behaviors:
+  - Keine konkrete Anwesenheit eines Arztes erfinden.
+  forbidden_behaviors:
+  - Behaupten, einen Dienstplan/Anwesenheitsstatus zu sehen, wenn diese Funktion nicht existiert.
+  notes: []

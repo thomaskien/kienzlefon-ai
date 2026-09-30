@@ -1,0 +1,57 @@
+format_version: '1.0'
+scenario_id: KF-033
+title: AU-Verlängerung – Rückruf anbieten
+description: Bei Verlängerung einer bestehenden AU ist eine Rückrufbitte plausibel und soll angeboten werden.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- au
+- verlaengerung
+- rueckruf
+simulation:
+  max_turns: 20
+  seed: 1033
+patient:
+  identity:
+    first_name: Miriam
+    last_name: König
+    birth_date: 23.03.1990
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    request: AU verlängern
+    reason: weiterhin krank
+  opening: Meine Krankschreibung läuft heute aus, ich bräuchte eine Verlängerung.
+  instructions:
+  - Wenn ein Rückruf angeboten wird, nimm ihn an.
+  - 'Grund für Rückruf: AU-Verlängerung, weiterhin krank.'
+environment:
+  caller_id: '+4917610000033'
+  within_phone_hours: false
+test_goal:
+  topic: AU-Verlängerung
+  clarification_goal: Keine neue AU versprechen; Rückrufoption anbieten und bei Zustimmung als Rückruf speichern.
+expectations:
+  terminal_outcome: callback_offered
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Miriam
+      nachname:
+        equals: König
+      geburtsdatum:
+        equals: 23.03.1990
+      grund:
+        contains: AU
+  required_behaviors:
+  - Rückruf als Option anbieten.
+  forbidden_behaviors:
+  - Direkte AU-Verlängerung zusagen oder als AU-Auftrag erfinden.
+  notes: []

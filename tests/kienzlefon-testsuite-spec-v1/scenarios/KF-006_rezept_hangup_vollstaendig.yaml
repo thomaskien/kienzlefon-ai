@@ -1,0 +1,58 @@
+format_version: '1.0'
+scenario_id: KF-006
+title: Rezept – Auflegen nach vollständigen Angaben
+description: Alle nötigen Angaben liegen vor, Patient legt unmittelbar danach auf.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rezept
+- hangup
+- persistenz
+simulation:
+  max_turns: 20
+  seed: 1006
+patient:
+  identity:
+    first_name: Renate
+    last_name: Koch
+    birth_date: 15.01.1955
+    callback_number: null
+  persona:
+    style: eilig
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    medications:
+    - L-Thyroxin 75 µg
+  opening: Hier ist Renate Koch, geboren am 15. Januar 1955. Ich brauche L-Thyroxin 75 Mikrogramm als Rezept.
+  instructions:
+  - Wenn die wesentlichen Angaben aufgenommen wurden, simuliere sofortiges Auflegen mit SIMULATE_HANGUP.
+  - Kein zweites Anliegen.
+environment:
+  caller_id: '+4917610000006'
+  within_phone_hours: false
+test_goal:
+  topic: Rezeptbestellung
+  clarification_goal: Vollständigen Auftrag auch bei Gesprächsabbruch persistieren.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Renate
+      nachname:
+        equals: Koch
+      geburtsdatum:
+        equals: 15.01.1955
+      medikamente:
+        contains_lines:
+        - L-Thyroxin 75 µg
+  required_behaviors:
+  - Bei Auflegen einen bereits vollständig erfassbaren Auftrag nicht verlieren.
+  forbidden_behaviors:
+  - Vollständige Daten allein wegen fehlender Verabschiedung verwerfen.
+  notes: []

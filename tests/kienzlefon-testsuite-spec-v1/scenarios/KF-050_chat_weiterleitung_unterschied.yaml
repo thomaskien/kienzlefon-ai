@@ -1,0 +1,54 @@
+format_version: '1.0'
+scenario_id: KF-050
+title: Kanalvergleich – Arztkollege Telefon vs. Chat
+description: Gleicher fachlicher Eingang soll im Telefonkanal weiterleiten, im Chat aber keine Weiterleitung vortäuschen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- chat
+- telephone
+- kanalvergleich
+- weiterleitung
+simulation:
+  max_turns: 20
+  seed: 1050
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: professionell
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    caller_type: ärztlicher Kollege
+    reason: ärztliche Rücksprache
+  opening: Guten Tag, hier ist Dr. Peters. Ich brauche eine kurze ärztliche Rücksprache.
+  instructions:
+  - Du möchtest direkt ärztlich Kontakt aufnehmen und keinen normalen Praxisauftrag hinterlassen.
+environment:
+  caller_id: '+492331555500'
+  within_phone_hours: false
+test_goal:
+  topic: Kanalabhängige Weiterleitung
+  clarification_goal: 'Telefon: sofort weiterleiten. Chat: passende Kontaktanweisung ohne behauptete technische Weiterleitung.'
+expectations:
+  terminal_outcome: forward_immediately
+  records: []
+  required_behaviors:
+  - 'Telefon: Sofortweiterleitung ohne normalen Auftrag.'
+  forbidden_behaviors:
+  - Einen normalen Patientenauftrag erzeugen.
+  notes: []
+channel_overrides:
+  chat:
+    terminal_outcome: contact_instruction
+    required_behaviors:
+    - Keine reale Rufweiterleitung behaupten; stattdessen erklären, wie unmittelbar ärztlicher Kontakt hergestellt werden
+      soll.
+    forbidden_behaviors:
+    - Behaupten, den Chat jetzt durchzustellen oder eine Telefonverbindung herzustellen.

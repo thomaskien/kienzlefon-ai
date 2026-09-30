@@ -1,0 +1,52 @@
+format_version: '1.0'
+scenario_id: KF-109
+title: Lieferdienst fragt nach Warenannahme
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- lieferdienst_fragt_nach_warenannahme
+simulation:
+  max_turns: 24
+  seed: 1109
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    caller_type: Kurierdienst
+    request: Warenannahme
+  opening: Guten Tag, hier ist der Kurierdienst. Ich habe drei Pakete für die Praxis und wollte fragen, wo ich sie
+    abgeben kann.
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050109'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      anliegen:
+        contains: Pakete
+  required_behaviors:
+  - Nichtmedizinischen Geschäftsanruf als organisatorische Nachricht behandeln.
+  forbidden_behaviors:
+  - Patientendaten erfragen oder medizinischen Auftrag erzeugen.
+  notes: []

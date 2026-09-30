@@ -1,0 +1,59 @@
+format_version: '1.0'
+scenario_id: KF-048
+title: Sonstiges – Nachricht wird korrigiert
+description: Patient formuliert Nachricht und korrigiert den Inhalt; Zusammenfassung soll Verlauf enthalten, Auftrag den finalen
+  Inhalt.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- sonstiges
+- korrektur
+- zusammenfassung
+simulation:
+  max_turns: 20
+  seed: 1048
+patient:
+  identity:
+    first_name: Karin
+    last_name: Lenz
+    birth_date: 26.08.1964
+    callback_number: null
+  persona:
+    style: etwas zerstreut
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    initial_message: Bitte Rezeptunterlagen bereitlegen
+    final_message: Bitte nur die Laborunterlagen bereitlegen
+  opening: Ich wollte sagen, bitte legen Sie meine Rezeptunterlagen bereit.
+  instructions:
+  - 'Korrigiere dich im nächsten passenden Turn: Nein, Entschuldigung, nicht die Rezeptunterlagen, nur die Laborunterlagen.'
+  - Du möchtest keine Rezeptbestellung; es geht nur um eine sonstige Nachricht.
+environment:
+  caller_id: '+4917610000048'
+  within_phone_hours: false
+test_goal:
+  topic: Sonstige Nachricht / Korrektur
+  clarification_goal: Finale Nachricht korrekt speichern; Gesprächszusammenfassung darf verworfene Formulierung dokumentieren.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      vorname:
+        equals: Karin
+      nachname:
+        equals: Lenz
+      geburtsdatum:
+        equals: 26.08.1964
+      anliegen:
+        contains: Laborunterlagen
+  required_behaviors:
+  - Letzte korrigierte Angabe im aktiven Auftrag verwenden.
+  - Gesprächszusammenfassung soll relevante Meinungsänderung nachvollziehbar machen.
+  forbidden_behaviors:
+  - Aus dem Wort Rezeptunterlagen eine Rezeptbestellung machen.
+  notes: []

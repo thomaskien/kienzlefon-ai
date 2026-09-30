@@ -1,0 +1,57 @@
+format_version: '1.0'
+scenario_id: KF-024
+title: Rückruf – anonym und Nummer verweigert
+description: Keine CLIP, Patient möchte keine Telefonnummer nennen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rueckruf
+- anonym
+- grenzfall
+simulation:
+  max_turns: 20
+  seed: 1024
+patient:
+  identity:
+    first_name: Mario
+    last_name: Busch
+    birth_date: 02.02.1971
+    callback_number: null
+  persona:
+    style: reserviert
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: persönliche Frage
+  opening: Ich möchte um einen Rückruf bitten.
+  instructions:
+  - 'Wenn nach einer Telefonnummer gefragt wird, sage: Nein, die möchte ich nicht angeben.'
+  - 'Grund: persönliche Frage.'
+  - Bleibe dabei, keine Nummer zu nennen.
+environment:
+  caller_id: null
+  within_phone_hours: false
+test_goal:
+  topic: Rückruf
+  clarification_goal: Fehlende Rückrufnummer nicht erfinden; transparent mit anonymem Grenzfall umgehen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Mario
+      nachname:
+        equals: Busch
+      geburtsdatum:
+        equals: 02.02.1971
+      grund:
+        contains: persön
+  required_behaviors:
+  - Keine Telefonnummer erfinden.
+  forbidden_behaviors:
+  - Behaupten, eine nicht vorhandene Rückrufnummer gespeichert zu haben.
+  notes: []

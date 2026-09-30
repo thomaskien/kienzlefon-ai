@@ -1,0 +1,65 @@
+format_version: '1.0'
+scenario_id: KF-084
+title: Tochter bittet um Befundrückruf für Mutter
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- tochter_bittet_um_befundrueckruf_fuer_mutter
+simulation:
+  max_turns: 24
+  seed: 1084
+patient:
+  identity:
+    first_name: Norbert
+    last_name: Fröhlich
+    birth_date: 13.10.1975
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    reason: Blutwerte besprechen
+    caller_name: Claudia Neumann
+    patient_name: Norbert Fröhlich
+    patient_birth_date: 13.10.1975
+  opening: Ich rufe wegen meiner Mutter an. Sie wartet auf die Blutwerte und hätte gern einen Rückruf.
+  instructions:
+  - Du bist der/die Angehörige Claudia Neumann.
+  - Du rufst ausdrücklich für Norbert Fröhlich an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Claudia Neumann.
+environment:
+  caller_id: '+491760050084'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Norbert
+      nachname:
+        equals: Fröhlich
+      geburtsdatum:
+        equals: 13.10.1975
+      grund:
+        contains: Blutwerte
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

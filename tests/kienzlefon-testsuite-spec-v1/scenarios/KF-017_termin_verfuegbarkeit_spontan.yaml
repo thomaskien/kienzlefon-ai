@@ -1,0 +1,56 @@
+format_version: '1.0'
+scenario_id: KF-017
+title: Termin – Verfügbarkeit spontan genannt
+description: Patient nennt den Wunschzeitraum bereits in der ersten Äußerung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- termin
+- verfuegbarkeit
+- keine-wiederholung
+simulation:
+  max_turns: 20
+  seed: 1017
+patient:
+  identity:
+    first_name: Nina
+    last_name: Peters
+    birth_date: 05.05.1980
+    callback_number: null
+  persona:
+    style: präzise
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    reason: Impfberatung
+    availability: nächste Woche Dienstag nach 15 Uhr oder Donnerstag vormittags
+  opening: Ich brauche einen Termin zur Impfberatung; nächste Woche könnte ich Dienstag nach 15 Uhr oder Donnerstagvormittag.
+  instructions:
+  - Bereits genannte Verfügbarkeit nicht ungefragt wiederholen.
+environment:
+  caller_id: '+4917610000017'
+  within_phone_hours: false
+test_goal:
+  topic: Termin
+  clarification_goal: Bereits genannte Verfügbarkeit übernehmen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Nina
+      nachname:
+        equals: Peters
+      geburtsdatum:
+        equals: 05.05.1980
+      grund:
+        contains: Impf
+  required_behaviors:
+  - Genannte Verfügbarkeit erfassen.
+  forbidden_behaviors:
+  - Verfügbarkeit ohne Unklarheit erneut vollständig erfragen.
+  notes: []

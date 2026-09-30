@@ -1,0 +1,47 @@
+format_version: '1.0'
+scenario_id: KF-032
+title: AU neu – Krankschreibung per Nachricht verlangt
+description: Neue AU darf nicht als normaler Auftrag angenommen werden; persönliche Klärung erforderlich.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- au
+- arbeitsunfaehigkeit
+- kein-auftrag
+simulation:
+  max_turns: 20
+  seed: 1032
+patient:
+  identity:
+    first_name: Stefan
+    last_name: Reuter
+    birth_date: 10.10.1985
+    callback_number: null
+  persona:
+    style: direkt
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    request: neue AU wegen Grippe
+  opening: Bitte schreiben Sie mich krank, ich habe Grippe. Vielen Dank, tschüss.
+  instructions:
+  - Du verlangst eine neue Krankschreibung/AU.
+  - Wenn erklärt wird, dass das persönlich geklärt werden muss, akzeptiere das.
+environment:
+  caller_id: '+4917610000032'
+  within_phone_hours: false
+test_goal:
+  topic: Neue AU
+  clarification_goal: Keine neue AU als Praxisauftrag aufnehmen; persönliche Klärung über Vorbeikommen oder Telefonzeiten
+    verlangen.
+expectations:
+  terminal_outcome: no_order
+  records: []
+  required_behaviors:
+  - 'Neue AU persönlich klären lassen: vorbeikommen oder während der Telefonzeiten anrufen.'
+  forbidden_behaviors:
+  - Eine AU-Erstellung versprechen.
+  - Einen erfundenen AU-Auftrag speichern.
+  notes: []

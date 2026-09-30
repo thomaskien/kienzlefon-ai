@@ -1,0 +1,55 @@
+format_version: '1.0'
+scenario_id: KF-046
+title: Telefonnummer – ziffernweise gesprochen
+description: Keine CLIP; bei Sonstiges soll Rückrufnummer versucht und ziffernweise verstanden werden.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- telefonnummer
+- sonstiges
+- keine-clip
+simulation:
+  max_turns: 20
+  seed: 1046
+patient:
+  identity:
+    first_name: Tina
+    last_name: Voß
+    birth_date: null
+    callback_number: 0176 43000905
+  persona:
+    style: sachlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    message: Bitte Rückmeldung zur Schlüsselübergabe.
+    spoken_number: null eins sieben sechs vier drei null null null neun null fünf
+  opening: Ich wollte eine Nachricht zur Schlüsselübergabe hinterlassen.
+  instructions:
+  - 'Wenn nach einer Rückrufnummer gefragt wird, sage: null eins sieben sechs vier drei null null null neun null fünf.'
+  - Du bist keine Patientin; kein Geburtsdatum angeben.
+environment:
+  caller_id: null
+  within_phone_hours: false
+test_goal:
+  topic: Sonstige Nachricht / Telefonnummer
+  clarification_goal: Bei fehlender CLIP Rückrufnummer erfragen, ohne unpassende Patientendaten zu erzwingen.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      vorname:
+        equals: Tina
+      nachname:
+        equals: Voß
+      anliegen:
+        contains: Schlüssel
+  required_behaviors:
+  - Rückrufnummer bei fehlender CLIP zumindest erfragen.
+  forbidden_behaviors:
+  - Ein Geburtsdatum erfinden.
+  notes: []

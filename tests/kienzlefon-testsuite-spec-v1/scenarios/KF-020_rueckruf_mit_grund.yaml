@@ -1,0 +1,52 @@
+format_version: '1.0'
+scenario_id: KF-020
+title: Rückruf – mit Grund
+description: Normaler Rückrufwunsch mit Grund.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rueckruf
+- happy-path
+simulation:
+  max_turns: 20
+  seed: 1020
+patient:
+  identity:
+    first_name: Claudia
+    last_name: Klein
+    birth_date: 19.07.1970
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Laborwerte besprechen
+  opening: Ich hätte gern einen Rückruf wegen meiner Laborwerte.
+  instructions:
+  - 'Grund: Laborwerte besprechen.'
+environment:
+  caller_id: '+4917610000020'
+  within_phone_hours: false
+test_goal:
+  topic: Rückruf
+  clarification_goal: Rückrufwunsch mit Personendaten und Grund aufnehmen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Claudia
+      nachname:
+        equals: Klein
+      geburtsdatum:
+        equals: 19.07.1970
+      grund:
+        contains: Labor
+  required_behaviors: []
+  forbidden_behaviors: []
+  notes: []

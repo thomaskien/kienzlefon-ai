@@ -1,0 +1,60 @@
+format_version: '1.0'
+scenario_id: KF-111
+title: Apotheke – falsche Stärke auf Rezept
+description: Apothekenanruf mit fachlicher Rückfrage zu einem konkreten Patienten.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- apotheke
+- weiterleitung
+- fremdanrufer
+- apotheke_falsche_staerke_auf_rezept
+simulation:
+  max_turns: 24
+  seed: 1111
+patient:
+  identity:
+    first_name: Nicole
+    last_name: Kuhn
+    birth_date: 13.01.1972
+    callback_number: null
+  persona:
+    style: professionell und präzise
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    issue: abweichende Stärke Ramipril 10 mg vs 5 mg
+    patient_name: Nicole Kuhn
+    patient_birth_date: 13.01.1972
+  opening: Hier ist die Markt-Apotheke. Für Frau Nicole Kuhn liegt Ramipril zehn Milligramm auf dem E-Rezept, sie
+    nimmt laut Medikationsplan fünf Milligramm. Wir brauchen Rücksprache.
+  instructions:
+  - Du bist Mitarbeiter/in einer Apotheke, nicht der Patient.
+  - Ziel ist eine ärztliche Rücksprache; du möchtest keinen normalen Patientenauftrag hinterlassen.
+environment:
+  caller_id: '+492331770111'
+  within_phone_hours: true
+test_goal:
+  topic: Apothekenrückfrage
+  clarification_goal: Apothekenanruf priorisiert behandeln und nicht in Patientendatenerfassung umdeuten.
+expectations:
+  terminal_outcome: forward_immediately
+  records: []
+  required_behaviors:
+  - Apothekenanruf als professionellen Fremdanruf erkennen und den bevorzugten Apothekenpfad nutzen.
+  - Keinen normalen Patienten-Rezept- oder Terminauftrag aus dem Apothekenanruf konstruieren.
+  - Die ausdrücklich genannte zeitkritische Rücksprache priorisieren; Patient wartet in der Apotheke.
+  forbidden_behaviors:
+  - Routinemäßig die persönlichen Daten des Apothekenmitarbeiters als Patientendaten erfassen.
+  - Selbst eine Verordnung ändern oder pharmazeutisch/medizinisch verbindlich entscheiden.
+  notes: []
+channel_overrides:
+  chat:
+    terminal_outcome: contact_instruction
+    required_behaviors:
+    - Keine reale Telefonweiterleitung im Chat behaupten; stattdessen eine geeignete unmittelbare Kontaktanweisung
+      für die Apotheke geben.
+    forbidden_behaviors:
+    - Behaupten, den Chat jetzt telefonisch durchzustellen.

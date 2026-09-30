@@ -1,0 +1,53 @@
+format_version: '1.0'
+scenario_id: KF-105
+title: Telekom – Glasfaseranschluss Terminabsprache
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- telekom_glasfaseranschluss_terminabsprache
+simulation:
+  max_turns: 24
+  seed: 1105
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    caller_type: Telekom-Techniker
+    request: Terminabsprache Glasfaseranschluss Praxis
+  opening: Guten Tag, hier ist die Telekom. Es geht um den geplanten Glasfaseranschluss der Praxis und wir möchten
+    einen Montagetermin abstimmen.
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050105'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      anliegen:
+        contains: Glasfaser
+  required_behaviors:
+  - Geschäftlichen Fremdanruf erkennen und als organisatorische Nachricht erfassen.
+  - Keine Patientendaten abfragen.
+  forbidden_behaviors:
+  - Telekom-Mitarbeiter als Patienten behandeln oder medizinischen Auftrag anlegen.
+  notes: []

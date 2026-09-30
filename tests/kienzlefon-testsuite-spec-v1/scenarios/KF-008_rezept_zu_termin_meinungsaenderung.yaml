@@ -1,0 +1,60 @@
+format_version: '1.0'
+scenario_id: KF-008
+title: Meinungsänderung – doch kein Rezept, sondern Termin
+description: Patient beginnt mit Rezeptwunsch und verwirft ihn zugunsten eines Termins.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rezept
+- termin
+- meinungsaenderung
+- keine-fehlauftraege
+simulation:
+  max_turns: 20
+  seed: 1008
+patient:
+  identity:
+    first_name: Rolf
+    last_name: Neumann
+    birth_date: 03.12.1960
+    callback_number: null
+  persona:
+    style: unsicher
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    final_intent: Termin
+    appointment_reason: Blutdruckkontrolle
+    availability: Dienstag oder Donnerstag vormittags
+  opening: Ich wollte eigentlich ein Rezept... ach nein, ich brauche doch lieber einen Termin.
+  instructions:
+  - Bestätige bei Rückfrage eindeutig, dass du kein Rezept bestellen willst.
+  - Termin-Grund ist Blutdruckkontrolle.
+  - Als Verfügbarkeit nenne Dienstag oder Donnerstag vormittags.
+environment:
+  caller_id: '+4917610000008'
+  within_phone_hours: false
+test_goal:
+  topic: Intent-Korrektur
+  clarification_goal: Verworfenes Rezept nicht als Auftrag anlegen; finalen Terminwunsch erfassen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Rolf
+      nachname:
+        equals: Neumann
+      geburtsdatum:
+        equals: 03.12.1960
+      grund:
+        contains: Blutdruck
+  required_behaviors:
+  - Bei echter Unklarheit Rezept versus Termin einmal gezielt klären und die letzte eindeutige Angabe übernehmen.
+  forbidden_behaviors:
+  - Einen Rezeptdatensatz aus dem verworfenen Wunsch erzeugen.
+  notes: []

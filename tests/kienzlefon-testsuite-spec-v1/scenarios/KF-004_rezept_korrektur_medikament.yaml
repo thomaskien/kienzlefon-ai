@@ -1,0 +1,61 @@
+format_version: '1.0'
+scenario_id: KF-004
+title: Rezept – Medikament wird korrigiert
+description: Patient korrigiert sich von einem Medikament auf ein anderes.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rezept
+- korrektur
+- letzte-angabe
+simulation:
+  max_turns: 20
+  seed: 1004
+patient:
+  identity:
+    first_name: Monika
+    last_name: Weber
+    birth_date: 22.06.1961
+    callback_number: null
+  persona:
+    style: leicht zerstreut
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    final_medication: Bisoprolol 5 mg
+    initial_wrong: Metoprolol 47,5 mg
+  opening: Ich brauche Metoprolol 47,5 auf Rezept.
+  instructions:
+  - 'Korrigiere dich im nächsten passenden Turn ausdrücklich: Nein, entschuldigen Sie, ich meinte Bisoprolol 5 mg.'
+  - Bleibe danach bei Bisoprolol 5 mg.
+  - Weitere Medikamente verneinen.
+environment:
+  caller_id: '+4917610000004'
+  within_phone_hours: false
+test_goal:
+  topic: Rezeptbestellung
+  clarification_goal: Bei Selbstkorrektur die letzte Angabe übernehmen und die verworfene Angabe nicht als aktives Medikament
+    speichern.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Monika
+      nachname:
+        equals: Weber
+      geburtsdatum:
+        equals: 22.06.1961
+      medikamente:
+        contains_lines:
+        - Bisoprolol 5 mg
+  required_behaviors:
+  - Die Korrektur als letzte gültige Medikamentenangabe übernehmen.
+  - Die Gesprächszusammenfassung darf die vorherige verworfene Angabe erwähnen.
+  forbidden_behaviors:
+  - Metoprolol zusätzlich als bestelltes Medikament speichern.
+  notes: []

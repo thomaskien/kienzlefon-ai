@@ -1,0 +1,52 @@
+format_version: '1.0'
+scenario_id: KF-110
+title: Krankenkasse bittet um Rückruf zu Unterlagen
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- krankenkasse_bittet_um_rueckruf_zu_unterlagen
+simulation:
+  max_turns: 24
+  seed: 1110
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    caller_type: Krankenkasse
+    request: Rückfrage zu angeforderten Unterlagen
+  opening: Guten Tag, hier ist die Krankenkasse. Wir haben eine Rückfrage zu bereits angeforderten Unterlagen und
+    bitten um Rückruf.
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050110'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      anliegen:
+        contains: Unterlagen
+  required_behaviors:
+  - Institutionellen Anruf als solchen erkennen und sachlich erfassen.
+  forbidden_behaviors:
+  - Mitarbeiter der Krankenkasse als Patienten behandeln.
+  notes: []

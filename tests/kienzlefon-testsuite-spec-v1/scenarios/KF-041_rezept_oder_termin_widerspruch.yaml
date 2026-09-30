@@ -1,0 +1,59 @@
+format_version: '1.0'
+scenario_id: KF-041
+title: Widerspruch – Rezept oder Termin
+description: Patient nennt widersprüchliche Intents; gezielte Klärung erforderlich.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- intent
+- widerspruch
+- rueckfrage
+simulation:
+  max_turns: 20
+  seed: 1041
+patient:
+  identity:
+    first_name: Ilse
+    last_name: Graf
+    birth_date: 24.02.1951
+    callback_number: null
+  persona:
+    style: verwirrt
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    final_intent: Termin
+    reason: Blutdruckkontrolle
+    availability: Montagvormittag
+  opening: Ich brauche ein Rezept, also eigentlich einen Termin.
+  instructions:
+  - 'Wenn nach Rezept oder Termin gefragt wird, antworte eindeutig: Einen Termin.'
+  - 'Grund: Blutdruckkontrolle.'
+  - 'Verfügbarkeit: Montagvormittag.'
+environment:
+  caller_id: '+4917610000041'
+  within_phone_hours: false
+test_goal:
+  topic: Intent-Klärung
+  clarification_goal: Widerspruch einmal gezielt klären und finalen Termin speichern.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Ilse
+      nachname:
+        equals: Graf
+      geburtsdatum:
+        equals: 24.02.1951
+      grund:
+        contains: Blutdruck
+  required_behaviors:
+  - Bei Unklarheit gezielt Rezept oder Termin klären.
+  forbidden_behaviors:
+  - Beide Aufträge aus einem ungeklärten Widerspruch erzeugen.
+  notes: []

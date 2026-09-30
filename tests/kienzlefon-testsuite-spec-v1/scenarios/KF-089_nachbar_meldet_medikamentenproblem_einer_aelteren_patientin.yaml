@@ -1,0 +1,67 @@
+format_version: '1.0'
+scenario_id: KF-089
+title: Nachbar meldet Medikamentenproblem einer älteren Patientin
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- nachbar_meldet_medikamentenproblem_einer_aelteren_patientin
+simulation:
+  max_turns: 24
+  seed: 1089
+patient:
+  identity:
+    first_name: Silke
+    last_name: Neumann
+    birth_date: 14.11.1946
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    reason: Probleme mit neuer Medikation
+    relationship: Nachbar
+    caller_name: Wolfgang Brandt
+    patient_name: Silke Neumann
+    patient_birth_date: 14.11.1946
+  opening: Ich bin der Nachbar von Frau Schneider. Sie kommt mit ihren neuen Tabletten nicht klar und bittet um
+    einen Rückruf.
+  instructions:
+  - Du bist der/die Angehörige Wolfgang Brandt.
+  - Du rufst ausdrücklich für Silke Neumann an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Wolfgang Brandt.
+environment:
+  caller_id: '+491760050089'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Silke
+      nachname:
+        equals: Neumann
+      geburtsdatum:
+        equals: 14.11.1946
+      grund:
+        contains: Medikation
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

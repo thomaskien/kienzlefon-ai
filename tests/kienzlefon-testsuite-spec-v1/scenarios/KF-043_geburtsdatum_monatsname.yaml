@@ -1,0 +1,59 @@
+format_version: '1.0'
+scenario_id: KF-043
+title: Geburtsdatum – gesprochener Monatsname
+description: Gesprochenes Datum mit Monatsname soll ins Format TT.MM.JJJJ normalisiert werden.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- stammdaten
+- geburtsdatum
+- normalisierung
+simulation:
+  max_turns: 20
+  seed: 1043
+patient:
+  identity:
+    first_name: Friedrich
+    last_name: Nowak
+    birth_date: 07.11.1957
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    spoken_birth_date: siebter November neunzehnhundertsiebenundfünfzig
+    reason: Überweisung
+    specialty: Hautarzt
+    referral_reason: Muttermalkontrolle
+  opening: Ich brauche eine Überweisung zum Hautarzt zur Muttermalkontrolle.
+  instructions:
+  - 'Geburtsdatum auf Nachfrage gesprochen als: siebter November neunzehnhundertsiebenundfünfzig.'
+environment:
+  caller_id: '+4917610000043'
+  within_phone_hours: false
+test_goal:
+  topic: Datumsnormalisierung
+  clarification_goal: Geburtsdatum in 07.11.1957 speichern.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: ueb_req
+    complete: true
+    data:
+      vorname:
+        equals: Friedrich
+      nachname:
+        equals: Nowak
+      geburtsdatum:
+        equals: 07.11.1957
+      fachrichtung:
+        contains: Haut
+      grund:
+        contains: Muttermal
+  required_behaviors:
+  - Gesprochenen Monatsnamen in numerisches TT.MM.JJJJ überführen.
+  forbidden_behaviors: []
+  notes: []

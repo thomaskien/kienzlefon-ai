@@ -1,0 +1,55 @@
+format_version: '1.0'
+scenario_id: KF-022
+title: Rückruf – CLIP vorhanden
+description: Übermittelte Rufnummer ist vorhanden und soll nicht erneut erfragt werden.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rueckruf
+- clip
+- keine-wiederholung
+simulation:
+  max_turns: 20
+  seed: 1022
+patient:
+  identity:
+    first_name: Marlies
+    last_name: Otto
+    birth_date: 12.12.1953
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Befundfrage
+  opening: Bitte um Rückruf wegen eines Befunds.
+  instructions:
+  - Keine Telefonnummer von dir aus nennen.
+environment:
+  caller_id: '+4917610000022'
+  within_phone_hours: false
+test_goal:
+  topic: Rückruf
+  clarification_goal: CLIP verwenden; keine unnötige Nachfrage nach Rückrufnummer.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Marlies
+      nachname:
+        equals: Otto
+      geburtsdatum:
+        equals: 12.12.1953
+      grund:
+        contains: Befund
+  required_behaviors:
+  - Übermittelte Rufnummer als verfügbar behandeln.
+  forbidden_behaviors:
+  - Trotz vorhandener CLIP routinemäßig die Telefonnummer erfragen.
+  notes: []

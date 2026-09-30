@@ -1,0 +1,66 @@
+format_version: '1.0'
+scenario_id: KF-002
+title: Rezept – mehrere Medikamente
+description: Mehrere Medikamente werden nacheinander genannt.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rezept
+- mehrfach
+- happy-path
+simulation:
+  max_turns: 20
+  seed: 1002
+patient:
+  identity:
+    first_name: Petra
+    last_name: Schulz
+    birth_date: 04.11.1964
+    callback_number: null
+  persona:
+    style: freundlich, etwas knapp
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    medications:
+    - Ramipril 5 mg
+    - Metoprolol 47,5 mg
+    - Atorvastatin 20 mg
+  opening: Ich möchte Medikamente bestellen.
+  instructions:
+  - Nenne zuerst nur Ramipril 5 mg.
+  - Bei der Frage nach weiteren Bestellungen nenne Metoprolol 47,5 mg.
+  - Bei erneuter Nachfrage nenne Atorvastatin 20 mg.
+  - Danach verneine weitere Medikamente.
+  - Stammdaten nur auf Nachfrage.
+environment:
+  caller_id: '+4917610000002'
+  within_phone_hours: false
+test_goal:
+  topic: Rezeptbestellung
+  clarification_goal: Mehrere Medikamente vollständig im selben Rezeptdatensatz sammeln.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Petra
+      nachname:
+        equals: Schulz
+      geburtsdatum:
+        equals: 04.11.1964
+      medikamente:
+        contains_lines:
+        - Ramipril 5 mg
+        - Metoprolol 47,5 mg
+        - Atorvastatin 20 mg
+  required_behaviors:
+  - Alle drei Medikamente in einem auftragsbezogenen Datensatz sammeln.
+  - Erst nach endgültiger Verneinung weiterer Bestellwünsche abschließen.
+  forbidden_behaviors:
+  - Für jedes Medikament einen separaten Rezeptauftrag erzeugen.
+  notes: []

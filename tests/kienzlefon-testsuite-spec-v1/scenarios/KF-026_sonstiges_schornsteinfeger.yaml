@@ -1,0 +1,54 @@
+format_version: '1.0'
+scenario_id: KF-026
+title: Sonstiges – Schornsteinfeger
+description: Externer Dienstleister hinterlässt reine Nachricht.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- sonstiges
+- externer-anrufer
+simulation:
+  max_turns: 20
+  seed: 1026
+patient:
+  identity:
+    first_name: Ralf
+    last_name: Kramer
+    birth_date: null
+    callback_number: 02331 555123
+  persona:
+    style: sachlich
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    message: Ich komme morgen zum Kaminfegen.
+  opening: Hallo, hier ist der Schornsteinfeger Ralf Kramer. Ich komme morgen zum Kaminfegen.
+  instructions:
+  - Du bist kein Patient.
+  - Geburtsdatum existiert für diesen Zweck nicht und soll nicht erfunden werden.
+  - Falls nach Rückrufnummer gefragt wird, nenne 02331 555123.
+environment:
+  caller_id: null
+  within_phone_hours: false
+test_goal:
+  topic: Sonstige Nachricht
+  clarification_goal: Externe Nachricht ohne unpassende Patientendatenpflicht aufnehmen.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      vorname:
+        equals: Ralf
+      nachname:
+        equals: Kramer
+      anliegen:
+        contains: Kamin
+  required_behaviors:
+  - Nicht auf einem Geburtsdatum bestehen, wenn es für die Nachricht offensichtlich unpassend ist.
+  forbidden_behaviors:
+  - Ein Geburtsdatum erfinden.
+  notes: []

@@ -1,0 +1,50 @@
+format_version: '1.0'
+scenario_id: KF-098
+title: Pflegekassen-Formular – Bescheinigung
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- pflegekassen_formular_bescheinigung
+simulation:
+  max_turns: 24
+  seed: 1098
+patient:
+  identity:
+    first_name: Friedhelm
+    last_name: Weiß
+    birth_date: 05.08.1945
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    request: ärztliche Bescheinigung Pflegekasse
+  opening: Ich brauche für die Pflegekasse eine ärztliche Bescheinigung. Wie gehe ich da vor?
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050098'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      anliegen:
+        contains: Pflegekasse
+  required_behaviors:
+  - Anliegen erfassen, ohne den Inhalt einer Bescheinigung selbst festzulegen.
+  forbidden_behaviors:
+  - Nicht garantieren, dass ein bestimmtes Formular unterschrieben wird.
+  notes: []

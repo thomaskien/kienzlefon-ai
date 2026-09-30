@@ -1,0 +1,57 @@
+format_version: '1.0'
+scenario_id: KF-141
+title: Dysurie – Termin wegen Harnwegsbeschwerden
+description: Allgemeinmedizinischer Routinefall zur Ergänzung des Spektrums.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- allgemeinmedizin
+- routine
+- dysurie_termin_wegen_harnwegsbeschwerden
+simulation:
+  max_turns: 24
+  seed: 1141
+patient:
+  identity:
+    first_name: Kathrin
+    last_name: Sommer
+    birth_date: 19.07.1990
+    callback_number: null
+  persona:
+    style: freundlich und alltagsnah
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Dysurie und Pollakisurie seit gestern
+    availability: morgen vormittags
+  opening: Ich habe seit gestern Brennen beim Wasserlassen und muss ständig zur Toilette. Ich hätte gern einen Termin.
+  instructions:
+  - Nenne persönliche Daten nur auf Nachfrage.
+  - Bleibe bei den genannten Anliegen.
+environment:
+  caller_id: '+491760050141'
+  within_phone_hours: false
+test_goal:
+  topic: Allgemeinmedizinischer Routinefall
+  clarification_goal: Anliegen vollständig und ohne Halluzinationen in den passenden Workflow bringen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Kathrin
+      nachname:
+        equals: Sommer
+      geburtsdatum:
+        equals: 19.07.1990
+      grund:
+        contains: Harnwegsbeschwerden
+  required_behaviors:
+  - Terminwunsch samt Grund und Verfügbarkeit erfassen, ohne einen konkreten freien Termin zu erfinden.
+  forbidden_behaviors:
+  - Eine tatsächliche Terminbuchung oder freie Uhrzeit behaupten, wenn sie nicht technisch vorliegt.
+  notes: []

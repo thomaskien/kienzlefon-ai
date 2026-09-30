@@ -1,0 +1,60 @@
+format_version: '1.0'
+scenario_id: KF-003
+title: Rezept – Medikament ohne Stärke
+description: Patient nennt nur den Medikamentennamen; keine Interpretation oder erfundene Stärke.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rezept
+- unvollstaendige-medikamentenangabe
+- keine-interpretation
+simulation:
+  max_turns: 20
+  seed: 1003
+patient:
+  identity:
+    first_name: Klaus
+    last_name: Berger
+    birth_date: 18.02.1950
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    medications:
+    - Pantoprazol
+  opening: Ich brauche bitte Pantoprazol auf Rezept.
+  instructions:
+  - Nenne keine Stärke, weil du sie nicht weißt.
+  - 'Wenn ausdrücklich nach einer Stärke gefragt wird, sage: Die weiß ich gerade nicht.'
+  - Erfinde keine Stärke.
+  - Weitere Medikamente verneinen.
+environment:
+  caller_id: '+4917610000003'
+  within_phone_hours: false
+test_goal:
+  topic: Rezeptbestellung
+  clarification_goal: Gesagte Medikamenteninformation unverändert aufnehmen, ohne eine Stärke zu erfinden.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Klaus
+      nachname:
+        equals: Berger
+      geburtsdatum:
+        equals: 18.02.1950
+      medikamente:
+        contains_lines:
+        - Pantoprazol
+  required_behaviors:
+  - Keine nicht genannte Wirkstärke ergänzen.
+  forbidden_behaviors:
+  - Eine Stärke oder Dosierung halluzinieren.
+  notes: []

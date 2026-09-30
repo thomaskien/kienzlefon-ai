@@ -1,0 +1,55 @@
+format_version: '1.0'
+scenario_id: KF-016
+title: Termin – Grund zunächst unspezifisch
+description: Patient möchte nur einen Termin; Grund wird auf Nachfrage genannt.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- termin
+- rueckfrage
+simulation:
+  max_turns: 20
+  seed: 1016
+patient:
+  identity:
+    first_name: Dieter
+    last_name: Wolf
+    birth_date: 11.11.1956
+    callback_number: null
+  persona:
+    style: wortkarg
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Rückenschmerzen
+    availability: jeden Vormittag außer Freitag
+  opening: Ich brauche einen Termin.
+  instructions:
+  - 'Grund erst auf Nachfrage: Rückenschmerzen.'
+  - 'Verfügbarkeit: jeden Vormittag außer Freitag.'
+environment:
+  caller_id: '+4917610000016'
+  within_phone_hours: false
+test_goal:
+  topic: Termin
+  clarification_goal: Termin-Grund und Verfügbarkeit mit knappen Rückfragen erfassen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Dieter
+      nachname:
+        equals: Wolf
+      geburtsdatum:
+        equals: 11.11.1956
+      grund:
+        contains: Rücken
+  required_behaviors:
+  - Nur nötige Informationen erfragen.
+  forbidden_behaviors: []
+  notes: []

@@ -1,0 +1,51 @@
+format_version: '1.0'
+scenario_id: KF-096
+title: Reha-Antrag – Patient möchte Formular anstoßen
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- reha_antrag_patient_moechte_formular_anstossen
+simulation:
+  max_turns: 24
+  seed: 1096
+patient:
+  identity:
+    first_name: Georg
+    last_name: Kaiser
+    birth_date: 10.10.1995
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    request: Reha-Antrag, ärztlicher Teil
+  opening: Ich möchte eine Reha beantragen und wollte wissen, ob die Praxis den ärztlichen Teil ausfüllen kann.
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050096'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      anliegen:
+        contains: Reha
+  required_behaviors:
+  - Anfrage nach Reha-Antrag als organisatorisches Praxisanliegen erfassen.
+  - Keine Bearbeitung, Genehmigung oder Frist versprechen, die nicht bekannt ist.
+  forbidden_behaviors:
+  - Nicht behaupten, der Reha-Antrag sei bereits erstellt oder eingereicht.
+  notes: []

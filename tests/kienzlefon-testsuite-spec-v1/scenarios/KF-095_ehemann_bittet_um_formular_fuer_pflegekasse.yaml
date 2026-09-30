@@ -1,0 +1,65 @@
+format_version: '1.0'
+scenario_id: KF-095
+title: Ehemann bittet um Formular für Pflegekasse
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- ehemann_bittet_um_formular_fuer_pflegekasse
+simulation:
+  max_turns: 24
+  seed: 1095
+patient:
+  identity:
+    first_name: Annette
+    last_name: Walter
+    birth_date: 26.05.1988
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    reason: ärztliche Bescheinigung für Pflegekasse
+    caller_name: Georg Hartmann
+    patient_name: Annette Walter
+    patient_birth_date: 26.05.1988
+  opening: Ich rufe für meine Frau an. Wir brauchen für die Pflegekasse noch eine ärztliche Bescheinigung.
+  instructions:
+  - Du bist der/die Angehörige Georg Hartmann.
+  - Du rufst ausdrücklich für Annette Walter an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Georg Hartmann.
+environment:
+  caller_id: '+491760050095'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Annette
+      nachname:
+        equals: Walter
+      geburtsdatum:
+        equals: 26.05.1988
+      grund:
+        contains: Pflegekasse
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

@@ -1,0 +1,75 @@
+format_version: '1.0'
+scenario_id: KF-014
+title: Mehrfachauftrag – Überweisung und Rezept
+description: Überweisung zuerst, danach Rezept im selben Gespräch.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- mehrfachauftrag
+- ueberweisung
+- rezept
+simulation:
+  max_turns: 20
+  seed: 1014
+patient:
+  identity:
+    first_name: Martin
+    last_name: Seidel
+    birth_date: 08.09.1966
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    referral:
+      specialty: Augenheilkunde
+      reason: Kontrolle
+    medications:
+    - Amlodipin 10 mg
+  opening: Ich brauche eine Überweisung zum Augenarzt zur Kontrolle.
+  instructions:
+  - Überweisung zuerst vollständig klären.
+  - Wenn gefragt wird, ob sonst noch etwas getan werden kann, bestelle Amlodipin 10 mg.
+  - Beim Rezept weitere Medikamente verneinen.
+environment:
+  caller_id: '+4917610000014'
+  within_phone_hours: false
+test_goal:
+  topic: Mehrere Aufträge
+  clarification_goal: Überweisung und Rezept als getrennte vollständige Aufträge erfassen.
+expectations:
+  terminal_outcome: multiple_orders_complete
+  records:
+  - type: ueb_req
+    complete: true
+    data:
+      vorname:
+        equals: Martin
+      nachname:
+        equals: Seidel
+      geburtsdatum:
+        equals: 08.09.1966
+      fachrichtung:
+        contains: Aug
+      grund:
+        contains: Kontrolle
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Martin
+      nachname:
+        equals: Seidel
+      geburtsdatum:
+        equals: 08.09.1966
+      medikamente:
+        contains_lines:
+        - Amlodipin 10 mg
+  required_behaviors:
+  - Stammdaten im zweiten Auftrag wiederverwenden.
+  forbidden_behaviors:
+  - Gespräch nach dem ersten Auftrag beenden.
+  notes: []

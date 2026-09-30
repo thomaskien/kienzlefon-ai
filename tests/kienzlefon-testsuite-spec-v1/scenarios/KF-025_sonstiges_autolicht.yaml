@@ -1,0 +1,51 @@
+format_version: '1.0'
+scenario_id: KF-025
+title: Sonstiges – Licht am Auto brennt
+description: Nichtmedizinische Nachricht an die Praxis ohne notwendige Personendaten.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- sonstiges
+- nachricht
+- ohne-personendaten
+simulation:
+  max_turns: 20
+  seed: 1025
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: hilfsbereit
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    message: Beim Auto vor der Praxis brennt noch das Licht.
+  opening: 'Nur als Hinweis: Beim Auto vor der Praxis brennt noch das Licht.'
+  instructions:
+  - Du möchtest nur die Nachricht hinterlassen.
+  - 'Wenn nach einem Namen gefragt wird, sage: Das ist nicht wichtig, ich wollte nur Bescheid sagen.'
+  - Wenn ohne CLIP nach einer Rückrufnummer gefragt wird, darfst du sie verweigern.
+environment:
+  caller_id: null
+  within_phone_hours: false
+test_goal:
+  topic: Sonstige Nachricht
+  clarification_goal: Eine sinnvolle sonstige Nachricht auch ohne Personendaten erfassen.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      anliegen:
+        contains: Licht
+  required_behaviors:
+  - Bei Sonstiges zumindest versuchen, eine Rückrufnummer zu bekommen, wenn keine CLIP vorhanden ist; Verweigerung akzeptieren.
+  forbidden_behaviors:
+  - Medizinische Interpretation hinzufügen.
+  notes: []

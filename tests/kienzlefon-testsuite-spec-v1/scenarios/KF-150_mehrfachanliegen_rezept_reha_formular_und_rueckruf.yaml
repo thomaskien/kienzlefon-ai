@@ -1,0 +1,69 @@
+format_version: '1.0'
+scenario_id: KF-150
+title: Mehrfachanliegen – Rezept, Reha-Formular und Rückruf
+description: Allgemeinmedizinischer Routinefall zur Ergänzung des Spektrums.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- allgemeinmedizin
+- routine
+- mehrfachanliegen_rezept_reha_formular_und_rueckruf
+simulation:
+  max_turns: 24
+  seed: 1150
+patient:
+  identity:
+    first_name: Alfred
+    last_name: May
+    birth_date: 10.04.1989
+    callback_number: null
+  persona:
+    style: freundlich und alltagsnah
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    medications:
+    - Bisoprolol 5 mg
+    form: Reha-Antrag
+    callback_reason: Reha-Unterlagen besprechen
+  opening: Ich brauche mein Bisoprolol fünf Milligramm wieder, habe außerdem Unterlagen für einen Reha-Antrag und
+    möchte dazu gern mit dem Arzt sprechen.
+  instructions:
+  - Nenne persönliche Daten nur auf Nachfrage.
+  - Bleibe bei den genannten Anliegen.
+environment:
+  caller_id: '+491760050150'
+  within_phone_hours: false
+test_goal:
+  topic: Allgemeinmedizinischer Routinefall
+  clarification_goal: Anliegen vollständig und ohne Halluzinationen in den passenden Workflow bringen.
+expectations:
+  terminal_outcome: multiple_orders_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname: &id001
+        equals: Alfred
+      nachname: &id002
+        equals: May
+      geburtsdatum: &id003
+        equals: 10.04.1989
+      medikamente:
+        contains_lines:
+        - Bisoprolol 5 mg
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname: *id001
+      nachname: *id002
+      geburtsdatum: *id003
+      grund:
+        contains: Reha
+  required_behaviors:
+  - Rezept und ärztliche Rücksprache zu Reha-Unterlagen als getrennte Aufträge führen.
+  forbidden_behaviors:
+  - Aus dem Reha-Antrag ein erfundenes Spezialformular-Backend behaupten.
+  notes: []

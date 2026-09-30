@@ -1,0 +1,59 @@
+format_version: '1.0'
+scenario_id: KF-113
+title: Apotheke – Medikament nicht lieferbar, Alternative erbeten
+description: Apothekenanruf mit fachlicher Rückfrage zu einem konkreten Patienten.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- apotheke
+- weiterleitung
+- fremdanrufer
+- apotheke_medikament_nicht_lieferbar_alternative_erbeten
+simulation:
+  max_turns: 24
+  seed: 1113
+patient:
+  identity:
+    first_name: Marion
+    last_name: Thomas
+    birth_date: 08.11.1986
+    callback_number: null
+  persona:
+    style: professionell und präzise
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    issue: Nichtverfügbarkeit; Alternative ärztlich klären
+    patient_name: Marion Thomas
+    patient_birth_date: 08.11.1986
+  opening: Hier ist die Linden-Apotheke. Das verordnete Präparat für Frau Marion Thomas ist nicht lieferbar. Wir
+    brauchen eine ärztliche Entscheidung zu einer Alternative.
+  instructions:
+  - Du bist Mitarbeiter/in einer Apotheke, nicht der Patient.
+  - Ziel ist eine ärztliche Rücksprache; du möchtest keinen normalen Patientenauftrag hinterlassen.
+environment:
+  caller_id: '+492331770113'
+  within_phone_hours: true
+test_goal:
+  topic: Apothekenrückfrage
+  clarification_goal: Apothekenanruf priorisiert behandeln und nicht in Patientendatenerfassung umdeuten.
+expectations:
+  terminal_outcome: forward_immediately
+  records: []
+  required_behaviors:
+  - Apothekenanruf als professionellen Fremdanruf erkennen und den bevorzugten Apothekenpfad nutzen.
+  - Keinen normalen Patienten-Rezept- oder Terminauftrag aus dem Apothekenanruf konstruieren.
+  forbidden_behaviors:
+  - Routinemäßig die persönlichen Daten des Apothekenmitarbeiters als Patientendaten erfassen.
+  - Selbst eine Verordnung ändern oder pharmazeutisch/medizinisch verbindlich entscheiden.
+  notes: []
+channel_overrides:
+  chat:
+    terminal_outcome: contact_instruction
+    required_behaviors:
+    - Keine reale Telefonweiterleitung im Chat behaupten; stattdessen eine geeignete unmittelbare Kontaktanweisung
+      für die Apotheke geben.
+    forbidden_behaviors:
+    - Behaupten, den Chat jetzt telefonisch durchzustellen.

@@ -1,0 +1,67 @@
+format_version: '1.0'
+scenario_id: KF-081
+title: Tochter bestellt Medikament für Mutter
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- tochter_bestellt_medikament_fuer_mutter
+simulation:
+  max_turns: 24
+  seed: 1081
+patient:
+  identity:
+    first_name: Susanne
+    last_name: Wolff
+    birth_date: 07.07.1954
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    medications:
+    - Ramipril 5 mg
+    caller_name: Sabine Krämer
+    patient_name: Susanne Wolff
+    patient_birth_date: 07.07.1954
+  opening: Guten Tag, ich rufe für meine Mutter an. Sie braucht wieder ihr Ramipril fünf Milligramm.
+  instructions:
+  - Du bist der/die Angehörige Sabine Krämer.
+  - Du rufst ausdrücklich für Susanne Wolff an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Sabine Krämer.
+environment:
+  caller_id: '+491760050081'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Susanne
+      nachname:
+        equals: Wolff
+      geburtsdatum:
+        equals: 07.07.1954
+      medikamente:
+        contains_lines:
+        - Ramipril 5 mg
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

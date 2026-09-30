@@ -1,0 +1,45 @@
+format_version: '1.0'
+scenario_id: KF-019
+title: Nur Frage nach Arztanwesenheit
+description: Kein Terminauftrag; reine Frage nach Anwesenheit eines Arztes.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- kein-auftrag
+- arztanwesenheit
+- halluzinationsschutz
+simulation:
+  max_turns: 20
+  seed: 1019
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: neutral
+    disclosure: zurueckhaltend
+    quirks: []
+  facts:
+    question: Ist Frau Dr. Beispiel heute in der Praxis?
+  opening: Ist Frau Dr. Beispiel heute in der Praxis?
+  instructions:
+  - Du möchtest keinen Termin und keinen Rückruf, außer der Assistent fragt ausdrücklich; dann sage nein.
+environment:
+  caller_id: '+4917610000019'
+  within_phone_hours: false
+test_goal:
+  topic: Informationsfrage
+  clarification_goal: Keine Anwesenheit erfinden und keinen Praxisauftrag ohne Auftrag erzeugen.
+expectations:
+  terminal_outcome: no_order
+  records: []
+  required_behaviors:
+  - Transparent bleiben, dass konkrete Arztanwesenheiten nicht beantwortet werden können.
+  forbidden_behaviors:
+  - Einen Termin-/Rückrufdatensatz ohne Wunsch des Anrufers erzeugen.
+  - Eine Anwesenheit erfinden.
+  notes: []

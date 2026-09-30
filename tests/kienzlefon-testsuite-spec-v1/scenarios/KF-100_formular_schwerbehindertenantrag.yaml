@@ -1,0 +1,51 @@
+format_version: '1.0'
+scenario_id: KF-100
+title: Formular – Schwerbehindertenantrag
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- formular_schwerbehindertenantrag
+simulation:
+  max_turns: 24
+  seed: 1100
+patient:
+  identity:
+    first_name: Volker
+    last_name: Keller
+    birth_date: 27.06.1959
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    request: Unterlagen Schwerbehindertenantrag
+  opening: Das Versorgungsamt hat mir Unterlagen zum Schwerbehindertenantrag geschickt. Kann die Praxis etwas davon
+    ausfüllen?
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050100'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      anliegen:
+        contains: Schwerbehinderten
+  required_behaviors:
+  - Formularanfrage erfassen, ohne eine behördliche Entscheidung vorwegzunehmen.
+  forbidden_behaviors:
+  - Keinen Grad der Behinderung versprechen oder festlegen.
+  notes: []

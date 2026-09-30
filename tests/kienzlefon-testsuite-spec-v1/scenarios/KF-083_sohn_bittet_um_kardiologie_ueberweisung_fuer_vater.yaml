@@ -1,0 +1,68 @@
+format_version: '1.0'
+scenario_id: KF-083
+title: Sohn bittet um Kardiologie-Überweisung für Vater
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- sohn_bittet_um_kardiologie_ueberweisung_fuer_vater
+simulation:
+  max_turns: 24
+  seed: 1083
+patient:
+  identity:
+    first_name: Birgit
+    last_name: Kramer
+    birth_date: 02.05.1968
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    specialty: Kardiologie
+    reason: Kontrolle
+    caller_name: Martin Hoffmann
+    patient_name: Birgit Kramer
+    patient_birth_date: 02.05.1968
+  opening: Ich rufe für meinen Vater an, er braucht bitte eine Überweisung zur Kardiologie zur Kontrolle.
+  instructions:
+  - Du bist der/die Angehörige Martin Hoffmann.
+  - Du rufst ausdrücklich für Birgit Kramer an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Martin Hoffmann.
+environment:
+  caller_id: '+491760050083'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: ueb_req
+    complete: true
+    data:
+      vorname:
+        equals: Birgit
+      nachname:
+        equals: Kramer
+      geburtsdatum:
+        equals: 02.05.1968
+      fachrichtung:
+        contains: Kardiologie
+      grund:
+        contains: Kontrolle
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

@@ -1,0 +1,43 @@
+format_version: '1.0'
+scenario_id: KF-037
+title: Expliziter Test ohne Praxisauftrag
+description: Anrufer sagt, dies sei nur ein Test; daraus darf kein Praxisauftrag entstehen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- kein-auftrag
+- test
+- regression
+simulation:
+  max_turns: 20
+  seed: 1037
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: sachlich
+    disclosure: alles_spontan
+    quirks: []
+  facts: {}
+  opening: Das ist nur ein Test des Telefonassistenten. Ich habe kein Anliegen und möchte nichts beauftragen.
+  instructions:
+  - Bleibe dabei, dass kein Praxisauftrag existiert.
+environment:
+  caller_id: '+4917610000037'
+  within_phone_hours: false
+test_goal:
+  topic: Testanruf
+  clarification_goal: Keine Auftragserfassung aus einer reinen Testanweisung.
+expectations:
+  terminal_outcome: conversation_end
+  records: []
+  required_behaviors:
+  - Keinen Praxisauftrag erzeugen.
+  forbidden_behaviors:
+  - Einen sonstigen Datensatz nur deshalb erzeugen, weil gesprochen wurde.
+  notes: []

@@ -1,0 +1,66 @@
+format_version: '1.0'
+scenario_id: KF-087
+title: Vater möchte Termin für Kind mit Fieber
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- vater_moechte_termin_fuer_kind_mit_fieber
+simulation:
+  max_turns: 24
+  seed: 1087
+patient:
+  identity:
+    first_name: Barbara
+    last_name: Koch
+    birth_date: 19.01.1996
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    reason: Fieber seit gestern, sonst stabil
+    availability: heute wenn möglich
+    caller_name: Thomas Schulz
+    patient_name: Barbara Koch
+    patient_birth_date: 19.01.1996
+  opening: Ich brauche für meine Tochter einen Termin, sie hat seit gestern Fieber, ist aber wach und trinkt.
+  instructions:
+  - Du bist der/die Angehörige Thomas Schulz.
+  - Du rufst ausdrücklich für Barbara Koch an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Thomas Schulz.
+environment:
+  caller_id: '+491760050087'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Barbara
+      nachname:
+        equals: Koch
+      geburtsdatum:
+        equals: 19.01.1996
+      grund:
+        contains: Fieber
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

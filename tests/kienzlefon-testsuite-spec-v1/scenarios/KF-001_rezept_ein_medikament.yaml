@@ -1,0 +1,60 @@
+format_version: '1.0'
+scenario_id: KF-001
+title: Rezept – ein Medikament
+description: Einfacher Happy Path für eine Rezeptbestellung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rezept
+- happy-path
+simulation:
+  max_turns: 20
+  seed: 1001
+patient:
+  identity:
+    first_name: Hans
+    last_name: Meier
+    birth_date: 12.03.1957
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    medications:
+    - Ramipril 5 mg
+  opening: Guten Tag, ich wollte ein Rezept bestellen.
+  instructions:
+  - Nenne Stammdaten nur auf Nachfrage.
+  - Nenne Ramipril 5 mg als Medikament.
+  - Wenn nach weiteren Bestellwünschen gefragt wird, sage nein.
+environment:
+  caller_id: '+4917610000001'
+  within_phone_hours: false
+test_goal:
+  topic: Rezeptbestellung
+  clarification_goal: Ein vollständiges Rezept mit einem Medikament erfassen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Hans
+      nachname:
+        equals: Meier
+      geburtsdatum:
+        equals: 12.03.1957
+      medikamente:
+        contains_lines:
+        - Ramipril 5 mg
+  required_behaviors:
+  - Vor Abschluss klären, ob noch etwas bestellt werden soll.
+  - Nach abgeschlossenem Rezept den vorgesehenen eRezept-Zeithinweis geben.
+  forbidden_behaviors:
+  - Rezept vor Klärung weiterer Medikamente abschließen.
+  - Unnötig Stammdaten wiederholen.
+  notes: []

@@ -1,0 +1,60 @@
+format_version: '1.0'
+scenario_id: KF-118
+title: Apotheke – Dosieranweisung widersprüchlich
+description: Apothekenanruf mit fachlicher Rückfrage zu einem konkreten Patienten.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- apotheke
+- weiterleitung
+- fremdanrufer
+- apotheke_dosieranweisung_widerspruechlich
+simulation:
+  max_turns: 24
+  seed: 1118
+patient:
+  identity:
+    first_name: Matthias
+    last_name: Müller
+    birth_date: 09.12.1957
+    callback_number: null
+  persona:
+    style: professionell und präzise
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    issue: widersprüchliche Dosieranweisung
+    patient_name: Matthias Müller
+    patient_birth_date: 09.12.1957
+  opening: Guten Tag, Apotheke Süd. Auf dem Rezept für Herrn Matthias Müller steht morgens und abends, im Medikationsplan
+    aber nur morgens. Was gilt?
+  instructions:
+  - Du bist Mitarbeiter/in einer Apotheke, nicht der Patient.
+  - Ziel ist eine ärztliche Rücksprache; du möchtest keinen normalen Patientenauftrag hinterlassen.
+environment:
+  caller_id: '+492331770118'
+  within_phone_hours: true
+test_goal:
+  topic: Apothekenrückfrage
+  clarification_goal: Apothekenanruf priorisiert behandeln und nicht in Patientendatenerfassung umdeuten.
+expectations:
+  terminal_outcome: forward_immediately
+  records: []
+  required_behaviors:
+  - Apothekenanruf als professionellen Fremdanruf erkennen und den bevorzugten Apothekenpfad nutzen.
+  - Keinen normalen Patienten-Rezept- oder Terminauftrag aus dem Apothekenanruf konstruieren.
+  - Die ausdrücklich genannte zeitkritische Rücksprache priorisieren; Patient wartet in der Apotheke.
+  forbidden_behaviors:
+  - Routinemäßig die persönlichen Daten des Apothekenmitarbeiters als Patientendaten erfassen.
+  - Selbst eine Verordnung ändern oder pharmazeutisch/medizinisch verbindlich entscheiden.
+  notes: []
+channel_overrides:
+  chat:
+    terminal_outcome: contact_instruction
+    required_behaviors:
+    - Keine reale Telefonweiterleitung im Chat behaupten; stattdessen eine geeignete unmittelbare Kontaktanweisung
+      für die Apotheke geben.
+    forbidden_behaviors:
+    - Behaupten, den Chat jetzt telefonisch durchzustellen.

@@ -1,0 +1,258 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kienzlefon.local/schemas/test-scenario-v1.json",
+  "title": "Kienzlefon test scenario v1",
+  "type": "object",
+  "required": [
+    "format_version",
+    "scenario_id",
+    "title",
+    "description",
+    "enabled",
+    "channels",
+    "tags",
+    "simulation",
+    "patient",
+    "environment",
+    "test_goal",
+    "expectations"
+  ],
+  "properties": {
+    "format_version": {
+      "const": "1.0"
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^KF-[0-9]{3}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "channels": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "telephone",
+          "chat"
+        ]
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "simulation": {
+      "type": "object",
+      "required": [
+        "max_turns",
+        "seed"
+      ],
+      "properties": {
+        "max_turns": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 100
+        },
+        "seed": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": true
+    },
+    "patient": {
+      "type": "object",
+      "required": [
+        "identity",
+        "persona",
+        "facts",
+        "opening",
+        "instructions"
+      ],
+      "properties": {
+        "identity": {
+          "type": "object",
+          "required": [
+            "first_name",
+            "last_name",
+            "birth_date",
+            "callback_number"
+          ],
+          "properties": {
+            "first_name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "last_name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "birth_date": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "callback_number": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "persona": {
+          "type": "object",
+          "required": [
+            "style",
+            "disclosure",
+            "quirks"
+          ],
+          "properties": {
+            "style": {
+              "type": "string"
+            },
+            "disclosure": {
+              "type": "string"
+            },
+            "quirks": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "facts": {
+          "type": "object"
+        },
+        "opening": {
+          "type": "string"
+        },
+        "instructions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "environment": {
+      "type": "object",
+      "required": [
+        "caller_id",
+        "within_phone_hours"
+      ],
+      "properties": {
+        "caller_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "within_phone_hours": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "test_goal": {
+      "type": "object",
+      "required": [
+        "topic",
+        "clarification_goal"
+      ],
+      "properties": {
+        "topic": {
+          "type": "string"
+        },
+        "clarification_goal": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "expectations": {
+      "type": "object",
+      "required": [
+        "terminal_outcome",
+        "records",
+        "required_behaviors",
+        "forbidden_behaviors",
+        "notes"
+      ],
+      "properties": {
+        "terminal_outcome": {
+          "type": "string"
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "complete",
+              "data"
+            ],
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "complete": {
+                "type": "boolean"
+              },
+              "data": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "required_behaviors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbidden_behaviors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "channel_overrides": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": true
+}

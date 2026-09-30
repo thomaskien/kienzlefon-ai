@@ -1,0 +1,68 @@
+format_version: '1.0'
+scenario_id: KF-135
+title: Pflegeheim – Wundversorgung bei Dekubitus abstimmen
+description: Pflegeheim/Pflegedienst bittet für einen Patienten um medizinische Rücksprache.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- pflege
+- pflegeheim
+- rueckruf
+- fremdanrufer
+- pflegeheim_wundversorgung_bei_dekubitus_abstimmen
+simulation:
+  max_turns: 24
+  seed: 1135
+patient:
+  identity:
+    first_name: Carola
+    last_name: Roth
+    birth_date: 07.01.1948
+    callback_number: null
+  persona:
+    style: professionell und knapp
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    problem: Dekubitus, Wundversorgung abstimmen
+    caller_name: Frau Arndt
+    patient_name: Carola Roth
+    patient_birth_date: 07.01.1948
+  opening: Pflegeheim Parkhöhe hier. Bei Carola Roth möchten wir die weitere Wundversorgung eines Dekubitus mit
+    der Praxis abstimmen.
+  instructions:
+  - Du bist Pflegefachkraft Frau Arndt.
+  - Du rufst für Carola Roth an, nicht für dich selbst.
+  - Gib Patientendaten auf Nachfrage korrekt an.
+  - Bitte um ärztliche Rücksprache.
+environment:
+  caller_id: '+492331880135'
+  within_phone_hours: true
+test_goal:
+  topic: Pflege-Rücksprache
+  clarification_goal: Patientenbezogene Rückrufbitte korrekt erfassen; Fremdanrufer nicht mit Patient verwechseln.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Carola
+      nachname:
+        equals: Roth
+      geburtsdatum:
+        equals: 07.01.1948
+      grund:
+        contains: Wundversorgung
+  required_behaviors:
+  - Patient und anrufende Pflegekraft sauber auseinanderhalten.
+  - Medizinische Rücksprache als dringlichkeitsgerechte Rückrufbitte erfassen.
+  - Keinen tatsächlich zugesagten Hausbesuch behaupten.
+  forbidden_behaviors:
+  - Den Namen der Pflegekraft als Patientenname speichern.
+  - Eigenständig einen Hausbesuch verbindlich zusagen.
+  - Konkrete Therapieänderungen anweisen.
+  notes: []

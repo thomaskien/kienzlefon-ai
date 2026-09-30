@@ -1,0 +1,56 @@
+format_version: '1.0'
+scenario_id: KF-144
+title: Laborwerte – Rückrufbitte
+description: Allgemeinmedizinischer Routinefall zur Ergänzung des Spektrums.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- allgemeinmedizin
+- routine
+- laborwerte_rueckrufbitte
+simulation:
+  max_turns: 24
+  seed: 1144
+patient:
+  identity:
+    first_name: Hubert
+    last_name: Ziegler
+    birth_date: 25.10.1947
+    callback_number: null
+  persona:
+    style: freundlich und alltagsnah
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Laborwerte besprechen
+  opening: Ich hatte letzte Woche Blut abgenommen bekommen und würde gern meine Laborwerte besprechen.
+  instructions:
+  - Nenne persönliche Daten nur auf Nachfrage.
+  - Bleibe bei den genannten Anliegen.
+environment:
+  caller_id: '+491760050144'
+  within_phone_hours: false
+test_goal:
+  topic: Allgemeinmedizinischer Routinefall
+  clarification_goal: Anliegen vollständig und ohne Halluzinationen in den passenden Workflow bringen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Hubert
+      nachname:
+        equals: Ziegler
+      geburtsdatum:
+        equals: 25.10.1947
+      grund:
+        contains: Laborwerte
+  required_behaviors:
+  - Rückrufgrund vollständig erfassen.
+  forbidden_behaviors:
+  - Behaupten, der Assistent werde selbst zurückrufen.
+  notes: []

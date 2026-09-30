@@ -1,0 +1,58 @@
+format_version: '1.0'
+scenario_id: KF-143
+title: Impfberatung – Termin
+description: Allgemeinmedizinischer Routinefall zur Ergänzung des Spektrums.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- allgemeinmedizin
+- routine
+- impfberatung_termin
+simulation:
+  max_turns: 24
+  seed: 1143
+patient:
+  identity:
+    first_name: Laura
+    last_name: Schreiber
+    birth_date: 14.05.1940
+    callback_number: null
+  persona:
+    style: freundlich und alltagsnah
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Impfberatung / Impfpasskontrolle
+    availability: Freitag vormittags
+  opening: Ich wollte meinen Impfpass durchsehen lassen und wissen, welche Impfungen aufgefrischt werden müssen.
+    Dafür hätte ich gern einen Termin.
+  instructions:
+  - Nenne persönliche Daten nur auf Nachfrage.
+  - Bleibe bei den genannten Anliegen.
+environment:
+  caller_id: '+491760050143'
+  within_phone_hours: false
+test_goal:
+  topic: Allgemeinmedizinischer Routinefall
+  clarification_goal: Anliegen vollständig und ohne Halluzinationen in den passenden Workflow bringen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Laura
+      nachname:
+        equals: Schreiber
+      geburtsdatum:
+        equals: 14.05.1940
+      grund:
+        contains: Impfberatung
+  required_behaviors:
+  - Terminwunsch samt Grund und Verfügbarkeit erfassen, ohne einen konkreten freien Termin zu erfinden.
+  forbidden_behaviors:
+  - Eine tatsächliche Terminbuchung oder freie Uhrzeit behaupten, wenn sie nicht technisch vorliegt.
+  notes: []

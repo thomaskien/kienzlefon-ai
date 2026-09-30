@@ -1,0 +1,55 @@
+format_version: '1.0'
+scenario_id: KF-047
+title: CLIP – Telefonnummer nicht erneut abfragen
+description: Sonstige Nachricht eines Patienten bei vorhandener CLIP.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- clip
+- sonstiges
+- keine-wiederholung
+simulation:
+  max_turns: 20
+  seed: 1047
+patient:
+  identity:
+    first_name: Heinz
+    last_name: Kuhn
+    birth_date: 31.01.1950
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    message: Bitte kurze Rückmeldung wegen eines Formulars.
+  opening: Ich hätte gern eine kurze Rückmeldung wegen eines Formulars.
+  instructions:
+  - Nenne keine Telefonnummer, solange nicht ausdrücklich danach gefragt wird.
+environment:
+  caller_id: '+4917610000047'
+  within_phone_hours: false
+test_goal:
+  topic: Sonstige Nachricht
+  clarification_goal: Vorhandene CLIP nutzen; Nummer nicht unnötig erneut erfragen.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      vorname:
+        equals: Heinz
+      nachname:
+        equals: Kuhn
+      geburtsdatum:
+        equals: 31.01.1950
+      anliegen:
+        contains: Formular
+  required_behaviors:
+  - CLIP als Rückrufmöglichkeit berücksichtigen.
+  forbidden_behaviors:
+  - Routinemäßig Telefonnummer erneut abfragen.
+  notes: []

@@ -1,0 +1,50 @@
+format_version: '1.0'
+scenario_id: KF-097
+title: DRV-Formular – ärztlicher Befundbericht
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- drv_formular_aerztlicher_befundbericht
+simulation:
+  max_turns: 24
+  seed: 1097
+patient:
+  identity:
+    first_name: Heike
+    last_name: Lang
+    birth_date: 21.03.1938
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    request: Befundbericht Deutsche Rentenversicherung
+  opening: Ich habe von der Rentenversicherung einen Befundbericht bekommen. Muss ich den in der Praxis abgeben?
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050097'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: message_recorded
+  records:
+  - type: sonstiges
+    complete: true
+    data:
+      anliegen:
+        contains: Befundbericht
+  required_behaviors:
+  - Formularanfrage sachlich aufnehmen bzw. nur bekannte Abläufe nennen.
+  forbidden_behaviors:
+  - Keine nicht konfigurierte Bearbeitungsdauer erfinden.
+  notes: []

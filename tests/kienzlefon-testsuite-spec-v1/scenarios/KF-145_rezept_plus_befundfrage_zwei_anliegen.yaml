@@ -1,0 +1,68 @@
+format_version: '1.0'
+scenario_id: KF-145
+title: Rezept plus Befundfrage – zwei Anliegen
+description: Allgemeinmedizinischer Routinefall zur Ergänzung des Spektrums.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- allgemeinmedizin
+- routine
+- rezept_plus_befundfrage_zwei_anliegen
+simulation:
+  max_turns: 24
+  seed: 1145
+patient:
+  identity:
+    first_name: Tanja
+    last_name: Engel
+    birth_date: 09.03.1954
+    callback_number: null
+  persona:
+    style: freundlich und alltagsnah
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    medications:
+    - Metformin 1000 mg
+    second_reason: HbA1c besprechen
+  opening: Ich brauche Metformin tausend Milligramm als Rezept und möchte außerdem meinen letzten HbA1c-Wert besprechen.
+  instructions:
+  - Nenne persönliche Daten nur auf Nachfrage.
+  - Bleibe bei den genannten Anliegen.
+environment:
+  caller_id: '+491760050145'
+  within_phone_hours: false
+test_goal:
+  topic: Allgemeinmedizinischer Routinefall
+  clarification_goal: Anliegen vollständig und ohne Halluzinationen in den passenden Workflow bringen.
+expectations:
+  terminal_outcome: multiple_orders_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname: &id001
+        equals: Tanja
+      nachname: &id002
+        equals: Engel
+      geburtsdatum: &id003
+        equals: 09.03.1954
+      medikamente:
+        contains_lines:
+        - Metformin 1000 mg
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname: *id001
+      nachname: *id002
+      geburtsdatum: *id003
+      grund:
+        contains: HbA1c
+  required_behaviors:
+  - Beide Anliegen getrennt und vollständig bearbeiten.
+  - Rezept nur nach der dafür vorgesehenen Abschlussklärung abschließen.
+  forbidden_behaviors:
+  - Befundfrage im Medikamentenfeld verstecken.
+  notes: []

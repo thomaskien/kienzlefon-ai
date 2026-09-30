@@ -1,0 +1,46 @@
+format_version: '1.0'
+scenario_id: KF-106
+title: Verwählt – eigentlich Physiotherapie
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- verwaehlt_eigentlich_physiotherapie
+simulation:
+  max_turns: 24
+  seed: 1106
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    request: Physiotherapie
+    wrong_number: true
+  opening: Hallo, ich wollte einen Termin für Krankengymnastik machen. Bin ich bei der Physiotherapie?
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050106'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: no_order
+  records: []
+  required_behaviors:
+  - Freundlich klarstellen, dass dies nicht die Physiotherapie ist, und keinen Praxisauftrag erzeugen.
+  forbidden_behaviors:
+  - Aus der Verwechslung einen Arzttermin oder eine Überweisung konstruieren.
+  notes: []

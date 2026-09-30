@@ -1,0 +1,47 @@
+format_version: '1.0'
+scenario_id: KF-101
+title: Erkundigung nach Öffnungszeiten
+description: Organisatorischer oder nichtmedizinischer Anruf zur Robustheitsprüfung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- organisation
+- sonstiges
+- erkundigung_nach_oeffnungszeiten
+simulation:
+  max_turns: 24
+  seed: 1101
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: alltagsnah
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    request: Öffnungszeiten heute
+  opening: Guten Tag, wie lange hat die Praxis heute geöffnet?
+  instructions:
+  - Bleibe bei genau diesem Anliegen.
+  - Nenne keine zusätzlichen medizinischen Beschwerden.
+environment:
+  caller_id: '+491760050101'
+  within_phone_hours: true
+test_goal:
+  topic: Organisation / Fremdanruf
+  clarification_goal: Anliegen korrekt einordnen, ohne unnötigen Patientenauftrag oder erfundene Praxisabläufe.
+expectations:
+  terminal_outcome: conversation_end
+  records: []
+  required_behaviors:
+  - Nur tatsächlich konfigurierte/bekannte Öffnungs- oder Telefonzeiten nennen; bei fehlender Information transparent
+    bleiben.
+  - Keinen Patientenauftrag erzeugen.
+  forbidden_behaviors:
+  - Öffnungszeiten oder Arztanwesenheiten erfinden.
+  notes: []

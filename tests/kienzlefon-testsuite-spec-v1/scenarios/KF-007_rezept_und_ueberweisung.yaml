@@ -1,0 +1,78 @@
+format_version: '1.0'
+scenario_id: KF-007
+title: Mehrfachauftrag – Rezept und Überweisung
+description: Nach abgeschlossenem Rezept folgt im selben Gespräch eine Überweisung.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- mehrfachauftrag
+- rezept
+- ueberweisung
+simulation:
+  max_turns: 20
+  seed: 1007
+patient:
+  identity:
+    first_name: Sabine
+    last_name: Krüger
+    birth_date: 09.07.1968
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    medications:
+    - Ramipril 10 mg
+    referral:
+      specialty: Kardiologie
+      reason: Kontrolle nach Krankenhausaufenthalt
+  opening: Ich möchte ein Rezept bestellen.
+  instructions:
+  - Bestelle Ramipril 10 mg und verneine danach weitere Medikamente.
+  - 'Wenn das Rezept abgeschlossen ist bzw. gefragt wird, ob sonst noch etwas getan werden kann, beginne ein zweites Anliegen:
+    eine Überweisung zur Kardiologie wegen Kontrolle nach Krankenhausaufenthalt.'
+  - Stammdaten beim zweiten Auftrag nicht von dir aus wiederholen, außer der Assistent fragt unnötig danach.
+environment:
+  caller_id: '+4917610000007'
+  within_phone_hours: false
+test_goal:
+  topic: Mehrere Aufträge
+  clarification_goal: Zwei getrennte vollständige Datensätze im selben Gespräch erzeugen und Stammdaten wiederverwenden.
+expectations:
+  terminal_outcome: multiple_orders_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Sabine
+      nachname:
+        equals: Krüger
+      geburtsdatum:
+        equals: 09.07.1968
+      medikamente:
+        contains_lines:
+        - Ramipril 10 mg
+  - type: ueb_req
+    complete: true
+    data:
+      vorname:
+        equals: Sabine
+      nachname:
+        equals: Krüger
+      geburtsdatum:
+        equals: 09.07.1968
+      fachrichtung:
+        contains: Kardi
+      grund:
+        contains: Krankenhaus
+  required_behaviors:
+  - Zwei auftragsbezogene Datensätze erzeugen.
+  - Bekannte Stammdaten für den zweiten Auftrag wiederverwenden.
+  forbidden_behaviors:
+  - Das Telefonat nach dem ersten complete=true automatisch beenden.
+  - Stammdaten vollständig erneut abfragen.
+  notes: []

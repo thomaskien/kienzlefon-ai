@@ -1,0 +1,60 @@
+format_version: '1.0'
+scenario_id: KF-005
+title: Rezept – zweites Medikament erst bei Abschlussfrage
+description: Patient nennt ein zweites Medikament bewusst erst auf die Rezept-Abschlussfrage.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rezept
+- abschlussfrage
+- mehrfach
+simulation:
+  max_turns: 20
+  seed: 1005
+patient:
+  identity:
+    first_name: Uwe
+    last_name: Hartmann
+    birth_date: 30.09.1958
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    medications:
+    - Candesartan 8 mg
+    - Amlodipin 5 mg
+  opening: Ich hätte gern Candesartan 8 mg.
+  instructions:
+  - Nenne Amlodipin 5 mg erst, wenn ausdrücklich gefragt wird, ob du noch etwas bestellen möchtest.
+  - Danach verneine weitere Medikamente.
+environment:
+  caller_id: '+4917610000005'
+  within_phone_hours: false
+test_goal:
+  topic: Rezeptbestellung
+  clarification_goal: Sicherstellen, dass die Rezept-Abschlussfrage funktional genutzt wird.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Uwe
+      nachname:
+        equals: Hartmann
+      geburtsdatum:
+        equals: 30.09.1958
+      medikamente:
+        contains_lines:
+        - Candesartan 8 mg
+        - Amlodipin 5 mg
+  required_behaviors:
+  - Die Frage nach weiteren Bestellungen stellen, solange eine Rezeptbestellung aktiv ist.
+  forbidden_behaviors:
+  - Nach dem ersten Medikament bereits finalisieren.
+  notes: []

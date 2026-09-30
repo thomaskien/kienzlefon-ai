@@ -1,0 +1,59 @@
+format_version: '1.0'
+scenario_id: KF-146
+title: Überweisung Dermatologie wegen Hautveränderung
+description: Allgemeinmedizinischer Routinefall zur Ergänzung des Spektrums.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- allgemeinmedizin
+- routine
+- ueberweisung_dermatologie_wegen_hautveraenderung
+simulation:
+  max_turns: 24
+  seed: 1146
+patient:
+  identity:
+    first_name: Siegfried
+    last_name: Bergmann
+    birth_date: 20.08.1961
+    callback_number: null
+  persona:
+    style: freundlich und alltagsnah
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    specialty: Dermatologie
+    reason: Muttermalkontrolle
+  opening: Ich brauche bitte eine Überweisung zur Hautärztin wegen eines Muttermals, das kontrolliert werden soll.
+  instructions:
+  - Nenne persönliche Daten nur auf Nachfrage.
+  - Bleibe bei den genannten Anliegen.
+environment:
+  caller_id: '+491760050146'
+  within_phone_hours: false
+test_goal:
+  topic: Allgemeinmedizinischer Routinefall
+  clarification_goal: Anliegen vollständig und ohne Halluzinationen in den passenden Workflow bringen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: ueb_req
+    complete: true
+    data:
+      vorname:
+        equals: Siegfried
+      nachname:
+        equals: Bergmann
+      geburtsdatum:
+        equals: 20.08.1961
+      fachrichtung:
+        contains: Dermatologie
+      grund:
+        contains: Muttermal
+  required_behaviors:
+  - Überweisung mit Fachrichtung und Grund erfassen.
+  forbidden_behaviors:
+  - Dermatologische Diagnose stellen.
+  notes: []

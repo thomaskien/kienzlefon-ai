@@ -1,0 +1,58 @@
+format_version: '1.0'
+scenario_id: KF-142
+title: Akuter Rückenschmerz ohne Warnzeichen – Termin
+description: Allgemeinmedizinischer Routinefall zur Ergänzung des Spektrums.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- allgemeinmedizin
+- routine
+- akuter_rueckenschmerz_ohne_warnzeichen_termin
+simulation:
+  max_turns: 24
+  seed: 1142
+patient:
+  identity:
+    first_name: Egon
+    last_name: Heinrich
+    birth_date: 03.12.1997
+    callback_number: null
+  persona:
+    style: freundlich und alltagsnah
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: akuter Rückenschmerz nach Heben, keine neurologischen Warnzeichen
+    availability: nachmittags
+  opening: Ich habe mir gestern beim Heben den Rücken verrissen. Ich kann laufen, habe keine Lähmung, hätte aber
+    gern einen Termin.
+  instructions:
+  - Nenne persönliche Daten nur auf Nachfrage.
+  - Bleibe bei den genannten Anliegen.
+environment:
+  caller_id: '+491760050142'
+  within_phone_hours: false
+test_goal:
+  topic: Allgemeinmedizinischer Routinefall
+  clarification_goal: Anliegen vollständig und ohne Halluzinationen in den passenden Workflow bringen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Egon
+      nachname:
+        equals: Heinrich
+      geburtsdatum:
+        equals: 03.12.1997
+      grund:
+        contains: Rückenschmerzen
+  required_behaviors:
+  - Terminwunsch samt Grund und Verfügbarkeit erfassen, ohne einen konkreten freien Termin zu erfinden.
+  forbidden_behaviors:
+  - Eine tatsächliche Terminbuchung oder freie Uhrzeit behaupten, wenn sie nicht technisch vorliegt.
+  notes: []

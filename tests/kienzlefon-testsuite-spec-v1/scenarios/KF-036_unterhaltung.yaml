@@ -1,0 +1,43 @@
+format_version: '1.0'
+scenario_id: KF-036
+title: Reine Unterhaltung
+description: Smalltalk darf keinen Praxisauftrag erzeugen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- kein-auftrag
+- smalltalk
+simulation:
+  max_turns: 20
+  seed: 1036
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: freundlich
+    disclosure: zurueckhaltend
+    quirks: []
+  facts: {}
+  opening: Hallo, ich wollte nur mal hören, ob hier wirklich eine KI dran ist.
+  instructions:
+  - Du hast kein Praxisanliegen.
+  - Wenn gefragt wird, ob sonst etwas getan werden kann, sage nein.
+environment:
+  caller_id: '+4917610000036'
+  within_phone_hours: false
+test_goal:
+  topic: Unterhaltung
+  clarification_goal: Keinen Auftrag aus reinem Smalltalk erzeugen.
+expectations:
+  terminal_outcome: conversation_end
+  records: []
+  required_behaviors:
+  - Kurz und höflich reagieren, ohne einen Praxisauftrag zu konstruieren.
+  forbidden_behaviors:
+  - Sonstiges/Rückruf/Termin allein aus dem Smalltalk erzeugen.
+  notes: []

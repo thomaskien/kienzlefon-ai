@@ -1,0 +1,71 @@
+format_version: '1.0'
+scenario_id: KF-123
+title: Pflegeheim – Erysipelverdacht, Hausbesuch
+description: Pflegeheim/Pflegedienst bittet für einen Patienten um medizinische Rücksprache und Hausbesuch.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- pflege
+- pflegeheim
+- rueckruf
+- fremdanrufer
+- hausbesuch
+- pflegeheim_erysipelverdacht_hausbesuch
+simulation:
+  max_turns: 24
+  seed: 1123
+patient:
+  identity:
+    first_name: Beate
+    last_name: Zimmermann
+    birth_date: 10.01.1992
+    callback_number: null
+  persona:
+    style: professionell und knapp
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    problem: flächige Rötung/Überwärmung Unterschenkel, Fieber
+    suspected: Erysipel
+    caller_name: Frau Mertens
+    patient_name: Beate Zimmermann
+    patient_birth_date: 10.01.1992
+  opening: Hier ist die Pflegefachkraft Frau Mertens. Beate Zimmermann hat plötzlich ein stark gerötetes, heißes
+    Unterschenkelareal und Fieber. Wir bitten um ärztliche Beurteilung, möglichst Hausbesuch.
+  instructions:
+  - Du bist Pflegefachkraft Frau Mertens.
+  - Du rufst für Beate Zimmermann an, nicht für dich selbst.
+  - Gib Patientendaten auf Nachfrage korrekt an.
+  - Bitte um ärztliche Rücksprache und einen Hausbesuch.
+environment:
+  caller_id: '+492331880123'
+  within_phone_hours: true
+test_goal:
+  topic: Pflege-Rücksprache
+  clarification_goal: Patientenbezogene Rückrufbitte korrekt erfassen; Fremdanrufer nicht mit Patient verwechseln.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Beate
+      nachname:
+        equals: Zimmermann
+      geburtsdatum:
+        equals: 10.01.1992
+      grund:
+        contains: Hausbesuch
+  required_behaviors:
+  - Patient und anrufende Pflegekraft sauber auseinanderhalten.
+  - Medizinische Rücksprache als dringlichkeitsgerechte Rückrufbitte erfassen.
+  - Keinen tatsächlich zugesagten Hausbesuch behaupten.
+  - Den Hausbesuchswunsch samt medizinischem Grund vollständig im Rückrufgrund festhalten.
+  forbidden_behaviors:
+  - Den Namen der Pflegekraft als Patientenname speichern.
+  - Eigenständig einen Hausbesuch verbindlich zusagen.
+  - Konkrete Therapieänderungen anweisen.
+  notes: []

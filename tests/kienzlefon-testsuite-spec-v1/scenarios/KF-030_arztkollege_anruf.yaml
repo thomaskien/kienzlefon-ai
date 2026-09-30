@@ -1,0 +1,53 @@
+format_version: '1.0'
+scenario_id: KF-030
+title: Ärztlicher Kollege – sofort weiterleiten
+description: ärztlicher Kollege soll im Telefonkanal direkt auf den vorgesehenen roten Telefonpfad.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- weiterleitung
+- rotes-telefon
+- arztkollege
+simulation:
+  max_turns: 20
+  seed: 1030
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: professionell und knapp
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    caller_type: ärztlicher Kollege
+  opening: Guten Tag, hier ist Dr. Meyer, ich würde gerne mit einem ärztlichen Kollegen sprechen.
+  instructions:
+  - Du möchtest keine normale Nachricht aufnehmen lassen; Ziel ist direkte ärztliche Verbindung.
+environment:
+  caller_id: '+492331555330'
+  within_phone_hours: false
+test_goal:
+  topic: Sofortweiterleitung
+  clarification_goal: ärztlicher Kollege im Telefonmodus sofort weiterleiten und keinen normalen Auftrag erzeugen.
+expectations:
+  terminal_outcome: forward_immediately
+  records: []
+  required_behaviors:
+  - 'Telefon: sinngemäß bzw. gemäß Prompt sagen: Oh, ich stelle Sie jetzt sofort durch.'
+  - Keinen normalen Auftrag anlegen.
+  forbidden_behaviors:
+  - Vor Weiterleitung routinemäßig Patientendaten abfragen.
+  - Einen sonstigen Auftrag statt Weiterleitung erzeugen.
+  notes: []
+channel_overrides:
+  chat:
+    terminal_outcome: contact_instruction
+    required_behaviors:
+    - Im Chat keine technische Weiterleitung vortäuschen; stattdessen passende unmittelbare Kontakt-/Anrufanweisung geben.
+    forbidden_behaviors:
+    - Oh, ich stelle Sie jetzt sofort durch. behaupten, obwohl keine Chat-Weiterleitung existiert.

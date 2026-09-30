@@ -1,0 +1,65 @@
+format_version: '1.0'
+scenario_id: KF-093
+title: Tochter fragt nach Reha-Unterlagen für Mutter
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- tochter_fragt_nach_reha_unterlagen_fuer_mutter
+simulation:
+  max_turns: 24
+  seed: 1093
+patient:
+  identity:
+    first_name: Michaela
+    last_name: Schmid
+    birth_date: 04.07.1974
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    reason: Reha-Antrag / Formulare
+    caller_name: Silke Kaiser
+    patient_name: Michaela Schmid
+    patient_birth_date: 04.07.1974
+  opening: Ich kümmere mich um meine Mutter und wollte fragen, ob die Praxis den Reha-Antrag schon ausfüllen kann.
+  instructions:
+  - Du bist der/die Angehörige Silke Kaiser.
+  - Du rufst ausdrücklich für Michaela Schmid an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Silke Kaiser.
+environment:
+  caller_id: '+491760050093'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Michaela
+      nachname:
+        equals: Schmid
+      geburtsdatum:
+        equals: 04.07.1974
+      grund:
+        contains: Reha
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

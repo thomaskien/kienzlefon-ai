@@ -1,0 +1,74 @@
+[
+  {
+    "file": "qingming-qwen3-tts-LICENSE.txt",
+    "component": "qingming-qwen3-tts",
+    "license": "Apache-2.0",
+    "source": "https://github.com/uulong950/qingming-qwen3-tts/blob/66b85b1e3b1d2cf6f927c6c8c8b23e48ed66e2ac/LICENSE",
+    "retrieved": "2026-09-30",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "file": "WhisperLiveKit-0.2.24-LICENSE.txt",
+    "component": "WhisperLiveKit 0.2.24",
+    "license": "Apache-2.0 mit Herkunftshinweisen",
+    "source": "https://github.com/QuentinFuxa/WhisperLiveKit/blob/v0.2.24/LICENSE",
+    "retrieved": "2026-09-30",
+    "sha256": "fb30c09cd8a88d09b69354c481d64dc4120c9bb6a8a1b97cc0eec7406d163871"
+  },
+  {
+    "file": "Whisper-LICENSE.txt",
+    "component": "OpenAI Whisper",
+    "license": "MIT",
+    "source": "https://github.com/openai/whisper/blob/main/LICENSE",
+    "retrieved": "2026-09-30",
+    "sha256": "b5d65a59060e68c4ff940e1eddfa6f94b2d68fdf58ed7f4dd57721c997e35e9d"
+  },
+  {
+    "file": "Silero-VAD-v6-LICENSE.txt",
+    "component": "Silero VAD v6",
+    "license": "MIT",
+    "source": "https://github.com/snakers4/silero-vad/blob/v6.0/LICENSE",
+    "retrieved": "2026-09-30",
+    "sha256": "2e63e9a38b6e8fc0c7bc37ce174caca1862870856c6daf5697cfb785e925520b"
+  },
+  {
+    "file": "SimulStreaming-LICENCE.txt",
+    "component": "SimulStreaming",
+    "license": "MIT",
+    "source": "https://github.com/ufal/SimulStreaming/blob/0f63d3793ce3a0dcc026aade36e2fea82d573037/LICENCE.txt",
+    "retrieved": "2026-09-30",
+    "sha256": "03606b50d69a4248dc386dde4f5f08460ac258aa01f04746d5973875925442cc"
+  },
+  {
+    "file": "Whisper-Streaming-LICENSE.txt",
+    "component": "whisper_streaming",
+    "license": "MIT",
+    "source": "https://github.com/ufal/whisper_streaming/blob/main/LICENSE",
+    "retrieved": "2026-09-30",
+    "sha256": "4ab642ac3c53867fb3516de7de602f0e86117ead78f0851a9f871dbe40823e85"
+  },
+  {
+    "file": "SimulWhisper-LICENSE.txt",
+    "component": "SimulWhisper",
+    "license": "Apache-2.0",
+    "source": "https://github.com/backspacetg/simul_whisper/blob/ffeb3ff333026f29053d01c95a1a0524f2a41865/LICENSE.txt",
+    "retrieved": "2026-09-30",
+    "sha256": "16e2a26aa851aa0628ca334383ceba229bbc31233c8e15c5873056841a6b575d"
+  },
+  {
+    "file": "NeMo-LICENSE.txt",
+    "component": "NeMo",
+    "license": "Apache-2.0",
+    "source": "https://github.com/NVIDIA-NeMo/NeMo/blob/main/LICENSE",
+    "retrieved": "2026-09-30",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "file": "Diart-LICENSE.txt",
+    "component": "Diart",
+    "license": "MIT",
+    "source": "https://github.com/juanmc2005/diart/blob/main/LICENSE",
+    "retrieved": "2026-09-30",
+    "sha256": "e459a25bfc3229708f1798b86a63f2d2233374348dc63d59c3008d297d61954f"
+  }
+]

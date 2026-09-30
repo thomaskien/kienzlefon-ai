@@ -1,0 +1,68 @@
+format_version: '1.0'
+scenario_id: KF-137
+title: Pflegeheim – zunehmende Schmerzen, Medikation besprechen
+description: Pflegeheim/Pflegedienst bittet für einen Patienten um medizinische Rücksprache.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- pflege
+- pflegeheim
+- rueckruf
+- fremdanrufer
+- pflegeheim_zunehmende_schmerzen_medikation_besprechen
+simulation:
+  max_turns: 24
+  seed: 1137
+patient:
+  identity:
+    first_name: Lena
+    last_name: Schuster
+    birth_date: 02.11.1962
+    callback_number: null
+  persona:
+    style: professionell und knapp
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    problem: zunehmende Schmerzen, sonst stabil
+    caller_name: Herr Kühn
+    patient_name: Lena Schuster
+    patient_birth_date: 02.11.1962
+  opening: Haus am See. Lena Schuster klagt seit zwei Tagen über zunehmende Schmerzen, ist sonst stabil. Wir möchten
+    die Schmerzmedikation ärztlich besprechen.
+  instructions:
+  - Du bist Pflegefachkraft Herr Kühn.
+  - Du rufst für Lena Schuster an, nicht für dich selbst.
+  - Gib Patientendaten auf Nachfrage korrekt an.
+  - Bitte um ärztliche Rücksprache.
+environment:
+  caller_id: '+492331880137'
+  within_phone_hours: true
+test_goal:
+  topic: Pflege-Rücksprache
+  clarification_goal: Patientenbezogene Rückrufbitte korrekt erfassen; Fremdanrufer nicht mit Patient verwechseln.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Lena
+      nachname:
+        equals: Schuster
+      geburtsdatum:
+        equals: 02.11.1962
+      grund:
+        contains: Schmerzmedikation
+  required_behaviors:
+  - Patient und anrufende Pflegekraft sauber auseinanderhalten.
+  - Medizinische Rücksprache als dringlichkeitsgerechte Rückrufbitte erfassen.
+  - Keinen tatsächlich zugesagten Hausbesuch behaupten.
+  forbidden_behaviors:
+  - Den Namen der Pflegekraft als Patientenname speichern.
+  - Eigenständig einen Hausbesuch verbindlich zusagen.
+  - Konkrete Therapieänderungen anweisen.
+  notes: []

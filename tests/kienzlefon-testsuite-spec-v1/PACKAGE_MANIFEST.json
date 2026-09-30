@@ -1,0 +1,797 @@
+{
+  "package": "kienzlefon-testsuite-spec-v1",
+  "scenario_count": 150,
+  "format_version": "1.0",
+  "files": [
+    {
+      "path": "CODEX_HANDOFF.md",
+      "sha256": "a178a33716901c591267cc61f6177bc065e492f533a3a3e7f604fa9e71150fc4",
+      "bytes": 9840
+    },
+    {
+      "path": "EXTENSION_051_150.md",
+      "sha256": "7735a979a2b42a5012606d08380c6aef6ee60eb75584333098056ecba138590e",
+      "bytes": 634
+    },
+    {
+      "path": "FORMAT_SPEC.md",
+      "sha256": "76af49e1c0e8000e4af0c886527f90fce0249dc7c72beefa269bc1c06036ace1",
+      "bytes": 5795
+    },
+    {
+      "path": "README.md",
+      "sha256": "611aadb33243d3b5f56d7373f87e1aa7593acc5fe90c19a27038bad195cda147",
+      "bytes": 751
+    },
+    {
+      "path": "scenarios/KF-001_rezept_ein_medikament.yaml",
+      "sha256": "68f5a341e1abe0ac70a65afaa18a890201a0b41c5438e71ca5cba0d69d5084e4",
+      "bytes": 1501
+    },
+    {
+      "path": "scenarios/KF-002_rezept_mehrere_medikamente.yaml",
+      "sha256": "08e37544f3a4e57c983b450d421a96fcd06d33b024c86d9bba3cf27225b8f36a",
+      "bytes": 1705
+    },
+    {
+      "path": "scenarios/KF-003_rezept_ohne_staerke.yaml",
+      "sha256": "0b058eb0d080d84aae3380edce216966492ac15803c93bf91057b2e79bd38326",
+      "bytes": 1542
+    },
+    {
+      "path": "scenarios/KF-004_rezept_korrektur_medikament.yaml",
+      "sha256": "400ad07ea8d9c075cec568d0e913bc1533b5e40a98e489371523563805b88443",
+      "bytes": 1670
+    },
+    {
+      "path": "scenarios/KF-005_rezept_nachfrage_weiteres.yaml",
+      "sha256": "0d09fe41cce1f76be7bb8d412c36ab68c462278036e3d5d446f23219cd4bbc4c",
+      "bytes": 1543
+    },
+    {
+      "path": "scenarios/KF-006_rezept_hangup_vollstaendig.yaml",
+      "sha256": "328c6e27442d62532cca7f1ab275bfabe72610badd3b5125db6be852064667d3",
+      "bytes": 1514
+    },
+    {
+      "path": "scenarios/KF-007_rezept_und_ueberweisung.yaml",
+      "sha256": "04402440e97da974ae44a474e895a6855a56b0896eadd6f9df1c3989408dfab2",
+      "bytes": 2210
+    },
+    {
+      "path": "scenarios/KF-008_rezept_zu_termin_meinungsaenderung.yaml",
+      "sha256": "45b3c48a844fb5b81f33e720b024392971f784297ae2011fa6bc2cb6953eee32",
+      "bytes": 1681
+    },
+    {
+      "path": "scenarios/KF-009_rezept_stammdaten_bekannt.yaml",
+      "sha256": "c37f35a79e59d399f8bafca7cbb25b2cea69f8465e8193426667d1d757455625",
+      "bytes": 1484
+    },
+    {
+      "path": "scenarios/KF-010_rezept_unsinnige_medikamentenangabe.yaml",
+      "sha256": "90052e5d6f6ec6e4c084a1f948f4639ab6f1cbae29341e7a3b8992b1410329d9",
+      "bytes": 1681
+    },
+    {
+      "path": "scenarios/KF-011_ueberweisung_kardiologie.yaml",
+      "sha256": "172c6e655cbc12251016216f212e72a4032d0505b15a77143690320648b216d5",
+      "bytes": 1233
+    },
+    {
+      "path": "scenarios/KF-012_ueberweisung_fachrichtung_fehlt.yaml",
+      "sha256": "8377e6b7b92828099c8e36215d6b640133593d92b18296834336d10c00eb01bb",
+      "bytes": 1328
+    },
+    {
+      "path": "scenarios/KF-013_ueberweisung_korrektur_fachrichtung.yaml",
+      "sha256": "57c0c97b0cc55e9f588fb5415053ff0e51c40e27843cad9fa54499fd647a6fc3",
+      "bytes": 1488
+    },
+    {
+      "path": "scenarios/KF-014_ueberweisung_und_rezept.yaml",
+      "sha256": "6a08f8c3fdc7fb12f4933b57b903e23343e9ccaef35fe5f172052439b8067c86",
+      "bytes": 1820
+    },
+    {
+      "path": "scenarios/KF-015_termin_blutdruck.yaml",
+      "sha256": "266e1bd37401d1dd02a2b254c6687aefeea2bbd754a8ab56aa304f709c04517d",
+      "bytes": 1397
+    },
+    {
+      "path": "scenarios/KF-016_termin_unspezifisch.yaml",
+      "sha256": "4f14aa23c2149b58c855b31e6531d12f47187fc1d97d6b40f51bbbad5e6c6d31",
+      "bytes": 1276
+    },
+    {
+      "path": "scenarios/KF-017_termin_verfuegbarkeit_spontan.yaml",
+      "sha256": "864038b4997b9afbdc6dea91275f0c23b37685cfef754cf17b3ffc0c68e66b0f",
+      "bytes": 1418
+    },
+    {
+      "path": "scenarios/KF-018_termin_arztanwesenheit.yaml",
+      "sha256": "acb6444295e9ea5ccf50c9332b1e08a8745465de6e2db3f17c492cc5e9189159",
+      "bytes": 1590
+    },
+    {
+      "path": "scenarios/KF-019_nur_arztanwesenheit.yaml",
+      "sha256": "0913a5c9d686c8ced6803126368bdf51ba02f09de7c9e4eb69b08e7b85c3a041",
+      "bytes": 1246
+    },
+    {
+      "path": "scenarios/KF-020_rueckruf_mit_grund.yaml",
+      "sha256": "acb27ce8612cd12f91d091d9aeec95a2655eac25783d19b127a67c670efcebcf",
+      "bytes": 1122
+    },
+    {
+      "path": "scenarios/KF-021_rueckruf_ohne_grund.yaml",
+      "sha256": "0f22d8e94ac5d3907b7257288f555bf29f6fc69c14264ec827db33b9c94a157d",
+      "bytes": 1265
+    },
+    {
+      "path": "scenarios/KF-022_rueckruf_clip_vorhanden.yaml",
+      "sha256": "2f367d6f858b92f3a0f713185bfba3397512d295d2eb58084c0150c94a9ac978",
+      "bytes": 1290
+    },
+    {
+      "path": "scenarios/KF-023_rueckruf_keine_clip_nummer_ansagen.yaml",
+      "sha256": "97dadc9fc226836904f38e0c0a0856544816b300ea8f88f59b79b8e4979862a8",
+      "bytes": 1442
+    },
+    {
+      "path": "scenarios/KF-024_rueckruf_anonym_nummer_verweigert.yaml",
+      "sha256": "b3dae0a7eb72d07d0f317f2671bbee6d5c1bd16019c9c794a6fda2516d3cdc4c",
+      "bytes": 1390
+    },
+    {
+      "path": "scenarios/KF-025_sonstiges_autolicht.yaml",
+      "sha256": "30aedcf05cca5834cf5a03b9f85d70c86de057c4e9f2583e852140586d88ab21",
+      "bytes": 1463
+    },
+    {
+      "path": "scenarios/KF-026_sonstiges_schornsteinfeger.yaml",
+      "sha256": "5b635344771136f0e466d2e8e4a0978d99280aa691904234b17a8159e41e5524",
+      "bytes": 1401
+    },
+    {
+      "path": "scenarios/KF-027_apotheke_anruf.yaml",
+      "sha256": "7f6ff295dd780521987c8664ee0364fb0836f4373473651ac2f94703b1b9cee2",
+      "bytes": 1576
+    },
+    {
+      "path": "scenarios/KF-028_krankenhaus_anruf.yaml",
+      "sha256": "dbed884befdefe5133fe0e026f807fbe8d5177086527639ad1da3b8b5f33b40b",
+      "bytes": 1708
+    },
+    {
+      "path": "scenarios/KF-029_rettungsdienst_anruf.yaml",
+      "sha256": "f1233e4463d99d9f809a05584d54129c7c6218aa3d37b29423d4d22e1b763d3a",
+      "bytes": 1718
+    },
+    {
+      "path": "scenarios/KF-030_arztkollege_anruf.yaml",
+      "sha256": "f63637723d4bc051eedf1f4b77478d93aefac4debf2c4d8fb290a9d5842c4899",
+      "bytes": 1733
+    },
+    {
+      "path": "scenarios/KF-031_krankenhaus_kurz.yaml",
+      "sha256": "e20fd360b5a1378177c8bf1a72ab3c825427068d3aaff5bc25abcef08a5a9185",
+      "bytes": 1666
+    },
+    {
+      "path": "scenarios/KF-032_au_neu_grippe.yaml",
+      "sha256": "ea98c984824b0e26a7f0775bd1129da7ca4e878ab006b861a41228e7935c573a",
+      "bytes": 1336
+    },
+    {
+      "path": "scenarios/KF-033_au_verlaengerung.yaml",
+      "sha256": "0874ab78a28bc9616bd426591ff2ac4ed3b2bd112acb8f871ce57bafadd1cf42",
+      "bytes": 1469
+    },
+    {
+      "path": "scenarios/KF-034_au_und_rezept.yaml",
+      "sha256": "4fe3c97faafd92499edac07c94eea6b6b0db646b7cb5a82c9b5a856559483fbf",
+      "bytes": 1586
+    },
+    {
+      "path": "scenarios/KF-035_krank_ohne_au_wunsch.yaml",
+      "sha256": "7f00b8eb5752a358e2eb968afd7ba966e93dbfcdf07e9504931af3e4078aa37e",
+      "bytes": 1436
+    },
+    {
+      "path": "scenarios/KF-036_unterhaltung.yaml",
+      "sha256": "d36f745f3a07a3fbb97d53c12041dbe0a212ddbad987246a678d94f11743f3b9",
+      "bytes": 1075
+    },
+    {
+      "path": "scenarios/KF-037_testanweisung_nichts_speichern.yaml",
+      "sha256": "0eb47b3b5328eb8276970efe03e849681278ec607dd1a95e7f9c138c7bae5a5f",
+      "bytes": 1089
+    },
+    {
+      "path": "scenarios/KF-038_prompt_injection_patient.yaml",
+      "sha256": "1a14e585f4b59fb9f9e7fbf7d185021dc989da24039fea3e4ade920536d940ec",
+      "bytes": 1270
+    },
+    {
+      "path": "scenarios/KF-039_erfundene_programmfunktion.yaml",
+      "sha256": "37381fbc343d29de540df2f14052759a7609e31eafbef42edfb6216080e1e96b",
+      "bytes": 1261
+    },
+    {
+      "path": "scenarios/KF-040_zukunftsversprechen.yaml",
+      "sha256": "8019add7ddcbaa7f070fef5529b4a405b0dc5a23b54f2a98c94a1983bc14ffd8",
+      "bytes": 1355
+    },
+    {
+      "path": "scenarios/KF-041_rezept_oder_termin_widerspruch.yaml",
+      "sha256": "a89f773f4043bda2a8488bf4f5ed53839bd55733e7c61f447e705f35ac336ca4",
+      "bytes": 1464
+    },
+    {
+      "path": "scenarios/KF-042_geburtsdatum_falsch_dann_korrekt.yaml",
+      "sha256": "d0a0492363593a1289d3de49a51d3991573059f9eeb1740c0582c2767a21a29a",
+      "bytes": 1617
+    },
+    {
+      "path": "scenarios/KF-043_geburtsdatum_monatsname.yaml",
+      "sha256": "6c88165fc05fb8f370b790059e857b55f41e365ed064d12a0d4d8a8145d9799c",
+      "bytes": 1515
+    },
+    {
+      "path": "scenarios/KF-044_namenskorrektur.yaml",
+      "sha256": "2f2585918cd50f7bf95898bcd6232a7a99b5aa209b309f780e037ba43db071ee",
+      "bytes": 1419
+    },
+    {
+      "path": "scenarios/KF-045_drei_auftraege.yaml",
+      "sha256": "23f4672f8ce1dd44374d8782b33742d143c6d5b14c8fcb58e7f6447b0c949bbf",
+      "bytes": 2297
+    },
+    {
+      "path": "scenarios/KF-046_telefonnummer_ziffernweise.yaml",
+      "sha256": "4dfa5c12a47118fda4bd7bef9409bd16f106c86f4dedca37bcf94b7c8a65951e",
+      "bytes": 1542
+    },
+    {
+      "path": "scenarios/KF-047_clip_keine_nummer_nachfrage.yaml",
+      "sha256": "00b5408532103b8e0e8aa6155f1c0954404f23d8880e53a2a1218a44f1f4d606",
+      "bytes": 1370
+    },
+    {
+      "path": "scenarios/KF-048_sonstiges_meinungsaenderung.yaml",
+      "sha256": "70e502333503067b3f648c92bf70db78e06211682eebd9fe08428db4735784cf",
+      "bytes": 1788
+    },
+    {
+      "path": "scenarios/KF-049_hangup_unvollstaendig.yaml",
+      "sha256": "aa7cdb93c32aa3155cd4922e32d0636860dd417467902d08a5676ebd1e98ed27",
+      "bytes": 1438
+    },
+    {
+      "path": "scenarios/KF-050_chat_weiterleitung_unterschied.yaml",
+      "sha256": "49cf17ed8e53672d105b7fc0b63e67c74f96f3dd3a1cbaaec42ccb4a0390902c",
+      "bytes": 1661
+    },
+    {
+      "path": "scenarios/KF-051_brustschmerz_mit_ausstrahlung_herzinfarktverdacht.yaml",
+      "sha256": "e7708c0553809e4b5186bb28b1bc05f9ce3acd5b955382ff810e14ffaada05e0",
+      "bytes": 2070
+    },
+    {
+      "path": "scenarios/KF-052_kardiale_dekompensation_mit_schwerer_luftnot.yaml",
+      "sha256": "04057b8bc5fbf867487a25e0289bf151bac62b4fafef0eeafd5f50f1aff6b04c",
+      "bytes": 2036
+    },
+    {
+      "path": "scenarios/KF-053_kollaps_mit_anhaltender_schwaeche.yaml",
+      "sha256": "12de8c0aac7219f2c45e4c4d3a3786d5f46857333e518eda293c06ad8d84eaed",
+      "bytes": 2063
+    },
+    {
+      "path": "scenarios/KF-054_akute_atemnot_kaum_ganze_saetze.yaml",
+      "sha256": "4329f91cc922e81f8c600ddcce53e4f5218ccb2f8b7c2ca5e0cbe930de2bd8eb",
+      "bytes": 1952
+    },
+    {
+      "path": "scenarios/KF-055_akute_pneumonie_mit_saettigungsabfall.yaml",
+      "sha256": "8b126f4e21ddf96d28280d0e18bb193ef0ab47208fadac66eb930bfcc175ea43",
+      "bytes": 2013
+    },
+    {
+      "path": "scenarios/KF-056_akuter_schlaganfallverdacht.yaml",
+      "sha256": "d994cd57cafeeb25de8e1d2e2fccb5d5f9e2d454d914a8eaf582761a22d44a28",
+      "bytes": 2000
+    },
+    {
+      "path": "scenarios/KF-057_anaphylaxie_nach_wespenstich.yaml",
+      "sha256": "e0e7b68c0cd5d88d04210e9783fe2cb5d0db1ae649de3756577f1c8dd734f7ef",
+      "bytes": 1947
+    },
+    {
+      "path": "scenarios/KF-058_starke_gastrointestinale_blutung.yaml",
+      "sha256": "0f566a7c893900176dd2329c6f001282706c2ece12283ee93dae611aa67d9e7f",
+      "bytes": 1948
+    },
+    {
+      "path": "scenarios/KF-059_krampfanfall_mit_bewusstseinsstoerung.yaml",
+      "sha256": "69d37ebab40c9a93dfff94c2416a297af572a52bde746505862d181cb01e392f",
+      "bytes": 2031
+    },
+    {
+      "path": "scenarios/KF-060_bewusstlosigkeit_bei_diabetes.yaml",
+      "sha256": "a0859625f11479b899953ff78fb9211f128f3202be348049a4dad60027c70ef5",
+      "bytes": 2041
+    },
+    {
+      "path": "scenarios/KF-061_blutdruckkrise_mit_neurologischen_symptomen.yaml",
+      "sha256": "8eebf28d4cad761c9dcb10d8bf67c64ce078b40c07e7bf72a307766053de8d9f",
+      "bytes": 1992
+    },
+    {
+      "path": "scenarios/KF-062_tachyarrhythmie_mit_kreislaufproblemen.yaml",
+      "sha256": "da21ae7705ef7d890373680b90fdf091c628ae819fda96414d785afd77c5ecfe",
+      "bytes": 2007
+    },
+    {
+      "path": "scenarios/KF-063_bradykardie_nach_beinahe_synkope.yaml",
+      "sha256": "ef12dc4a603c992c47d369985efa5d16bd30ca1be3a82712b983bd798436bfc7",
+      "bytes": 1933
+    },
+    {
+      "path": "scenarios/KF-064_akuter_bauchschmerz_mit_kreislaufkollaps.yaml",
+      "sha256": "72a5e25e7b62191e627acac4b89ba9eb0b0cb22df9178f1154ab73b89a3491b4",
+      "bytes": 1973
+    },
+    {
+      "path": "scenarios/KF-065_sepsisverdacht_mit_verwirrtheit.yaml",
+      "sha256": "9afd602a1d37ac9aa46237ff440c1f3813e93595bde51494debd5cc59be26c69",
+      "bytes": 2019
+    },
+    {
+      "path": "scenarios/KF-066_lungenembolieverdacht_nach_immobilisation.yaml",
+      "sha256": "9eea404288a586d0f27f4fff5d4dee7851c34832c2143d67f0551a19bcf7fe5b",
+      "bytes": 2018
+    },
+    {
+      "path": "scenarios/KF-067_kopfverletzung_unter_antikoagulation.yaml",
+      "sha256": "200ee466d84a64be0760b8e6be96ee81241d71711663f5cc35610a94afbb5d88",
+      "bytes": 1968
+    },
+    {
+      "path": "scenarios/KF-068_copd_exazerbation_mit_schwerer_hypoxie.yaml",
+      "sha256": "70e1cc7727a4540ad0ff2cc10a160fc6e20aae064aa6028c57100417d96c2ca9",
+      "bytes": 2001
+    },
+    {
+      "path": "scenarios/KF-069_fieberkrampf_beim_kleinkind.yaml",
+      "sha256": "48462423165db59fcc1fd38195db1c9620f253d96a4049a111fb67a6ce09a72f",
+      "bytes": 2021
+    },
+    {
+      "path": "scenarios/KF-070_ploetzliche_bewusstseinsstoerung_nach_sturz.yaml",
+      "sha256": "d3873847de296642e4e8d283e4bc9874365d8d93ce1cd2caf0185279de4a9a32",
+      "bytes": 2040
+    },
+    {
+      "path": "scenarios/KF-071_palliativ_massive_akute_atemnot_ohne_therapiebegrenzung.yaml",
+      "sha256": "709408d52cf8ac2f6a2145b93298ddc2162b1b715dec07d9c5605e1bcd70b066",
+      "bytes": 2133
+    },
+    {
+      "path": "scenarios/KF-072_palliativ_schwere_schmerzkrise_zu_hause.yaml",
+      "sha256": "a98c444eb38f56a9e5829d6575433c4bee43d5d1afa93ece158bb3829ae320bd",
+      "bytes": 2351
+    },
+    {
+      "path": "scenarios/KF-073_palliativ_tumorbedingte_starke_blutung.yaml",
+      "sha256": "923ce0bd066900d64ad750ac9949d009ec6ce863cebda08f6dc81c582f546428",
+      "bytes": 2337
+    },
+    {
+      "path": "scenarios/KF-074_palliativ_akutes_delir_und_starke_unruhe.yaml",
+      "sha256": "fdc9e63f21c0bdbb0fbc31d2d931db3d88bce5f19236c15117d3398442940c88",
+      "bytes": 2340
+    },
+    {
+      "path": "scenarios/KF-075_palliativ_erbrechen_medikamente_bleiben_nicht_drin.yaml",
+      "sha256": "493d0cd6f70a2fae9205d4745883a67901afa7a43d82f386402bfc91df9ae003",
+      "bytes": 2354
+    },
+    {
+      "path": "scenarios/KF-076_palliativ_rasselnde_atmung_und_erstickungsangst.yaml",
+      "sha256": "63f5a13e836cecbbc23f719a320fe3c934002336a7e3a3cb7116b61728df7faa",
+      "bytes": 2341
+    },
+    {
+      "path": "scenarios/KF-077_palliativ_ungewoehnliche_schlaefrigkeit_und_flache_atmung.yaml",
+      "sha256": "9ca89e8ce135d39ce6b9591eb88afc10afd8615bd6f5412caa53f04b0899bf5f",
+      "bytes": 2113
+    },
+    {
+      "path": "scenarios/KF-078_palliativ_lange_atempausen_angehoerige_verunsichert.yaml",
+      "sha256": "7f3e41c4b37d0b98688ae2085ff96f40f76b7018b1fb8f162c6c07ab80afc518",
+      "bytes": 2389
+    },
+    {
+      "path": "scenarios/KF-079_palliativ_fieber_schuettelfrost_und_kreislaufabfall.yaml",
+      "sha256": "0b200dbeec78173c50174273d36f85eb8dcb62a687e2e092aae70c2360ef3ffc",
+      "bytes": 2128
+    },
+    {
+      "path": "scenarios/KF-080_palliativ_akute_verschlechterung_mit_klarer_dnar_dni_planung.yaml",
+      "sha256": "d13dbabf105fe334ae4252b796a4429c3aaa3408a76c5288a180e3a8813c77c9",
+      "bytes": 2449
+    },
+    {
+      "path": "scenarios/KF-081_tochter_bestellt_medikament_fuer_mutter.yaml",
+      "sha256": "01173fb2b59e881f0ebe7ae41f9b01530a3630a03dcdadf20f8865ea1ddd56f4",
+      "bytes": 1998
+    },
+    {
+      "path": "scenarios/KF-082_ehemann_moechte_termin_fuer_ehefrau.yaml",
+      "sha256": "4bc5527cdeaed7777d34111cb872f7cc2edd4def48aaf08ee4b86ebc71263c05",
+      "bytes": 1976
+    },
+    {
+      "path": "scenarios/KF-083_sohn_bittet_um_kardiologie_ueberweisung_fuer_vater.yaml",
+      "sha256": "87f505be3c757d1e446086f90b9e2b8e41a8f9cb5355f0715e296b36fe034aec",
+      "bytes": 2055
+    },
+    {
+      "path": "scenarios/KF-084_tochter_bittet_um_befundrueckruf_fuer_mutter.yaml",
+      "sha256": "a14b9de6cb0fbf290bde1798b483f3e1777cf7214dbbbffdb611c9e10d58cafc",
+      "bytes": 1999
+    },
+    {
+      "path": "scenarios/KF-085_ehefrau_wegen_au_verlaengerung_des_mannes.yaml",
+      "sha256": "5a4d547a4f69663a9da32ee1ee00ddfa821148b567274b60da54f8aacf2d06ff",
+      "bytes": 1997
+    },
+    {
+      "path": "scenarios/KF-086_mutter_ruft_fuer_erwachsenen_sohn_mit_hautausschlag_an.yaml",
+      "sha256": "1003e8d64f95c3cb8e403b36f88f32994a6639a107c313d401c0418e1cb023a9",
+      "bytes": 2021
+    },
+    {
+      "path": "scenarios/KF-087_vater_moechte_termin_fuer_kind_mit_fieber.yaml",
+      "sha256": "3673c284991fdbbe6258116e1b36173bb71f6899731d0977aedfb3087e31a411",
+      "bytes": 2011
+    },
+    {
+      "path": "scenarios/KF-088_tochter_bittet_um_hausbesuch_fuer_immobilen_vater.yaml",
+      "sha256": "d48bd765e90e662f774cd988db119a1a95389fe873206308e62b19005f671ed9",
+      "bytes": 2140
+    },
+    {
+      "path": "scenarios/KF-089_nachbar_meldet_medikamentenproblem_einer_aelteren_patientin.yaml",
+      "sha256": "362a63b94c8d6f8bdc7a33e717b53e8d585a140986f1972058bd73ad390558b3",
+      "bytes": 2076
+    },
+    {
+      "path": "scenarios/KF-090_gesetzliche_betreuerin_bittet_um_rueckruf.yaml",
+      "sha256": "94d3aecc4c66deeb28f2ddcf109d784d6df0ce0f397d60a7c90ec36e80f0e7bc",
+      "bytes": 2047
+    },
+    {
+      "path": "scenarios/KF-091_sohn_meldet_moegliche_medikamentenunvertraeglichkeit_der_mutter.yaml",
+      "sha256": "8a3e222c6f21892d04621422166900814ab11f6d557d49f25c75bec7b9f93049",
+      "bytes": 2038
+    },
+    {
+      "path": "scenarios/KF-092_ehefrau_beschwert_sich_ueber_entlassmedikation_des_mannes.yaml",
+      "sha256": "b1eb19b210150be6d20e99162a1eef9ee3e429b7b3147907b834d4044f1d1536",
+      "bytes": 2141
+    },
+    {
+      "path": "scenarios/KF-093_tochter_fragt_nach_reha_unterlagen_fuer_mutter.yaml",
+      "sha256": "db0fd5ae9e08f6e0f32d567091fd455997862a140f6a0117b92fa00961aeae15",
+      "bytes": 1996
+    },
+    {
+      "path": "scenarios/KF-094_sohn_meldet_zunehmende_luftnot_des_vaters.yaml",
+      "sha256": "cbe2bb4fcfb6b51df974da73a237b2dedca0c1166e606e91dc33f2492882ab88",
+      "bytes": 2490
+    },
+    {
+      "path": "scenarios/KF-095_ehemann_bittet_um_formular_fuer_pflegekasse.yaml",
+      "sha256": "0d5773b88c5a5e7c736fff4abc9670d854c7e84e27a1b53b3bb0d2b555718ea7",
+      "bytes": 2010
+    },
+    {
+      "path": "scenarios/KF-096_reha_antrag_patient_moechte_formular_anstossen.yaml",
+      "sha256": "510d3c4dbe49e2e4757ae0186c2f7f7a5ec67dd5200e6bc1165422c45212c15d",
+      "bytes": 1496
+    },
+    {
+      "path": "scenarios/KF-097_drv_formular_aerztlicher_befundbericht.yaml",
+      "sha256": "df9e1982d04732c8246128ee34bb61d410d67f2bef0abb71104f0ee9fe338caf",
+      "bytes": 1395
+    },
+    {
+      "path": "scenarios/KF-098_pflegekassen_formular_bescheinigung.yaml",
+      "sha256": "6ecd7dd4417ea4504afc3f6cd439cee6c9a7273f6216aa11158723c4e208f861",
+      "bytes": 1390
+    },
+    {
+      "path": "scenarios/KF-099_attest_fuer_sportverein.yaml",
+      "sha256": "6078ada409f1f5d6e3aee6d98205ad72a18584e3ce7da1b5ecc7875e782c1b74",
+      "bytes": 1335
+    },
+    {
+      "path": "scenarios/KF-100_formular_schwerbehindertenantrag.yaml",
+      "sha256": "24066f56a73fd7d48ba8be127e95fcfe58f76b2835d916547a57b47cd5a2bb10",
+      "bytes": 1412
+    },
+    {
+      "path": "scenarios/KF-101_erkundigung_nach_oeffnungszeiten.yaml",
+      "sha256": "84997b6917881ef5e9f7c305f05ba020b034c2c179824bb03b83fc74fe886c19",
+      "bytes": 1301
+    },
+    {
+      "path": "scenarios/KF-102_erkundigung_nach_arztanwesenheit_morgen.yaml",
+      "sha256": "6d348385b85e5b1accd49cb46b765371c7d61b2e7221fd6a9260872c38c677da",
+      "bytes": 1278
+    },
+    {
+      "path": "scenarios/KF-103_unzufriedener_patient_lange_wartezeit.yaml",
+      "sha256": "46d2c2effc86a6ab54df494ad7b264bfe52938018879d94bf014a9b04fbf5449",
+      "bytes": 1501
+    },
+    {
+      "path": "scenarios/KF-104_unzufriedener_patient_ton_am_empfang.yaml",
+      "sha256": "7367cc9720e325e4b4d958170133882997967cb46429ecb603838acc8d25cf27",
+      "bytes": 1384
+    },
+    {
+      "path": "scenarios/KF-105_telekom_glasfaseranschluss_terminabsprache.yaml",
+      "sha256": "9eeda496ef4d16c5f64bac8e169fbad63982526967488b851cb210829ec61f51",
+      "bytes": 1537
+    },
+    {
+      "path": "scenarios/KF-106_verwaehlt_eigentlich_physiotherapie.yaml",
+      "sha256": "53e0141906c0206722c08b07a268b9a9549a828b7fec92701f42d33ad748445d",
+      "bytes": 1317
+    },
+    {
+      "path": "scenarios/KF-107_scherzanruf_kinder_lachen_und_fragen_nach_pizza.yaml",
+      "sha256": "38ada004feefe60c7806d5ee34a627950b7b6856bd35abbbbee25f345eb11de2",
+      "bytes": 1262
+    },
+    {
+      "path": "scenarios/KF-108_scherzanruf_kind_behauptet_fantasiekrankheit.yaml",
+      "sha256": "e2f8be48d16ed69c8a607629a5a508d4de1f368d60c4ecfe3a187f013411debb",
+      "bytes": 1332
+    },
+    {
+      "path": "scenarios/KF-109_lieferdienst_fragt_nach_warenannahme.yaml",
+      "sha256": "2d1328ec30b63d449c34ef29ef8206cd8edd1cc5ab3f0348dbd6ffeee3ae08cf",
+      "bytes": 1409
+    },
+    {
+      "path": "scenarios/KF-110_krankenkasse_bittet_um_rueckruf_zu_unterlagen.yaml",
+      "sha256": "07b824f0852d5f57ea04e113c638c592fbb1677c335e7371a677abaa2c28fc5d",
+      "bytes": 1445
+    },
+    {
+      "path": "scenarios/KF-111_apotheke_falsche_staerke_auf_rezept.yaml",
+      "sha256": "a00d7beff0336d6d5a8772844fa38904d4562468f57641c50f8b7f048a8106e4",
+      "bytes": 2207
+    },
+    {
+      "path": "scenarios/KF-112_apotheke_gemeldete_unvertraeglichkeit.yaml",
+      "sha256": "267034b032c6af3549bede6af0ae357fd9acf34ba35f1fb46a9f629b46155e05",
+      "bytes": 2208
+    },
+    {
+      "path": "scenarios/KF-113_apotheke_medikament_nicht_lieferbar_alternative_erbeten.yaml",
+      "sha256": "1843b44d7b7b7b93b67361aa851fd26eb2f55641b1dc71b400818a8624c78d6a",
+      "bytes": 2144
+    },
+    {
+      "path": "scenarios/KF-114_apotheke_doppelverordnung.yaml",
+      "sha256": "bad98d45278a9000e709ba73037a929bf29a8505a71721459262b605f7f03e77",
+      "bytes": 2073
+    },
+    {
+      "path": "scenarios/KF-115_apotheke_rezept_offenbar_falschem_patienten_zugeordnet.yaml",
+      "sha256": "b8ab5b5db408be55f3231373c407ca22ba57912e1051fd624e57f774fd48ac2b",
+      "bytes": 2260
+    },
+    {
+      "path": "scenarios/KF-116_apotheke_patient_mit_blutdruck_220_120_vor_ort.yaml",
+      "sha256": "7fa944ed814d2781e45459940bf8fa9299235c58ddbd513313f4a2fdb7adde93",
+      "bytes": 2228
+    },
+    {
+      "path": "scenarios/KF-117_apotheke_relevante_wechselwirkungsrueckfrage.yaml",
+      "sha256": "9ac92b9664b3c9a06116223818bf407f31372c270e5347f981daeb566b3b34e3",
+      "bytes": 2130
+    },
+    {
+      "path": "scenarios/KF-118_apotheke_dosieranweisung_widerspruechlich.yaml",
+      "sha256": "0956d45d514f6d81c6394fea390c570ca233048bca6f8faa80b4809ebbedeab5",
+      "bytes": 2186
+    },
+    {
+      "path": "scenarios/KF-119_apotheke_e_rezept_technisch_nicht_abrufbar.yaml",
+      "sha256": "e61c0a11ee446318668e9534ad00827103c285000169f345986854eb862e830b",
+      "bytes": 2084
+    },
+    {
+      "path": "scenarios/KF-120_apotheke_palliatives_betaeubungsmittel_formale_rueckfrage.yaml",
+      "sha256": "3ee4b60f1690b7e0a14469ff96645196956b413e00e0034a70fb55faf2957ffb",
+      "bytes": 2302
+    },
+    {
+      "path": "scenarios/KF-121_pflegeheim_dekubitus_verschlechtert_hausbesuch.yaml",
+      "sha256": "e8ef89f0e8c2e9f91d33ab417bba06cd66c70dcff82da361e77eb3db9a2eda83",
+      "bytes": 2204
+    },
+    {
+      "path": "scenarios/KF-122_pflegedienst_infizierte_wunde_am_unterschenkel.yaml",
+      "sha256": "414a7e4e14bdf063eba1fabda54733ae9975a03b960e291ce9828026f99a69d1",
+      "bytes": 2081
+    },
+    {
+      "path": "scenarios/KF-123_pflegeheim_erysipelverdacht_hausbesuch.yaml",
+      "sha256": "4f9cc9e10baef37b02e0e3610606d2c6121d804dca7a75d9ad0f72ec4011d296",
+      "bytes": 2273
+    },
+    {
+      "path": "scenarios/KF-124_pflegeheim_blutdruckkrise_mit_kopfschmerz.yaml",
+      "sha256": "d953c36505924516f9f9270cb4f5ad50e446c1b55e808414eda23e35d27911e7",
+      "bytes": 1910
+    },
+    {
+      "path": "scenarios/KF-125_pflegeheim_kollaps_im_bad.yaml",
+      "sha256": "3f4c2b312fee921d0915059e5685251bfd474a1052d6318f8663cd59823efb48",
+      "bytes": 1867
+    },
+    {
+      "path": "scenarios/KF-126_pflegedienst_tachyarrhythmie_165_und_schwindel.yaml",
+      "sha256": "f1ed9670dc108e8d3e000f60c851cdd7db5d1951e96415c432cda2873a43a138",
+      "bytes": 1926
+    },
+    {
+      "path": "scenarios/KF-127_pflegeheim_bradykardie_34_und_somnolenz.yaml",
+      "sha256": "18080b20084a9251c80e73ac959599960b35d1cbc5d04a53ca7fb37275bed8c7",
+      "bytes": 1830
+    },
+    {
+      "path": "scenarios/KF-128_pflegeheim_kardiale_dekompensation.yaml",
+      "sha256": "c952be9cf808d16d639b31c5cb417286f55bad8ded3ce3a705e3cf46800fec1d",
+      "bytes": 1914
+    },
+    {
+      "path": "scenarios/KF-129_pflegeheim_pneumonie_mit_saettigung_81_prozent.yaml",
+      "sha256": "4bc34cdfa67d79a84f146274aca637ef669291cf4c85aedf3c3f45766bfe0bb8",
+      "bytes": 1919
+    },
+    {
+      "path": "scenarios/KF-130_pflegedienst_akute_verwirrtheit_und_fieber.yaml",
+      "sha256": "01a326cc78a7771547998e029d9746a567e71c63c0a2783d5dfdb8a6d75c42af",
+      "bytes": 1878
+    },
+    {
+      "path": "scenarios/KF-131_pflegeheim_dauerkatheter_mit_blutung.yaml",
+      "sha256": "1e91abb0d6aa33681a7e772860ad5c6582c2cc2689f844a13ccafc1e23ead46d",
+      "bytes": 2057
+    },
+    {
+      "path": "scenarios/KF-132_pflegedienst_wiederholte_unterzuckerungen_besprechen.yaml",
+      "sha256": "849dafb091dfe7a813d250b61ebc7f32442ddd7e88d8cef9d55876f019a0481c",
+      "bytes": 2087
+    },
+    {
+      "path": "scenarios/KF-133_pflegeheim_sturz_auf_den_kopf_unter_blutverduenner.yaml",
+      "sha256": "3c2de4c371b30e6d1c41463e9afb6c6f67618ef0cc351b488b18c6984697aa23",
+      "bytes": 1963
+    },
+    {
+      "path": "scenarios/KF-134_pflegedienst_zunehmende_oedeme_und_gewichtszunahme.yaml",
+      "sha256": "2296416b5b6b0251eecd26f076162052405f5b66e6dbc7440e2f90cad42acd5c",
+      "bytes": 2112
+    },
+    {
+      "path": "scenarios/KF-135_pflegeheim_wundversorgung_bei_dekubitus_abstimmen.yaml",
+      "sha256": "cc2bdbee45a9a3475a6f519bc20066107202659ed688e73b5a66a5385d05b90e",
+      "bytes": 2018
+    },
+    {
+      "path": "scenarios/KF-136_pflegedienst_peg_sonde_verstopft_medikamente_schwierig.yaml",
+      "sha256": "8fb21d6858c29e7a89ada3bb99c05dfd13fbeb66859075ef7f5b36d9a604be3b",
+      "bytes": 2085
+    },
+    {
+      "path": "scenarios/KF-137_pflegeheim_zunehmende_schmerzen_medikation_besprechen.yaml",
+      "sha256": "a1c588c118dc654a9ac0341e3114fa98fbfa3a52086f98c67df4635f764fe52d",
+      "bytes": 2064
+    },
+    {
+      "path": "scenarios/KF-138_pflegedienst_tabletten_koennen_nicht_mehr_geschluckt_werden.yaml",
+      "sha256": "4e0597ee291e4b0862f97a290ec1b2263cb19bb36235d16c0ae46007c01ae66e",
+      "bytes": 2080
+    },
+    {
+      "path": "scenarios/KF-139_pflegedienst_bettlaegerig_mit_fieber_hausbesuch_gewuenscht.yaml",
+      "sha256": "27bf609a64b3107532e4839f63999265528744e88bc28c75372b2555f30e6b18",
+      "bytes": 2259
+    },
+    {
+      "path": "scenarios/KF-140_pflegeheim_routinemaessige_medikationsbesprechung.yaml",
+      "sha256": "e3e3f152fd6740baffdf275c0d327c1fc8286edf069120957e121636043131b0",
+      "bytes": 2055
+    },
+    {
+      "path": "scenarios/KF-141_dysurie_termin_wegen_harnwegsbeschwerden.yaml",
+      "sha256": "a690c1a3d7b1faeb4049a9acf5fa6a21523ecded8b6b86afa1748892f12278b9",
+      "bytes": 1645
+    },
+    {
+      "path": "scenarios/KF-142_akuter_rueckenschmerz_ohne_warnzeichen_termin.yaml",
+      "sha256": "251c5699b7ab8209d3d5668336ff760653fd5d20f54e26002163671acb2d33f1",
+      "bytes": 1691
+    },
+    {
+      "path": "scenarios/KF-143_impfberatung_termin.yaml",
+      "sha256": "c8d5c9c020afa1c881431082e58dd0220432f7d46811ec6b95b160b0f2eb1fd4",
+      "bytes": 1628
+    },
+    {
+      "path": "scenarios/KF-144_laborwerte_rueckrufbitte.yaml",
+      "sha256": "54d6b1e12244d5a53004423317dae844c18dd3e92e360ec8baebf239fc70faa6",
+      "bytes": 1435
+    },
+    {
+      "path": "scenarios/KF-145_rezept_plus_befundfrage_zwei_anliegen.yaml",
+      "sha256": "7df5105ba6b53a35aeebf00f65a1a603482b7893583771d490c3a608d4d60377",
+      "bytes": 1826
+    },
+    {
+      "path": "scenarios/KF-146_ueberweisung_dermatologie_wegen_hautveraenderung.yaml",
+      "sha256": "0107f1ae142776f672758352bae5eb5591cb8d31010d059ab6ab90ecbb6bd803",
+      "bytes": 1561
+    },
+    {
+      "path": "scenarios/KF-147_reiseimpfberatung_vor_fernreise.yaml",
+      "sha256": "ec2af7ec35aab81e5636229b2789f4ff7ebff09f8db7ff646cbecbb8433ee8ee",
+      "bytes": 1596
+    },
+    {
+      "path": "scenarios/KF-148_hoerminderung_termin.yaml",
+      "sha256": "083d3d21fbfa662d5c68447f4aea7fe176d68e235078a4f8ee6290764a3e8d1b",
+      "bytes": 1578
+    },
+    {
+      "path": "scenarios/KF-149_herzstolpern_aktuell_stabil_terminwunsch.yaml",
+      "sha256": "79e26d457f2de4f786ec81f8b65e456222758f20550d4c8a3d0e76d981606c9e",
+      "bytes": 1691
+    },
+    {
+      "path": "scenarios/KF-150_mehrfachanliegen_rezept_reha_formular_und_rueckruf.yaml",
+      "sha256": "72eeaef53a817020923dbf540bd2ba9557286fb3d33d1cff7ab5f1385b780bc6",
+      "bytes": 1903
+    },
+    {
+      "path": "scenarios/index.json",
+      "sha256": "d588cdfa5e8d7bd88a4876bd24dde59c4262e27dfabc9fb96af5e9d0ff2849fd",
+      "bytes": 49714
+    },
+    {
+      "path": "schemas/scenario.schema.json",
+      "sha256": "749206e8fea03e350ad09e78ca347391d45eda662d16b538eed131fa68322712",
+      "bytes": 5338
+    },
+    {
+      "path": "templates/external-evaluator-instructions.md",
+      "sha256": "0211e9f63952ab8a49915a47f974f593ef1ea7e52aa8e474c177fbbdb01d597d",
+      "bytes": 1212
+    },
+    {
+      "path": "templates/patient-simulator-system.txt",
+      "sha256": "ef8c2d369098857aa4375ee6da217f8a46a07d80a685d7f557097ccc1dc5dc49",
+      "bytes": 1273
+    }
+  ]
+}

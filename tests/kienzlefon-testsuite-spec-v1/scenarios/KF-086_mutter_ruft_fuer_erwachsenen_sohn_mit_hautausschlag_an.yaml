@@ -1,0 +1,66 @@
+format_version: '1.0'
+scenario_id: KF-086
+title: Mutter ruft für erwachsenen Sohn mit Hautausschlag an
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- mutter_ruft_fuer_erwachsenen_sohn_mit_hautausschlag_an
+simulation:
+  max_turns: 24
+  seed: 1086
+patient:
+  identity:
+    first_name: Frank
+    last_name: Fischer
+    birth_date: 08.08.1989
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    reason: Hautausschlag
+    availability: nachmittags
+    caller_name: Birgit Lange
+    patient_name: Frank Fischer
+    patient_birth_date: 08.08.1989
+  opening: Ich rufe für meinen erwachsenen Sohn an, er hat seit gestern einen Ausschlag und braucht einen Termin.
+  instructions:
+  - Du bist der/die Angehörige Birgit Lange.
+  - Du rufst ausdrücklich für Frank Fischer an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Birgit Lange.
+environment:
+  caller_id: '+491760050086'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Frank
+      nachname:
+        equals: Fischer
+      geburtsdatum:
+        equals: 08.08.1989
+      grund:
+        contains: Hautausschlag
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

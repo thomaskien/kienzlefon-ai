@@ -1,0 +1,60 @@
+format_version: '1.0'
+scenario_id: KF-044
+title: Name – Selbstkorrektur
+description: Patient korrigiert den Nachnamen; letzte Angabe zählt.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- stammdaten
+- name
+- korrektur
+simulation:
+  max_turns: 20
+  seed: 1044
+patient:
+  identity:
+    first_name: Sven
+    last_name: Ehlert
+    birth_date: 01.01.1977
+    callback_number: null
+  persona:
+    style: etwas hastig
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    wrong_last_name: Ebert
+    correct_last_name: Ehlert
+    medications:
+    - Ramipril 5 mg
+  opening: Hier ist Sven Ebert, ich brauche Ramipril 5 mg.
+  instructions:
+  - 'Korrigiere dich kurz danach: Entschuldigung, mein Nachname ist Ehlert, nicht Ebert.'
+  - Weitere Medikamente verneinen.
+environment:
+  caller_id: '+4917610000044'
+  within_phone_hours: false
+test_goal:
+  topic: Stammdaten-Korrektur
+  clarification_goal: Letzten korrigierten Nachnamen übernehmen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Sven
+      nachname:
+        equals: Ehlert
+      geburtsdatum:
+        equals: 01.01.1977
+      medikamente:
+        contains_lines:
+        - Ramipril 5 mg
+  required_behaviors:
+  - Korrigierten Nachnamen als gültigen Stammdatensatz verwenden.
+  forbidden_behaviors:
+  - Ebert als finalen Nachnamen speichern.
+  notes: []

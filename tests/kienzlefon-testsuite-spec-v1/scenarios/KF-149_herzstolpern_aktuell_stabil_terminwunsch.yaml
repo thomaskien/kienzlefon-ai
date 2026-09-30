@@ -1,0 +1,58 @@
+format_version: '1.0'
+scenario_id: KF-149
+title: Herzstolpern, aktuell stabil – Terminwunsch
+description: Allgemeinmedizinischer Routinefall zur Ergänzung des Spektrums.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- allgemeinmedizin
+- routine
+- herzstolpern_aktuell_stabil_terminwunsch
+simulation:
+  max_turns: 24
+  seed: 1149
+patient:
+  identity:
+    first_name: Julia
+    last_name: Bender
+    birth_date: 26.11.1982
+    callback_number: null
+  persona:
+    style: freundlich und alltagsnah
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: intermittierendes Herzstolpern, aktuell beschwerdefrei
+    availability: nächste Woche vormittags
+  opening: Ich habe seit ein paar Wochen immer mal wieder Herzstolpern, aber gerade keine Beschwerden. Ich hätte
+    gern einen Termin zur Abklärung.
+  instructions:
+  - Nenne persönliche Daten nur auf Nachfrage.
+  - Bleibe bei den genannten Anliegen.
+environment:
+  caller_id: '+491760050149'
+  within_phone_hours: false
+test_goal:
+  topic: Allgemeinmedizinischer Routinefall
+  clarification_goal: Anliegen vollständig und ohne Halluzinationen in den passenden Workflow bringen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Julia
+      nachname:
+        equals: Bender
+      geburtsdatum:
+        equals: 26.11.1982
+      grund:
+        contains: Herzstolpern
+  required_behaviors:
+  - Terminwunsch samt Grund und Verfügbarkeit erfassen, ohne einen konkreten freien Termin zu erfinden.
+  forbidden_behaviors:
+  - Eine tatsächliche Terminbuchung oder freie Uhrzeit behaupten, wenn sie nicht technisch vorliegt.
+  notes: []

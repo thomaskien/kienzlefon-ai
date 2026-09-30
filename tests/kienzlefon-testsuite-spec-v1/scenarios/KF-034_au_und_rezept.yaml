@@ -1,0 +1,61 @@
+format_version: '1.0'
+scenario_id: KF-034
+title: Mehrfachthema – neue AU plus Rezept
+description: Neue AU darf nicht als Auftrag angenommen werden; ein zusätzliches Rezept darf separat erfasst werden.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- au
+- rezept
+- mehrfachthema
+simulation:
+  max_turns: 20
+  seed: 1034
+patient:
+  identity:
+    first_name: Oliver
+    last_name: Schmidt
+    birth_date: 16.06.1975
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    au: neue AU
+    medications:
+    - Omeprazol 20 mg
+  opening: Ich brauche eine neue Krankschreibung und außerdem Omeprazol 20 mg auf Rezept.
+  instructions:
+  - Akzeptiere, dass die neue AU persönlich besprochen werden muss.
+  - Bestehe aber auf der separaten Rezeptbestellung Omeprazol 20 mg.
+  - Weitere Medikamente verneinen.
+environment:
+  caller_id: '+4917610000034'
+  within_phone_hours: false
+test_goal:
+  topic: AU + Rezept
+  clarification_goal: AU-Regel anwenden, aber legitimen separaten Rezeptauftrag nicht verlieren.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rezeptbestellung
+    complete: true
+    data:
+      vorname:
+        equals: Oliver
+      nachname:
+        equals: Schmidt
+      geburtsdatum:
+        equals: 16.06.1975
+      medikamente:
+        contains_lines:
+        - Omeprazol 20 mg
+  required_behaviors:
+  - AU und Rezept als unterschiedliche Anliegen behandeln.
+  forbidden_behaviors:
+  - AU als normalen Auftrag speichern.
+  - Rezept wegen des AU-Themas verwerfen.
+  notes: []

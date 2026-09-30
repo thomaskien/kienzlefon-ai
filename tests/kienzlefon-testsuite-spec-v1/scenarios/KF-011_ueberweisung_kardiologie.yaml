@@ -1,0 +1,56 @@
+format_version: '1.0'
+scenario_id: KF-011
+title: Überweisung – Kardiologie
+description: Klassischer Überweisungswunsch mit Fachrichtung und Grund.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- ueberweisung
+- happy-path
+simulation:
+  max_turns: 20
+  seed: 1011
+patient:
+  identity:
+    first_name: Gisela
+    last_name: Wagner
+    birth_date: 13.08.1963
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    specialty: Kardiologie
+    reason: Herzkontrolle
+  opening: Ich brauche eine Überweisung zum Kardiologen.
+  instructions:
+  - 'Grund auf Nachfrage: Herzkontrolle.'
+  - Stammdaten nur auf Nachfrage.
+environment:
+  caller_id: '+4917610000011'
+  within_phone_hours: false
+test_goal:
+  topic: Überweisung
+  clarification_goal: Fachrichtung und Grund erfassen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: ueb_req
+    complete: true
+    data:
+      vorname:
+        equals: Gisela
+      nachname:
+        equals: Wagner
+      geburtsdatum:
+        equals: 13.08.1963
+      fachrichtung:
+        contains: Kardi
+      grund:
+        contains: Herzkontrolle
+  required_behaviors: []
+  forbidden_behaviors: []
+  notes: []

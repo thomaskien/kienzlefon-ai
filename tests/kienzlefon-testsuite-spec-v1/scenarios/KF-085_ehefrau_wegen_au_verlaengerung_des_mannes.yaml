@@ -1,0 +1,65 @@
+format_version: '1.0'
+scenario_id: KF-085
+title: Ehefrau wegen AU-Verlängerung des Mannes
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- ehefrau_wegen_au_verlaengerung_des_mannes
+simulation:
+  max_turns: 24
+  seed: 1085
+patient:
+  identity:
+    first_name: Marlies
+    last_name: Becker
+    birth_date: 24.03.1982
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    reason: AU-Verlängerung, weiterhin krank
+    caller_name: Petra König
+    patient_name: Marlies Becker
+    patient_birth_date: 24.03.1982
+  opening: Mein Mann ist noch krank und seine Krankschreibung läuft heute aus. Kann sich jemand dazu melden?
+  instructions:
+  - Du bist der/die Angehörige Petra König.
+  - Du rufst ausdrücklich für Marlies Becker an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Petra König.
+environment:
+  caller_id: '+491760050085'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Marlies
+      nachname:
+        equals: Becker
+      geburtsdatum:
+        equals: 24.03.1982
+      grund:
+        contains: AU-Verlängerung
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

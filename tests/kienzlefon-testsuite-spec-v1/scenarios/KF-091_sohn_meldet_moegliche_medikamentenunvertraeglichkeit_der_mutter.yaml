@@ -1,0 +1,65 @@
+format_version: '1.0'
+scenario_id: KF-091
+title: Sohn meldet mögliche Medikamentenunverträglichkeit der Mutter
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- sohn_meldet_moegliche_medikamentenunvertraeglichkeit_der_mutter
+simulation:
+  max_turns: 24
+  seed: 1091
+patient:
+  identity:
+    first_name: Eva
+    last_name: Lange
+    birth_date: 09.09.1960
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    reason: Übelkeit und Schwindel nach neuem Medikament
+    caller_name: Jens Walter
+    patient_name: Eva Lange
+    patient_birth_date: 09.09.1960
+  opening: Meine Mutter hat nach dem neuen Medikament Übelkeit und Schwindel. Ich möchte das gern mit dem Arzt besprechen.
+  instructions:
+  - Du bist der/die Angehörige Jens Walter.
+  - Du rufst ausdrücklich für Eva Lange an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Jens Walter.
+environment:
+  caller_id: '+491760050091'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Eva
+      nachname:
+        equals: Lange
+      geburtsdatum:
+        equals: 09.09.1960
+      grund:
+        contains: Übelkeit
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  notes: []

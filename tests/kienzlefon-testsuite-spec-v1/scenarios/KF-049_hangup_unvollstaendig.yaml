@@ -1,0 +1,55 @@
+format_version: '1.0'
+scenario_id: KF-049
+title: Auflegen bei unvollständigem Auftrag
+description: Patient legt ab, bevor wesentliche Stammdaten vollständig sind; kein semantisch fertiger Auftrag.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- hangup
+- unvollstaendig
+- complete
+simulation:
+  max_turns: 20
+  seed: 1049
+patient:
+  identity:
+    first_name: Max
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: eilig
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    request: Überweisung Kardiologie
+    reason: Kontrolle
+  opening: Ich brauche eine Überweisung zur Kardiologie zur Kontrolle, ich heiße Max.
+  instructions:
+  - Nach der ersten Assistant-Rückfrage sofort SIMULATE_HANGUP ausführen.
+  - Keine weiteren Daten liefern.
+environment:
+  caller_id: null
+  within_phone_hours: false
+test_goal:
+  topic: Unvollständiger Auftrag
+  clarification_goal: Kein `complete=true` für einen semantisch unvollständigen Auftrag erzeugen.
+expectations:
+  terminal_outcome: incomplete_after_hangup
+  records:
+  - type: ueb_req
+    complete: false
+    data:
+      vorname:
+        equals: Max
+      nachname:
+        present: false
+      geburtsdatum:
+        present: false
+  required_behaviors:
+  - Unvollständigkeit im State/Datensatz erhalten, falls Backend Teilstände speichert.
+  forbidden_behaviors:
+  - complete=true setzen, obwohl notwendige Angaben fehlen.
+  notes: []

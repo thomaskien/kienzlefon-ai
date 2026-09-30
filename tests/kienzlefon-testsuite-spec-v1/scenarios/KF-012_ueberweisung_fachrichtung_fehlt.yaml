@@ -1,0 +1,57 @@
+format_version: '1.0'
+scenario_id: KF-012
+title: Überweisung – Fachrichtung zunächst offen
+description: Patient sagt nur Überweisung; Fachrichtung muss geklärt werden.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- ueberweisung
+- rueckfrage
+simulation:
+  max_turns: 20
+  seed: 1012
+patient:
+  identity:
+    first_name: Peter
+    last_name: Brandt
+    birth_date: 25.10.1949
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    specialty: Orthopädie
+    reason: Knieschmerzen
+  opening: Ich brauche eine Überweisung.
+  instructions:
+  - 'Nenne die Fachrichtung erst nach einer passenden Rückfrage: Orthopädie.'
+  - 'Grund: Knieschmerzen.'
+environment:
+  caller_id: '+4917610000012'
+  within_phone_hours: false
+test_goal:
+  topic: Überweisung
+  clarification_goal: Fehlende Fachrichtung gezielt erfragen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: ueb_req
+    complete: true
+    data:
+      vorname:
+        equals: Peter
+      nachname:
+        equals: Brandt
+      geburtsdatum:
+        equals: 25.10.1949
+      fachrichtung:
+        contains: Orthop
+      grund:
+        contains: Knie
+  required_behaviors:
+  - Pro Assistant-Antwort höchstens eine Rückfrage stellen.
+  forbidden_behaviors: []
+  notes: []

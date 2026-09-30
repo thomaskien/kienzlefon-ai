@@ -1,0 +1,55 @@
+format_version: '1.0'
+scenario_id: KF-021
+title: Rückruf – ohne Grund
+description: Patient möchte Rückruf, will aber keinen Grund nennen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- rueckruf
+- ohne-grund
+simulation:
+  max_turns: 20
+  seed: 1021
+patient:
+  identity:
+    first_name: Thomas
+    last_name: Vogel
+    birth_date: 06.01.1967
+    callback_number: null
+  persona:
+    style: zurückhaltend
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: null
+  opening: Könnte mich bitte jemand zurückrufen?
+  instructions:
+  - 'Wenn nach dem Grund gefragt wird, sage: Das möchte ich nicht näher sagen.'
+  - Bleibe beim Rückrufwunsch.
+environment:
+  caller_id: '+4917610000021'
+  within_phone_hours: false
+test_goal:
+  topic: Rückruf
+  clarification_goal: Rückruf darf auch ohne genannten Grund aufgenommen werden.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Thomas
+      nachname:
+        equals: Vogel
+      geburtsdatum:
+        equals: 06.01.1967
+      grund:
+        present: true
+  required_behaviors:
+  - Rückruf nicht allein wegen fehlendem Grund ablehnen.
+  forbidden_behaviors:
+  - Einen Grund erfinden.
+  notes: []

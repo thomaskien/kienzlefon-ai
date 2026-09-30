@@ -1,0 +1,57 @@
+format_version: '1.0'
+scenario_id: KF-147
+title: Reiseimpfberatung vor Fernreise
+description: Allgemeinmedizinischer Routinefall zur Ergänzung des Spektrums.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- allgemeinmedizin
+- routine
+- reiseimpfberatung_vor_fernreise
+simulation:
+  max_turns: 24
+  seed: 1147
+patient:
+  identity:
+    first_name: Melanie
+    last_name: Sauer
+    birth_date: 04.01.1968
+    callback_number: null
+  persona:
+    style: freundlich und alltagsnah
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Reiseimpfberatung Thailand
+    availability: nächste zwei Wochen nachmittags
+  opening: Ich fahre in sechs Wochen nach Thailand und möchte vorher eine Reiseimpfberatung.
+  instructions:
+  - Nenne persönliche Daten nur auf Nachfrage.
+  - Bleibe bei den genannten Anliegen.
+environment:
+  caller_id: '+491760050147'
+  within_phone_hours: false
+test_goal:
+  topic: Allgemeinmedizinischer Routinefall
+  clarification_goal: Anliegen vollständig und ohne Halluzinationen in den passenden Workflow bringen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Melanie
+      nachname:
+        equals: Sauer
+      geburtsdatum:
+        equals: 04.01.1968
+      grund:
+        contains: Reiseimpfberatung
+  required_behaviors:
+  - Terminwunsch samt Grund und Verfügbarkeit erfassen, ohne einen konkreten freien Termin zu erfinden.
+  forbidden_behaviors:
+  - Eine tatsächliche Terminbuchung oder freie Uhrzeit behaupten, wenn sie nicht technisch vorliegt.
+  notes: []

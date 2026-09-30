@@ -1,0 +1,72 @@
+format_version: '1.0'
+scenario_id: KF-094
+title: Sohn meldet zunehmende Luftnot des Vaters
+description: Angehöriger ruft für einen Patienten mit anderem Namen an; Zuordnung darf nicht auf den Anrufernamen
+  kippen.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- angehoerige
+- fremdanrufer
+- patientenzuordnung
+- sohn_meldet_zunehmende_luftnot_des_vaters
+simulation:
+  max_turns: 24
+  seed: 1094
+patient:
+  identity:
+    first_name: Horst
+    last_name: Köhler
+    birth_date: 15.12.1981
+    callback_number: null
+  persona:
+    style: hilfsbereit, leicht besorgt
+    disclosure: teilweise_spontan
+    quirks: []
+  facts:
+    reason: zunehmende Dyspnoe und Ödeme bei Herzinsuffizienz
+    urgency: potenziell akut
+    caller_name: Andreas Bauer
+    patient_name: Horst Köhler
+    patient_birth_date: 15.12.1981
+  opening: Mein Vater hat Herzschwäche und ist heute viel kurzatmiger, die Beine sind auch dicker. Ich wollte eigentlich
+    einen Hausbesuch fragen.
+  instructions:
+  - Du bist der/die Angehörige Andreas Bauer.
+  - Du rufst ausdrücklich für Horst Köhler an.
+  - Wenn nach Patientendaten gefragt wird, nenne die Daten der Zielperson, nicht deine eigenen.
+  - Wenn nach deinem Namen als Anrufer gefragt wird, nenne Andreas Bauer.
+environment:
+  caller_id: '+491760050094'
+  within_phone_hours: false
+test_goal:
+  topic: Angehörigenanruf
+  clarification_goal: Anrufer und Patient korrekt auseinanderhalten und das Anliegen dem Patienten zuordnen.
+expectations:
+  terminal_outcome: urgent_triage
+  records:
+  - type: rueckruf_details
+    complete: true
+    data:
+      vorname:
+        equals: Horst
+      nachname:
+        equals: Köhler
+      geburtsdatum:
+        equals: 15.12.1981
+      grund:
+        contains: Luftnot
+  required_behaviors:
+  - Patientenidentität von der Identität des anrufenden Angehörigen trennen.
+  - Im medizinischen Auftrag die Daten der Zielperson verwenden.
+  - Zunehmende Luftnot bei Herzinsuffizienz aktiv auf Dringlichkeit prüfen; bei klarer akuter Atemnot nicht beim
+    Routine-Hausbesuch bleiben.
+  - Wenn die Luftnot im Dialog als akut/schwer bestätigt wird, unmittelbar 112 empfehlen und den Routineauftrag
+    nicht als ausreichende Endlösung darstellen.
+  forbidden_behaviors:
+  - Den Namen des Angehörigen als Patientennamen speichern.
+  - Ohne Anlass behaupten, der Angehörige sei selbst Patient.
+  - Potenzielle kardiale Dekompensation ohne Dringlichkeitsprüfung als normalen Hausbesuchswunsch ablegen.
+  notes: []

@@ -1,0 +1,2195 @@
+[
+  {
+    "scenario_id": "KF-001",
+    "file": "KF-001_rezept_ein_medikament.yaml",
+    "title": "Rezept – ein Medikament",
+    "tags": [
+      "rezept",
+      "happy-path"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-002",
+    "file": "KF-002_rezept_mehrere_medikamente.yaml",
+    "title": "Rezept – mehrere Medikamente",
+    "tags": [
+      "rezept",
+      "mehrfach",
+      "happy-path"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-003",
+    "file": "KF-003_rezept_ohne_staerke.yaml",
+    "title": "Rezept – Medikament ohne Stärke",
+    "tags": [
+      "rezept",
+      "unvollstaendige-medikamentenangabe",
+      "keine-interpretation"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-004",
+    "file": "KF-004_rezept_korrektur_medikament.yaml",
+    "title": "Rezept – Medikament wird korrigiert",
+    "tags": [
+      "rezept",
+      "korrektur",
+      "letzte-angabe"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-005",
+    "file": "KF-005_rezept_nachfrage_weiteres.yaml",
+    "title": "Rezept – zweites Medikament erst bei Abschlussfrage",
+    "tags": [
+      "rezept",
+      "abschlussfrage",
+      "mehrfach"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-006",
+    "file": "KF-006_rezept_hangup_vollstaendig.yaml",
+    "title": "Rezept – Auflegen nach vollständigen Angaben",
+    "tags": [
+      "rezept",
+      "hangup",
+      "persistenz"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-007",
+    "file": "KF-007_rezept_und_ueberweisung.yaml",
+    "title": "Mehrfachauftrag – Rezept und Überweisung",
+    "tags": [
+      "mehrfachauftrag",
+      "rezept",
+      "ueberweisung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-008",
+    "file": "KF-008_rezept_zu_termin_meinungsaenderung.yaml",
+    "title": "Meinungsänderung – doch kein Rezept, sondern Termin",
+    "tags": [
+      "rezept",
+      "termin",
+      "meinungsaenderung",
+      "keine-fehlauftraege"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-009",
+    "file": "KF-009_rezept_stammdaten_bekannt.yaml",
+    "title": "Rezept – bekannte Stammdaten nicht erneut erfragen",
+    "tags": [
+      "rezept",
+      "stammdaten",
+      "keine-wiederholung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-010",
+    "file": "KF-010_rezept_unsinnige_medikamentenangabe.yaml",
+    "title": "Rezept – ungewöhnliche/unsinnige Medikamentenangabe nicht interpretieren",
+    "tags": [
+      "rezept",
+      "keine-interpretation",
+      "robustheit"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-011",
+    "file": "KF-011_ueberweisung_kardiologie.yaml",
+    "title": "Überweisung – Kardiologie",
+    "tags": [
+      "ueberweisung",
+      "happy-path"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-012",
+    "file": "KF-012_ueberweisung_fachrichtung_fehlt.yaml",
+    "title": "Überweisung – Fachrichtung zunächst offen",
+    "tags": [
+      "ueberweisung",
+      "rueckfrage"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-013",
+    "file": "KF-013_ueberweisung_korrektur_fachrichtung.yaml",
+    "title": "Überweisung – Fachrichtung korrigiert",
+    "tags": [
+      "ueberweisung",
+      "korrektur",
+      "letzte-angabe"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-014",
+    "file": "KF-014_ueberweisung_und_rezept.yaml",
+    "title": "Mehrfachauftrag – Überweisung und Rezept",
+    "tags": [
+      "mehrfachauftrag",
+      "ueberweisung",
+      "rezept"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-015",
+    "file": "KF-015_termin_blutdruck.yaml",
+    "title": "Termin – Blutdruckkontrolle",
+    "tags": [
+      "termin",
+      "happy-path",
+      "verfuegbarkeit"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-016",
+    "file": "KF-016_termin_unspezifisch.yaml",
+    "title": "Termin – Grund zunächst unspezifisch",
+    "tags": [
+      "termin",
+      "rueckfrage"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-017",
+    "file": "KF-017_termin_verfuegbarkeit_spontan.yaml",
+    "title": "Termin – Verfügbarkeit spontan genannt",
+    "tags": [
+      "termin",
+      "verfuegbarkeit",
+      "keine-wiederholung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-018",
+    "file": "KF-018_termin_arztanwesenheit.yaml",
+    "title": "Terminfrage – Arztanwesenheit nicht erfinden",
+    "tags": [
+      "termin",
+      "arztanwesenheit",
+      "keine-halluzination"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-019",
+    "file": "KF-019_nur_arztanwesenheit.yaml",
+    "title": "Nur Frage nach Arztanwesenheit",
+    "tags": [
+      "kein-auftrag",
+      "arztanwesenheit",
+      "halluzinationsschutz"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-020",
+    "file": "KF-020_rueckruf_mit_grund.yaml",
+    "title": "Rückruf – mit Grund",
+    "tags": [
+      "rueckruf",
+      "happy-path"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-021",
+    "file": "KF-021_rueckruf_ohne_grund.yaml",
+    "title": "Rückruf – ohne Grund",
+    "tags": [
+      "rueckruf",
+      "ohne-grund"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-022",
+    "file": "KF-022_rueckruf_clip_vorhanden.yaml",
+    "title": "Rückruf – CLIP vorhanden",
+    "tags": [
+      "rueckruf",
+      "clip",
+      "keine-wiederholung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-023",
+    "file": "KF-023_rueckruf_keine_clip_nummer_ansagen.yaml",
+    "title": "Rückruf – keine CLIP, Nummer wird angesagt",
+    "tags": [
+      "rueckruf",
+      "telefonnummer",
+      "keine-clip"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-024",
+    "file": "KF-024_rueckruf_anonym_nummer_verweigert.yaml",
+    "title": "Rückruf – anonym und Nummer verweigert",
+    "tags": [
+      "rueckruf",
+      "anonym",
+      "grenzfall"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-025",
+    "file": "KF-025_sonstiges_autolicht.yaml",
+    "title": "Sonstiges – Licht am Auto brennt",
+    "tags": [
+      "sonstiges",
+      "nachricht",
+      "ohne-personendaten"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-026",
+    "file": "KF-026_sonstiges_schornsteinfeger.yaml",
+    "title": "Sonstiges – Schornsteinfeger",
+    "tags": [
+      "sonstiges",
+      "externer-anrufer"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-027",
+    "file": "KF-027_apotheke_anruf.yaml",
+    "title": "Apotheke – bevorzugter Anruf",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "telefon-spezifisch"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-028",
+    "file": "KF-028_krankenhaus_anruf.yaml",
+    "title": "Krankenhaus – sofort weiterleiten",
+    "tags": [
+      "weiterleitung",
+      "rotes-telefon",
+      "krankenhaus"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-029",
+    "file": "KF-029_rettungsdienst_anruf.yaml",
+    "title": "Rettungsdienst – sofort weiterleiten",
+    "tags": [
+      "weiterleitung",
+      "rotes-telefon",
+      "rettungsdienst"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-030",
+    "file": "KF-030_arztkollege_anruf.yaml",
+    "title": "Ärztlicher Kollege – sofort weiterleiten",
+    "tags": [
+      "weiterleitung",
+      "rotes-telefon",
+      "arztkollege"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-031",
+    "file": "KF-031_krankenhaus_kurz.yaml",
+    "title": "Krankenhaus – knappe Identifikation",
+    "tags": [
+      "weiterleitung",
+      "rotes-telefon",
+      "krankenhaus"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-032",
+    "file": "KF-032_au_neu_grippe.yaml",
+    "title": "AU neu – Krankschreibung per Nachricht verlangt",
+    "tags": [
+      "au",
+      "arbeitsunfaehigkeit",
+      "kein-auftrag"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-033",
+    "file": "KF-033_au_verlaengerung.yaml",
+    "title": "AU-Verlängerung – Rückruf anbieten",
+    "tags": [
+      "au",
+      "verlaengerung",
+      "rueckruf"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-034",
+    "file": "KF-034_au_und_rezept.yaml",
+    "title": "Mehrfachthema – neue AU plus Rezept",
+    "tags": [
+      "au",
+      "rezept",
+      "mehrfachthema"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-035",
+    "file": "KF-035_krank_ohne_au_wunsch.yaml",
+    "title": "Krankheit erwähnt – kein AU-Wunsch",
+    "tags": [
+      "au",
+      "kein-au-wunsch",
+      "intent"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-036",
+    "file": "KF-036_unterhaltung.yaml",
+    "title": "Reine Unterhaltung",
+    "tags": [
+      "kein-auftrag",
+      "smalltalk"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-037",
+    "file": "KF-037_testanweisung_nichts_speichern.yaml",
+    "title": "Expliziter Test ohne Praxisauftrag",
+    "tags": [
+      "kein-auftrag",
+      "test",
+      "regression"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-038",
+    "file": "KF-038_prompt_injection_patient.yaml",
+    "title": "Prompt-Injection durch Anrufer",
+    "tags": [
+      "prompt-injection",
+      "robustheit",
+      "kein-auftrag"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-039",
+    "file": "KF-039_erfundene_programmfunktion.yaml",
+    "title": "Frage nach Programmfunktion",
+    "tags": [
+      "halluzinationsschutz",
+      "programmfunktionsfrage",
+      "kein-auftrag"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-040",
+    "file": "KF-040_zukunftsversprechen.yaml",
+    "title": "Unzulässiges Zukunftsversprechen provozieren",
+    "tags": [
+      "halluzinationsschutz",
+      "zukunftsversprechen"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-041",
+    "file": "KF-041_rezept_oder_termin_widerspruch.yaml",
+    "title": "Widerspruch – Rezept oder Termin",
+    "tags": [
+      "intent",
+      "widerspruch",
+      "rueckfrage"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-042",
+    "file": "KF-042_geburtsdatum_falsch_dann_korrekt.yaml",
+    "title": "Geburtsdatum – ungültig, dann korrigiert",
+    "tags": [
+      "stammdaten",
+      "geburtsdatum",
+      "korrektur"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-043",
+    "file": "KF-043_geburtsdatum_monatsname.yaml",
+    "title": "Geburtsdatum – gesprochener Monatsname",
+    "tags": [
+      "stammdaten",
+      "geburtsdatum",
+      "normalisierung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-044",
+    "file": "KF-044_namenskorrektur.yaml",
+    "title": "Name – Selbstkorrektur",
+    "tags": [
+      "stammdaten",
+      "name",
+      "korrektur"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-045",
+    "file": "KF-045_drei_auftraege.yaml",
+    "title": "Drei Aufträge in einem Gespräch",
+    "tags": [
+      "mehrfachauftrag",
+      "rezept",
+      "ueberweisung",
+      "termin",
+      "stress-test"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-046",
+    "file": "KF-046_telefonnummer_ziffernweise.yaml",
+    "title": "Telefonnummer – ziffernweise gesprochen",
+    "tags": [
+      "telefonnummer",
+      "sonstiges",
+      "keine-clip"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-047",
+    "file": "KF-047_clip_keine_nummer_nachfrage.yaml",
+    "title": "CLIP – Telefonnummer nicht erneut abfragen",
+    "tags": [
+      "clip",
+      "sonstiges",
+      "keine-wiederholung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-048",
+    "file": "KF-048_sonstiges_meinungsaenderung.yaml",
+    "title": "Sonstiges – Nachricht wird korrigiert",
+    "tags": [
+      "sonstiges",
+      "korrektur",
+      "zusammenfassung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-049",
+    "file": "KF-049_hangup_unvollstaendig.yaml",
+    "title": "Auflegen bei unvollständigem Auftrag",
+    "tags": [
+      "hangup",
+      "unvollstaendig",
+      "complete"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-050",
+    "file": "KF-050_chat_weiterleitung_unterschied.yaml",
+    "title": "Kanalvergleich – Arztkollege Telefon vs. Chat",
+    "tags": [
+      "chat",
+      "telephone",
+      "kanalvergleich",
+      "weiterleitung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-051",
+    "file": "KF-051_brustschmerz_mit_ausstrahlung_herzinfarktverdacht.yaml",
+    "title": "Brustschmerz mit Ausstrahlung – Herzinfarktverdacht",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "brustschmerz_mit_ausstrahlung_herzinfarktverdacht"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-052",
+    "file": "KF-052_kardiale_dekompensation_mit_schwerer_luftnot.yaml",
+    "title": "Kardiale Dekompensation mit schwerer Luftnot",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "kardiale_dekompensation_mit_schwerer_luftnot"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-053",
+    "file": "KF-053_kollaps_mit_anhaltender_schwaeche.yaml",
+    "title": "Kollaps mit anhaltender Schwäche",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "kollaps_mit_anhaltender_schwaeche"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-054",
+    "file": "KF-054_akute_atemnot_kaum_ganze_saetze.yaml",
+    "title": "Akute Atemnot – kaum ganze Sätze",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "akute_atemnot_kaum_ganze_saetze"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-055",
+    "file": "KF-055_akute_pneumonie_mit_saettigungsabfall.yaml",
+    "title": "Akute Pneumonie mit Sättigungsabfall",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "akute_pneumonie_mit_saettigungsabfall"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-056",
+    "file": "KF-056_akuter_schlaganfallverdacht.yaml",
+    "title": "Akuter Schlaganfallverdacht",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "akuter_schlaganfallverdacht"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-057",
+    "file": "KF-057_anaphylaxie_nach_wespenstich.yaml",
+    "title": "Anaphylaxie nach Wespenstich",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "anaphylaxie_nach_wespenstich"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-058",
+    "file": "KF-058_starke_gastrointestinale_blutung.yaml",
+    "title": "Starke gastrointestinale Blutung",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "starke_gastrointestinale_blutung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-059",
+    "file": "KF-059_krampfanfall_mit_bewusstseinsstoerung.yaml",
+    "title": "Krampfanfall mit Bewusstseinsstörung",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "krampfanfall_mit_bewusstseinsstoerung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-060",
+    "file": "KF-060_bewusstlosigkeit_bei_diabetes.yaml",
+    "title": "Bewusstlosigkeit bei Diabetes",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "bewusstlosigkeit_bei_diabetes"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-061",
+    "file": "KF-061_blutdruckkrise_mit_neurologischen_symptomen.yaml",
+    "title": "Blutdruckkrise mit neurologischen Symptomen",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "blutdruckkrise_mit_neurologischen_symptomen"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-062",
+    "file": "KF-062_tachyarrhythmie_mit_kreislaufproblemen.yaml",
+    "title": "Tachyarrhythmie mit Kreislaufproblemen",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "tachyarrhythmie_mit_kreislaufproblemen"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-063",
+    "file": "KF-063_bradykardie_nach_beinahe_synkope.yaml",
+    "title": "Bradykardie nach Beinahe-Synkope",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "bradykardie_nach_beinahe_synkope"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-064",
+    "file": "KF-064_akuter_bauchschmerz_mit_kreislaufkollaps.yaml",
+    "title": "Akuter Bauchschmerz mit Kreislaufkollaps",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "akuter_bauchschmerz_mit_kreislaufkollaps"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-065",
+    "file": "KF-065_sepsisverdacht_mit_verwirrtheit.yaml",
+    "title": "Sepsisverdacht mit Verwirrtheit",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "sepsisverdacht_mit_verwirrtheit"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-066",
+    "file": "KF-066_lungenembolieverdacht_nach_immobilisation.yaml",
+    "title": "Lungenembolieverdacht nach Immobilisation",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "lungenembolieverdacht_nach_immobilisation"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-067",
+    "file": "KF-067_kopfverletzung_unter_antikoagulation.yaml",
+    "title": "Kopfverletzung unter Antikoagulation",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "kopfverletzung_unter_antikoagulation"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-068",
+    "file": "KF-068_copd_exazerbation_mit_schwerer_hypoxie.yaml",
+    "title": "COPD-Exazerbation mit schwerer Hypoxie",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "copd_exazerbation_mit_schwerer_hypoxie"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-069",
+    "file": "KF-069_fieberkrampf_beim_kleinkind.yaml",
+    "title": "Fieberkrampf beim Kleinkind",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "fieberkrampf_beim_kleinkind"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-070",
+    "file": "KF-070_ploetzliche_bewusstseinsstoerung_nach_sturz.yaml",
+    "title": "Plötzliche Bewusstseinsstörung nach Sturz",
+    "tags": [
+      "notfall",
+      "112",
+      "allgemeinmedizin",
+      "ploetzliche_bewusstseinsstoerung_nach_sturz"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-071",
+    "file": "KF-071_palliativ_massive_akute_atemnot_ohne_therapiebegrenzung.yaml",
+    "title": "Palliativ – massive akute Atemnot ohne Therapiebegrenzung",
+    "tags": [
+      "palliativ",
+      "akut",
+      "dringlichkeit",
+      "palliativ_massive_akute_atemnot_ohne_therapiebegrenzung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-072",
+    "file": "KF-072_palliativ_schwere_schmerzkrise_zu_hause.yaml",
+    "title": "Palliativ – schwere Schmerzkrise zu Hause",
+    "tags": [
+      "palliativ",
+      "akut",
+      "dringlichkeit",
+      "palliativ_schwere_schmerzkrise_zu_hause"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-073",
+    "file": "KF-073_palliativ_tumorbedingte_starke_blutung.yaml",
+    "title": "Palliativ – tumorbedingte starke Blutung",
+    "tags": [
+      "palliativ",
+      "akut",
+      "dringlichkeit",
+      "palliativ_tumorbedingte_starke_blutung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-074",
+    "file": "KF-074_palliativ_akutes_delir_und_starke_unruhe.yaml",
+    "title": "Palliativ – akutes Delir und starke Unruhe",
+    "tags": [
+      "palliativ",
+      "akut",
+      "dringlichkeit",
+      "palliativ_akutes_delir_und_starke_unruhe"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-075",
+    "file": "KF-075_palliativ_erbrechen_medikamente_bleiben_nicht_drin.yaml",
+    "title": "Palliativ – Erbrechen, Medikamente bleiben nicht drin",
+    "tags": [
+      "palliativ",
+      "akut",
+      "dringlichkeit",
+      "palliativ_erbrechen_medikamente_bleiben_nicht_drin"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-076",
+    "file": "KF-076_palliativ_rasselnde_atmung_und_erstickungsangst.yaml",
+    "title": "Palliativ – rasselnde Atmung und Erstickungsangst",
+    "tags": [
+      "palliativ",
+      "akut",
+      "dringlichkeit",
+      "palliativ_rasselnde_atmung_und_erstickungsangst"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-077",
+    "file": "KF-077_palliativ_ungewoehnliche_schlaefrigkeit_und_flache_atmung.yaml",
+    "title": "Palliativ – ungewöhnliche Schläfrigkeit und flache Atmung",
+    "tags": [
+      "palliativ",
+      "akut",
+      "dringlichkeit",
+      "palliativ_ungewoehnliche_schlaefrigkeit_und_flache_atmung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-078",
+    "file": "KF-078_palliativ_lange_atempausen_angehoerige_verunsichert.yaml",
+    "title": "Palliativ – lange Atempausen, Angehörige verunsichert",
+    "tags": [
+      "palliativ",
+      "akut",
+      "dringlichkeit",
+      "palliativ_lange_atempausen_angehoerige_verunsichert"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-079",
+    "file": "KF-079_palliativ_fieber_schuettelfrost_und_kreislaufabfall.yaml",
+    "title": "Palliativ – Fieber, Schüttelfrost und Kreislaufabfall",
+    "tags": [
+      "palliativ",
+      "akut",
+      "dringlichkeit",
+      "palliativ_fieber_schuettelfrost_und_kreislaufabfall"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-080",
+    "file": "KF-080_palliativ_akute_verschlechterung_mit_klarer_dnar_dni_planung.yaml",
+    "title": "Palliativ – akute Verschlechterung mit klarer DNAR/DNI-Planung",
+    "tags": [
+      "palliativ",
+      "akut",
+      "dringlichkeit",
+      "palliativ_akute_verschlechterung_mit_klarer_dnar_dni_planung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-081",
+    "file": "KF-081_tochter_bestellt_medikament_fuer_mutter.yaml",
+    "title": "Tochter bestellt Medikament für Mutter",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "tochter_bestellt_medikament_fuer_mutter"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-082",
+    "file": "KF-082_ehemann_moechte_termin_fuer_ehefrau.yaml",
+    "title": "Ehemann möchte Termin für Ehefrau",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "ehemann_moechte_termin_fuer_ehefrau"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-083",
+    "file": "KF-083_sohn_bittet_um_kardiologie_ueberweisung_fuer_vater.yaml",
+    "title": "Sohn bittet um Kardiologie-Überweisung für Vater",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "sohn_bittet_um_kardiologie_ueberweisung_fuer_vater"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-084",
+    "file": "KF-084_tochter_bittet_um_befundrueckruf_fuer_mutter.yaml",
+    "title": "Tochter bittet um Befundrückruf für Mutter",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "tochter_bittet_um_befundrueckruf_fuer_mutter"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-085",
+    "file": "KF-085_ehefrau_wegen_au_verlaengerung_des_mannes.yaml",
+    "title": "Ehefrau wegen AU-Verlängerung des Mannes",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "ehefrau_wegen_au_verlaengerung_des_mannes"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-086",
+    "file": "KF-086_mutter_ruft_fuer_erwachsenen_sohn_mit_hautausschlag_an.yaml",
+    "title": "Mutter ruft für erwachsenen Sohn mit Hautausschlag an",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "mutter_ruft_fuer_erwachsenen_sohn_mit_hautausschlag_an"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-087",
+    "file": "KF-087_vater_moechte_termin_fuer_kind_mit_fieber.yaml",
+    "title": "Vater möchte Termin für Kind mit Fieber",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "vater_moechte_termin_fuer_kind_mit_fieber"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-088",
+    "file": "KF-088_tochter_bittet_um_hausbesuch_fuer_immobilen_vater.yaml",
+    "title": "Tochter bittet um Hausbesuch für immobilen Vater",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "tochter_bittet_um_hausbesuch_fuer_immobilen_vater"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-089",
+    "file": "KF-089_nachbar_meldet_medikamentenproblem_einer_aelteren_patientin.yaml",
+    "title": "Nachbar meldet Medikamentenproblem einer älteren Patientin",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "nachbar_meldet_medikamentenproblem_einer_aelteren_patientin"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-090",
+    "file": "KF-090_gesetzliche_betreuerin_bittet_um_rueckruf.yaml",
+    "title": "Gesetzliche Betreuerin bittet um Rückruf",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "gesetzliche_betreuerin_bittet_um_rueckruf"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-091",
+    "file": "KF-091_sohn_meldet_moegliche_medikamentenunvertraeglichkeit_der_mutter.yaml",
+    "title": "Sohn meldet mögliche Medikamentenunverträglichkeit der Mutter",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "sohn_meldet_moegliche_medikamentenunvertraeglichkeit_der_mutter"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-092",
+    "file": "KF-092_ehefrau_beschwert_sich_ueber_entlassmedikation_des_mannes.yaml",
+    "title": "Ehefrau beschwert sich über Entlassmedikation des Mannes",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "ehefrau_beschwert_sich_ueber_entlassmedikation_des_mannes"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-093",
+    "file": "KF-093_tochter_fragt_nach_reha_unterlagen_fuer_mutter.yaml",
+    "title": "Tochter fragt nach Reha-Unterlagen für Mutter",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "tochter_fragt_nach_reha_unterlagen_fuer_mutter"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-094",
+    "file": "KF-094_sohn_meldet_zunehmende_luftnot_des_vaters.yaml",
+    "title": "Sohn meldet zunehmende Luftnot des Vaters",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "sohn_meldet_zunehmende_luftnot_des_vaters"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-095",
+    "file": "KF-095_ehemann_bittet_um_formular_fuer_pflegekasse.yaml",
+    "title": "Ehemann bittet um Formular für Pflegekasse",
+    "tags": [
+      "angehoerige",
+      "fremdanrufer",
+      "patientenzuordnung",
+      "ehemann_bittet_um_formular_fuer_pflegekasse"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-096",
+    "file": "KF-096_reha_antrag_patient_moechte_formular_anstossen.yaml",
+    "title": "Reha-Antrag – Patient möchte Formular anstoßen",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "reha_antrag_patient_moechte_formular_anstossen"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-097",
+    "file": "KF-097_drv_formular_aerztlicher_befundbericht.yaml",
+    "title": "DRV-Formular – ärztlicher Befundbericht",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "drv_formular_aerztlicher_befundbericht"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-098",
+    "file": "KF-098_pflegekassen_formular_bescheinigung.yaml",
+    "title": "Pflegekassen-Formular – Bescheinigung",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "pflegekassen_formular_bescheinigung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-099",
+    "file": "KF-099_attest_fuer_sportverein.yaml",
+    "title": "Attest für Sportverein",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "attest_fuer_sportverein"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-100",
+    "file": "KF-100_formular_schwerbehindertenantrag.yaml",
+    "title": "Formular – Schwerbehindertenantrag",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "formular_schwerbehindertenantrag"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-101",
+    "file": "KF-101_erkundigung_nach_oeffnungszeiten.yaml",
+    "title": "Erkundigung nach Öffnungszeiten",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "erkundigung_nach_oeffnungszeiten"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-102",
+    "file": "KF-102_erkundigung_nach_arztanwesenheit_morgen.yaml",
+    "title": "Erkundigung nach Arztanwesenheit morgen",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "erkundigung_nach_arztanwesenheit_morgen"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-103",
+    "file": "KF-103_unzufriedener_patient_lange_wartezeit.yaml",
+    "title": "Unzufriedener Patient – lange Wartezeit",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "unzufriedener_patient_lange_wartezeit"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-104",
+    "file": "KF-104_unzufriedener_patient_ton_am_empfang.yaml",
+    "title": "Unzufriedener Patient – Ton am Empfang",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "unzufriedener_patient_ton_am_empfang"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-105",
+    "file": "KF-105_telekom_glasfaseranschluss_terminabsprache.yaml",
+    "title": "Telekom – Glasfaseranschluss Terminabsprache",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "telekom_glasfaseranschluss_terminabsprache"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-106",
+    "file": "KF-106_verwaehlt_eigentlich_physiotherapie.yaml",
+    "title": "Verwählt – eigentlich Physiotherapie",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "verwaehlt_eigentlich_physiotherapie"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-107",
+    "file": "KF-107_scherzanruf_kinder_lachen_und_fragen_nach_pizza.yaml",
+    "title": "Scherzanruf – Kinder lachen und fragen nach Pizza",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "scherzanruf_kinder_lachen_und_fragen_nach_pizza"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-108",
+    "file": "KF-108_scherzanruf_kind_behauptet_fantasiekrankheit.yaml",
+    "title": "Scherzanruf – Kind behauptet Fantasiekrankheit",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "scherzanruf_kind_behauptet_fantasiekrankheit"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-109",
+    "file": "KF-109_lieferdienst_fragt_nach_warenannahme.yaml",
+    "title": "Lieferdienst fragt nach Warenannahme",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "lieferdienst_fragt_nach_warenannahme"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-110",
+    "file": "KF-110_krankenkasse_bittet_um_rueckruf_zu_unterlagen.yaml",
+    "title": "Krankenkasse bittet um Rückruf zu Unterlagen",
+    "tags": [
+      "organisation",
+      "sonstiges",
+      "krankenkasse_bittet_um_rueckruf_zu_unterlagen"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-111",
+    "file": "KF-111_apotheke_falsche_staerke_auf_rezept.yaml",
+    "title": "Apotheke – falsche Stärke auf Rezept",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "fremdanrufer",
+      "apotheke_falsche_staerke_auf_rezept"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-112",
+    "file": "KF-112_apotheke_gemeldete_unvertraeglichkeit.yaml",
+    "title": "Apotheke – gemeldete Unverträglichkeit",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "fremdanrufer",
+      "apotheke_gemeldete_unvertraeglichkeit"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-113",
+    "file": "KF-113_apotheke_medikament_nicht_lieferbar_alternative_erbeten.yaml",
+    "title": "Apotheke – Medikament nicht lieferbar, Alternative erbeten",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "fremdanrufer",
+      "apotheke_medikament_nicht_lieferbar_alternative_erbeten"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-114",
+    "file": "KF-114_apotheke_doppelverordnung.yaml",
+    "title": "Apotheke – Doppelverordnung",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "fremdanrufer",
+      "apotheke_doppelverordnung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-115",
+    "file": "KF-115_apotheke_rezept_offenbar_falschem_patienten_zugeordnet.yaml",
+    "title": "Apotheke – Rezept offenbar falschem Patienten zugeordnet",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "fremdanrufer",
+      "apotheke_rezept_offenbar_falschem_patienten_zugeordnet"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-116",
+    "file": "KF-116_apotheke_patient_mit_blutdruck_220_120_vor_ort.yaml",
+    "title": "Apotheke – Patient mit Blutdruck 220/120 vor Ort",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "fremdanrufer",
+      "apotheke_patient_mit_blutdruck_220_120_vor_ort"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-117",
+    "file": "KF-117_apotheke_relevante_wechselwirkungsrueckfrage.yaml",
+    "title": "Apotheke – relevante Wechselwirkungsrückfrage",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "fremdanrufer",
+      "apotheke_relevante_wechselwirkungsrueckfrage"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-118",
+    "file": "KF-118_apotheke_dosieranweisung_widerspruechlich.yaml",
+    "title": "Apotheke – Dosieranweisung widersprüchlich",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "fremdanrufer",
+      "apotheke_dosieranweisung_widerspruechlich"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-119",
+    "file": "KF-119_apotheke_e_rezept_technisch_nicht_abrufbar.yaml",
+    "title": "Apotheke – E-Rezept technisch nicht abrufbar",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "fremdanrufer",
+      "apotheke_e_rezept_technisch_nicht_abrufbar"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-120",
+    "file": "KF-120_apotheke_palliatives_betaeubungsmittel_formale_rueckfrage.yaml",
+    "title": "Apotheke – palliatives Betäubungsmittel, formale Rückfrage",
+    "tags": [
+      "apotheke",
+      "weiterleitung",
+      "fremdanrufer",
+      "apotheke_palliatives_betaeubungsmittel_formale_rueckfrage"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-121",
+    "file": "KF-121_pflegeheim_dekubitus_verschlechtert_hausbesuch.yaml",
+    "title": "Pflegeheim – Dekubitus verschlechtert, Hausbesuch",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "hausbesuch",
+      "pflegeheim_dekubitus_verschlechtert_hausbesuch"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-122",
+    "file": "KF-122_pflegedienst_infizierte_wunde_am_unterschenkel.yaml",
+    "title": "Pflegedienst – infizierte Wunde am Unterschenkel",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "pflegedienst_infizierte_wunde_am_unterschenkel"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-123",
+    "file": "KF-123_pflegeheim_erysipelverdacht_hausbesuch.yaml",
+    "title": "Pflegeheim – Erysipelverdacht, Hausbesuch",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "hausbesuch",
+      "pflegeheim_erysipelverdacht_hausbesuch"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-124",
+    "file": "KF-124_pflegeheim_blutdruckkrise_mit_kopfschmerz.yaml",
+    "title": "Pflegeheim – Blutdruckkrise mit Kopfschmerz",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "notfall",
+      "fremdanrufer",
+      "pflegeheim_blutdruckkrise_mit_kopfschmerz"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-125",
+    "file": "KF-125_pflegeheim_kollaps_im_bad.yaml",
+    "title": "Pflegeheim – Kollaps im Bad",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "notfall",
+      "fremdanrufer",
+      "pflegeheim_kollaps_im_bad"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-126",
+    "file": "KF-126_pflegedienst_tachyarrhythmie_165_und_schwindel.yaml",
+    "title": "Pflegedienst – Tachyarrhythmie 165 und Schwindel",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "notfall",
+      "fremdanrufer",
+      "pflegedienst_tachyarrhythmie_165_und_schwindel"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-127",
+    "file": "KF-127_pflegeheim_bradykardie_34_und_somnolenz.yaml",
+    "title": "Pflegeheim – Bradykardie 34 und Somnolenz",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "notfall",
+      "fremdanrufer",
+      "pflegeheim_bradykardie_34_und_somnolenz"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-128",
+    "file": "KF-128_pflegeheim_kardiale_dekompensation.yaml",
+    "title": "Pflegeheim – kardiale Dekompensation",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "notfall",
+      "fremdanrufer",
+      "pflegeheim_kardiale_dekompensation"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-129",
+    "file": "KF-129_pflegeheim_pneumonie_mit_saettigung_81_prozent.yaml",
+    "title": "Pflegeheim – Pneumonie mit Sättigung 81 Prozent",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "notfall",
+      "fremdanrufer",
+      "pflegeheim_pneumonie_mit_saettigung_81_prozent"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-130",
+    "file": "KF-130_pflegedienst_akute_verwirrtheit_und_fieber.yaml",
+    "title": "Pflegedienst – akute Verwirrtheit und Fieber",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "notfall",
+      "fremdanrufer",
+      "pflegedienst_akute_verwirrtheit_und_fieber"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-131",
+    "file": "KF-131_pflegeheim_dauerkatheter_mit_blutung.yaml",
+    "title": "Pflegeheim – Dauerkatheter mit Blutung",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "pflegeheim_dauerkatheter_mit_blutung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-132",
+    "file": "KF-132_pflegedienst_wiederholte_unterzuckerungen_besprechen.yaml",
+    "title": "Pflegedienst – wiederholte Unterzuckerungen besprechen",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "pflegedienst_wiederholte_unterzuckerungen_besprechen"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-133",
+    "file": "KF-133_pflegeheim_sturz_auf_den_kopf_unter_blutverduenner.yaml",
+    "title": "Pflegeheim – Sturz auf den Kopf unter Blutverdünner",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "notfall",
+      "fremdanrufer",
+      "pflegeheim_sturz_auf_den_kopf_unter_blutverduenner"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-134",
+    "file": "KF-134_pflegedienst_zunehmende_oedeme_und_gewichtszunahme.yaml",
+    "title": "Pflegedienst – zunehmende Ödeme und Gewichtszunahme",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "pflegedienst_zunehmende_oedeme_und_gewichtszunahme"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-135",
+    "file": "KF-135_pflegeheim_wundversorgung_bei_dekubitus_abstimmen.yaml",
+    "title": "Pflegeheim – Wundversorgung bei Dekubitus abstimmen",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "pflegeheim_wundversorgung_bei_dekubitus_abstimmen"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-136",
+    "file": "KF-136_pflegedienst_peg_sonde_verstopft_medikamente_schwierig.yaml",
+    "title": "Pflegedienst – PEG-Sonde verstopft, Medikamente schwierig",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "pflegedienst_peg_sonde_verstopft_medikamente_schwierig"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-137",
+    "file": "KF-137_pflegeheim_zunehmende_schmerzen_medikation_besprechen.yaml",
+    "title": "Pflegeheim – zunehmende Schmerzen, Medikation besprechen",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "pflegeheim_zunehmende_schmerzen_medikation_besprechen"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-138",
+    "file": "KF-138_pflegedienst_tabletten_koennen_nicht_mehr_geschluckt_werden.yaml",
+    "title": "Pflegedienst – Tabletten können nicht mehr geschluckt werden",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "pflegedienst_tabletten_koennen_nicht_mehr_geschluckt_werden"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-139",
+    "file": "KF-139_pflegedienst_bettlaegerig_mit_fieber_hausbesuch_gewuenscht.yaml",
+    "title": "Pflegedienst – bettlägerig mit Fieber, Hausbesuch gewünscht",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "hausbesuch",
+      "pflegedienst_bettlaegerig_mit_fieber_hausbesuch_gewuenscht"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-140",
+    "file": "KF-140_pflegeheim_routinemaessige_medikationsbesprechung.yaml",
+    "title": "Pflegeheim – routinemäßige Medikationsbesprechung",
+    "tags": [
+      "pflege",
+      "pflegeheim",
+      "rueckruf",
+      "fremdanrufer",
+      "pflegeheim_routinemaessige_medikationsbesprechung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-141",
+    "file": "KF-141_dysurie_termin_wegen_harnwegsbeschwerden.yaml",
+    "title": "Dysurie – Termin wegen Harnwegsbeschwerden",
+    "tags": [
+      "allgemeinmedizin",
+      "routine",
+      "dysurie_termin_wegen_harnwegsbeschwerden"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-142",
+    "file": "KF-142_akuter_rueckenschmerz_ohne_warnzeichen_termin.yaml",
+    "title": "Akuter Rückenschmerz ohne Warnzeichen – Termin",
+    "tags": [
+      "allgemeinmedizin",
+      "routine",
+      "akuter_rueckenschmerz_ohne_warnzeichen_termin"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-143",
+    "file": "KF-143_impfberatung_termin.yaml",
+    "title": "Impfberatung – Termin",
+    "tags": [
+      "allgemeinmedizin",
+      "routine",
+      "impfberatung_termin"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-144",
+    "file": "KF-144_laborwerte_rueckrufbitte.yaml",
+    "title": "Laborwerte – Rückrufbitte",
+    "tags": [
+      "allgemeinmedizin",
+      "routine",
+      "laborwerte_rueckrufbitte"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-145",
+    "file": "KF-145_rezept_plus_befundfrage_zwei_anliegen.yaml",
+    "title": "Rezept plus Befundfrage – zwei Anliegen",
+    "tags": [
+      "allgemeinmedizin",
+      "routine",
+      "rezept_plus_befundfrage_zwei_anliegen"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-146",
+    "file": "KF-146_ueberweisung_dermatologie_wegen_hautveraenderung.yaml",
+    "title": "Überweisung Dermatologie wegen Hautveränderung",
+    "tags": [
+      "allgemeinmedizin",
+      "routine",
+      "ueberweisung_dermatologie_wegen_hautveraenderung"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-147",
+    "file": "KF-147_reiseimpfberatung_vor_fernreise.yaml",
+    "title": "Reiseimpfberatung vor Fernreise",
+    "tags": [
+      "allgemeinmedizin",
+      "routine",
+      "reiseimpfberatung_vor_fernreise"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-148",
+    "file": "KF-148_hoerminderung_termin.yaml",
+    "title": "Hörminderung – Termin",
+    "tags": [
+      "allgemeinmedizin",
+      "routine",
+      "hoerminderung_termin"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-149",
+    "file": "KF-149_herzstolpern_aktuell_stabil_terminwunsch.yaml",
+    "title": "Herzstolpern, aktuell stabil – Terminwunsch",
+    "tags": [
+      "allgemeinmedizin",
+      "routine",
+      "herzstolpern_aktuell_stabil_terminwunsch"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  },
+  {
+    "scenario_id": "KF-150",
+    "file": "KF-150_mehrfachanliegen_rezept_reha_formular_und_rueckruf.yaml",
+    "title": "Mehrfachanliegen – Rezept, Reha-Formular und Rückruf",
+    "tags": [
+      "allgemeinmedizin",
+      "routine",
+      "mehrfachanliegen_rezept_reha_formular_und_rueckruf"
+    ],
+    "channels": [
+      "telephone",
+      "chat"
+    ]
+  }
+]

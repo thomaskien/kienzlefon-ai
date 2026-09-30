@@ -1,0 +1,57 @@
+format_version: '1.0'
+scenario_id: KF-015
+title: Termin – Blutdruckkontrolle
+description: Grund Blutdruckkontrolle ist ausreichend; Verfügbarkeit soll erfasst werden.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- termin
+- happy-path
+- verfuegbarkeit
+simulation:
+  max_turns: 20
+  seed: 1015
+patient:
+  identity:
+    first_name: Helga
+    last_name: Bauer
+    birth_date: 21.12.1954
+    callback_number: null
+  persona:
+    style: kurz und freundlich
+    disclosure: nur_auf_nachfrage
+    quirks: []
+  facts:
+    reason: Blutdruckkontrolle
+    availability: Montag und Mittwoch nachmittags
+  opening: Ich hätte gerne einen Termin zur Blutdruckkontrolle.
+  instructions:
+  - 'Verfügbarkeit auf Nachfrage: Montag und Mittwoch nachmittags.'
+  - Keine weiteren medizinischen Details erfinden.
+environment:
+  caller_id: '+4917610000015'
+  within_phone_hours: false
+test_goal:
+  topic: Termin
+  clarification_goal: Grund und zeitliche Verfügbarkeit aufnehmen.
+expectations:
+  terminal_outcome: order_complete
+  records:
+  - type: termin
+    complete: true
+    data:
+      vorname:
+        equals: Helga
+      nachname:
+        equals: Bauer
+      geburtsdatum:
+        equals: 21.12.1954
+      grund:
+        contains: Blutdruck
+  required_behaviors:
+  - Zeitliche Verfügbarkeit des Patienten erfragen/erfassen.
+  forbidden_behaviors:
+  - Eine Diagnose oder Behandlung ergänzen.
+  notes: []

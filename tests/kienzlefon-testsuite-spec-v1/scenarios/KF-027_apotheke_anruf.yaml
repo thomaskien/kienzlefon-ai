@@ -1,0 +1,52 @@
+format_version: '1.0'
+scenario_id: KF-027
+title: Apotheke – bevorzugter Anruf
+description: Apotheke meldet sich als Apotheke; Telefonpfad soll priorisierte Behandlung nutzen, soweit Backend unterstützt.
+enabled: true
+channels:
+- telephone
+- chat
+tags:
+- apotheke
+- weiterleitung
+- telefon-spezifisch
+simulation:
+  max_turns: 20
+  seed: 1027
+patient:
+  identity:
+    first_name: null
+    last_name: null
+    birth_date: null
+    callback_number: null
+  persona:
+    style: professionell
+    disclosure: alles_spontan
+    quirks: []
+  facts:
+    organization: Apotheke am Markt
+    reason: Rückfrage zu einer Verordnung
+  opening: Guten Tag, hier ist die Apotheke am Markt. Ich habe eine Rückfrage zu einer Verordnung.
+  instructions:
+  - Du bist Apothekenmitarbeiter, kein Patient.
+environment:
+  caller_id: '+492331555200'
+  within_phone_hours: true
+test_goal:
+  topic: Apothekenanruf
+  clarification_goal: Telefonkanal soll Apotheken bevorzugt behandeln, ohne normalen Patientenauftrag zu erfinden.
+expectations:
+  terminal_outcome: forward_immediately
+  records: []
+  required_behaviors:
+  - Apothekenpfad/priorisierte Weiterleitung nutzen, soweit der produktive Telefonpfad dies vorsieht.
+  forbidden_behaviors:
+  - Einen normalen Rezept-/Terminauftrag aus dem Apothekenanruf erzeugen.
+  notes: []
+channel_overrides:
+  chat:
+    terminal_outcome: contact_instruction
+    required_behaviors:
+    - Keine reale Weiterleitung behaupten; geeignete Kontaktanweisung für Apotheken geben.
+    forbidden_behaviors:
+    - Behaupten, den Chat jetzt telefonisch weiterzuleiten.
