@@ -4,6 +4,8 @@
 
 | Einstieg | Aufgabe |
 |---|---|
+| [Backendregression 2.6](test-backend-v2.6.py) | Lokale Migration, WAV und TTS-Umschaltung mit simulierten Diensten |
+| [Kokoro-Installerprüfung 2.6](../installer/kokoro-v2.6/test_installer.py) | Konfiguration, UUID und transaktionale Dienstdateien ohne Installation |
 | [Dialog-Testsuite 1.2.6](kienzlefon-dialog-testsuite-v1.2.6.py) | Synthetische Dialogtests und gesondert konfigurierte Sprachtests |
 | [Szenariopaket](kienzlefon-testsuite-spec-v1/) | Kanonisches Paket mit 150 Szenarien, Schemas, Vorlagen und Manifest |
 | [Requirements](kienzlefon-dialog-testsuite-requirements-v1.0.txt) | Abhängigkeiten der Dialogsuite |
@@ -19,6 +21,6 @@ python3 tests/kienzlefon-dialog-testsuite-v1.2.6.py --version
 python3 tests/kienzlefon-dialog-testsuite-v1.2.6.py --help
 ```
 
-Die [Testanleitung](../docs/TESTS-v2.5.1.md) erläutert Abhängigkeiten und Voraussetzungen. Echte Testanrufe und Hardwaretests werden durch die Ordnerbereinigung nicht ausgeführt.
+Die [Prüfung 2.6](../docs/TESTS-v2.6.md) beschreibt die neue lokale Integration. Die bisherige [Testanleitung](../docs/TESTS-v2.5.1.md) erläutert Abhängigkeiten und Voraussetzungen. Echte Testanrufe und Hardwaretests werden durch die Ordnerbereinigung nicht ausgeführt.
 
 Ohne ausdrückliches Ausgabeziel verwendet die Dialogsuite nun `tests/runs/`, da sie dieses Verzeichnis relativ zum eigenen Skript bestimmt. Bisherige Läufe bleiben unverändert im bisherigen Projektordner `runs/`; das ist eine Folge des neuen Skriptorts, keine Änderung der Programmlogik. Für ein gewünschtes Ausgabeziel `--output` ausdrücklich setzen. Sämtliche Run-Ausgaben und Audioartefakte bleiben privat und sind nicht Teil der Veröffentlichungsauswahl.

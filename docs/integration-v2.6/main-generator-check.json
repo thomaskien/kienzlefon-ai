@@ -1,0 +1,13 @@
+{
+  "source": "kienzlefon/asterisk.py",
+  "project_version": "2.4.0",
+  "sha256_before": "7b951fc9611083a0130cd2ba31faf15932a0bdeede1db39bcdcfbed92cc95013",
+  "sha256_after": "15a0ffa94fbf369c14fbe8a5bf29f3fc24c33b7659ab9409d140881d74a80263",
+  "ai_endpoints_tested": [
+    "8810",
+    "8811",
+    "8812"
+  ],
+  "non_ai_codec_preserved": true,
+  "source_modified": false
+}

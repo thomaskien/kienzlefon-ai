@@ -4,10 +4,10 @@
 
 Die beiden jüngsten lokalen CUDA-/Backendinstaller sind ein versionsgleiches Paar:
 
-- [CUDA-Serverinstaller 2.5.2](install-kienzlefon-ai_v2.5.2.sh)
-- [Asterisk-/Dialoginstaller 2.5.2](kienzlefon-installer-asterisk-backend-v2.5.2.sh)
+- [CUDA-Serverinstaller 2.6](install-kienzlefon-ai_v2.6.sh)
+- [Asterisk-/Dialoginstaller 2.6](kienzlefon-installer-asterisk-backend-v2.6.sh)
 
-2.5.2 ist lokal geprüft. Sein Wartefeedback-Delta und der Aktivierungsstand stehen in den [Release Notes](../docs/RELEASE-NOTES-v2.5.2.md). Ein Backendupdate erfordert keinen erneuten KI-Installationslauf. Die vorherigen Installer bleiben mit ihren Versionsnummern erhalten; ihre Programmdateien wurden bei der Ordnerbereinigung nicht geändert.
+2.6 ist lokal geprüft. Kokoro, WAV-Begrüßung, 1000-ms-Sprachende und der Aktivierungsstand stehen in den [Release Notes](../docs/RELEASE-NOTES-v2.6.md). Ein Backendupdate erfordert keinen erneuten KI-Installationslauf. Die vorherigen Installer bleiben mit ihren Versionsnummern erhalten; ihre Programmdateien wurden bei der Ordnerbereinigung nicht geändert.
 
 Der eigenständige AMD-Zweig wird mit [AMD-Installer 1.0.2](../7900XTX/install-kienzlefon-ai-amd-v1.0.2.sh) fortgeführt; dazu gehört die [AMD-Anleitung](../docs/AMD-INSTALLATION-v1.0.2.md).
 
@@ -16,8 +16,8 @@ Der eigenständige AMD-Zweig wird mit [AMD-Installer 1.0.2](../7900XTX/install-k
 Aus der Projektwurzel lassen sich Version und Hilfe ohne Installation anzeigen:
 
 ```bash
-bash installer/install-kienzlefon-ai_v2.5.2.sh --version
-bash installer/kienzlefon-installer-asterisk-backend-v2.5.2.sh --help
+bash installer/install-kienzlefon-ai_v2.6.sh --version
+bash installer/kienzlefon-installer-asterisk-backend-v2.6.sh --help
 ```
 
 Der Ordner enthält auch historische Versionen. Die frühere Chat-Client-/Capacity-Entwicklung mit ihren gekoppelten Dateien liegt unter `archiv/entwicklung/`, weitere frühere Einzelmodule unter `installer/modules/`. Diese Stände sind nicht mit der aktuellen Runtime zu vermischen.

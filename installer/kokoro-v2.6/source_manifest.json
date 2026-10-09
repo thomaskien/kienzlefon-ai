@@ -1,0 +1,10 @@
+{
+  "kokoro_service.py": "02540e9b7433bcf9715ebea0ea1259882242889d4bcfc96507197eec1a1c7a42",
+  "install_kokoro.py": "4fcc2769e06a9d7a046e8e268c0844f64bb4c9e4a84a3975051189ee10742a32",
+  "download_models.py": "c25ff431d2d29063e24d341ab166e64bf890b49b9e051b2b4629dd051e8a89b6",
+  "model_manifest.json": "605ea1bdcc645b8d9f27845ad339222a600864c59fe137f0c9f2e870e9aa151d",
+  "requirements.lock.txt": "85d50717078d025a4ffb876898416fd319087044bf1dba1fe885a612af95f438",
+  "requirements-cpu.lock.txt": "256a491b23ca41890cadac6553c13157c70164125a3e3b91b214f2a6c3a0af7b",
+  "LICENSE.kienzlefon-ai": "e4efe1fb2f099c87be39ec882346b85f9aa02caf0b802520a319d961658a7f79",
+  "test_installer.py": "f2e9325da22f16dedb68570f8cca98bd6700e20fec9bd568eaef2bd212f3adeb"
+}

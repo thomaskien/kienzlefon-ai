@@ -4,8 +4,8 @@
 
 | Bereich | Aktueller Dokumentstand |
 |---|---|
-| CUDA-Serverinstaller | [Spezifikation 2.5.2](SPEZIFIKATION-KIENZLEFON-AI-SERVERINSTALLER-v2.5.2.md) |
-| Asterisk-/Dialogintegration | [Spezifikation 2.5.2](SPEZIFIKATION-KIENZLEFON-AI-INTEGRATION-v2.5.2.md) |
+| CUDA-Serverinstaller | [Spezifikation 2.6](SPEZIFIKATION-KIENZLEFON-AI-SERVERINSTALLER-v2.6.md) |
+| Asterisk-/Dialogintegration | [Spezifikation 2.6](SPEZIFIKATION-KIENZLEFON-AI-INTEGRATION-v2.6.md) |
 | Dialog-Testsuite | [Spezifikation 1.2](SPEZIFIKATION-KIENZLEFON-DIALOG-TESTSUITE-v1.2.md) |
 
 Alle 38 zuvor im Projektwurzelverzeichnis liegenden Spezifikationen sind hier nach ihren bisherigen Dateinamen und Versionen eingeordnet. Ältere Fassungen bleiben als Entwicklungsverlauf erhalten. Der AMD-Zweig hat eine getrennte [Installationsanleitung](../AMD-INSTALLATION-v1.0.2.md).

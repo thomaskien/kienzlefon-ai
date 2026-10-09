@@ -1,0 +1,13 @@
+--- a/kienzlefon/asterisk.py
++++ b/kienzlefon/asterisk.py
+@@ -224,7 +224,9 @@
+ transport={transport}
+ context=kienzlefon-ai-endpoint-in
+ disallow=all
+-allow=alaw,ulaw
++allow=g722
++incoming_call_offer_pref=local_first
++outgoing_call_offer_pref=local_first
+ auth={extension}-auth
+ aors={extension}
+ callerid=Kienzlefon AI {extension} <{extension}>
